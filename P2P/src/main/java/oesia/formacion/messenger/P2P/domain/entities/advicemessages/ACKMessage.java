@@ -12,7 +12,7 @@ public class ACKMessage extends Message implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 132496653241888073L;
-	
+
 	private Code codeRespost;
 
 	public Code getCodeRespost() {
@@ -27,7 +27,6 @@ public class ACKMessage extends Message implements Serializable {
 	public MessageType getType() {
 		return MessageType.ACK;
 	}
-	
 
 	@Override
 	public String toString() {
