@@ -11,7 +11,6 @@ public class KeepAliveMessage extends Message implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8515746137849974358L;
-	// TODO Code
 
 	@Override
 	public MessageType getType() {
