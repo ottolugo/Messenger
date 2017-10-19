@@ -1,57 +1,26 @@
 package oesia.formacion.messenger.P2P.socket.thread;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Semaphore;
+
+import oesia.formacion.messenger.P2P.socket.senders.SendMessageFIFO;
 
 public class SocketThreadManager {
 
-	private static List<Thread> activeSendMessageThreads = null;
+	private static Thread sendThread = null;
 	private static Map<Integer, Thread> activePortListenerThreads = null;
-	private static Semaphore sendMessagePortSemaphore = null;
 
 	private SocketThreadManager() {
 	}
 
 	/**
-	 * Cuando se crea un thread para mandar un mensage nuevo lo agrega al listado
-	 * 
-	 * @param thread que se lanzo para la insercion
+	 * Comprueba que este lanzado el thread que comprueva los envios
 	 */
-	public static void addSendMessageThread(Thread thread) {
-		checkinitialiceSendMessageThreads();
-		activeSendMessageThreads.add(thread);
-	}
-
-	/**
-	 * Se elimina un thread de la lista de envios por que acabo o no se necesita
-	 * 
-	 * @param thread a eliminar
-	 */
-	public static void dropSendMessageThread(Thread thread) {
-		checkinitialiceSendMessageThreads();
-		activeSendMessageThreads.remove(thread);
-	}
-
-	/**
-	 * Se devuelve el listado de mensages activos
-	 * 
-	 * @return lista de thread activos para envio de mensages
-	 */
-	public static List<Thread> getActiveSendMessageThreads() {
-		checkinitialiceSendMessageThreads();
-		Iterator<Thread> threadIterator = activeSendMessageThreads.iterator();
-		while (threadIterator.hasNext()) {
-			Thread active = threadIterator.next();
-			if (!active.isAlive()) {
-				dropSendMessageThread(active);
-			}
+	public static void checkSender() {
+		if (sendThread == null) {
+			sendThread = new Thread(SendMessageFIFO.getInstance());
 		}
-		return activeSendMessageThreads;
 	}
 
 	/**
@@ -106,18 +75,6 @@ public class SocketThreadManager {
 		return activePortListenerThreads;
 	}
 
-	/**
-	 * para evitar que se manden nuevos mensages sin acabar antes de mandar uno.
-	 * 
-	 * @return el semaforo para los diferentes envios
-	 */
-	public static Semaphore getSendMessageSemaphore() {
-		if (sendMessagePortSemaphore == null) {
-			sendMessagePortSemaphore = new Semaphore(1);
-		}
-		return sendMessagePortSemaphore;
-	}
-
 	private static void checkInicialiceListenerThread() {
 		if (activePortListenerThreads == null) {
 			activePortListenerThreads = new HashMap<Integer, Thread>();
@@ -125,10 +82,4 @@ public class SocketThreadManager {
 
 	}
 
-	private static void checkinitialiceSendMessageThreads() {
-		if (activeSendMessageThreads == null) {
-			activeSendMessageThreads = new ArrayList<Thread>();
-		}
-
-	}
 }

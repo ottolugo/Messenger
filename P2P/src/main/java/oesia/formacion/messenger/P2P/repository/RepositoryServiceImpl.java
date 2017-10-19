@@ -21,6 +21,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
+import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
@@ -34,7 +35,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public LocalConfiguration getConfiguration() {
-		// TODO Auto-generated method stub
+		LocalConfiguration reciveLocalConfig;
 		return null;
 	}
 
