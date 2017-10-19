@@ -9,7 +9,7 @@ public interface FIFOservice {
 	 * @param user
 	 * @param timeout
 	 */
-	public void startService(String user, int timeout);
+	public void startService();
 
 	/**
 	 * Put message in fifoStack

@@ -1,5 +1,7 @@
 package oesia.formacion.messenger.P2P.domain.boundaries.GUI;
 
+import oesia.formacion.messenger.P2P.domain.usecases.MessageServiceImpl;
+
 public class MessageFactory {
 	private static MessageService service;
 
@@ -10,7 +12,7 @@ public class MessageFactory {
 	 */
 	public static MessageService getMessageService() {
 		if (service == null) {
-			//TODO cosas para que cosas funcionen
+			service = new MessageServiceImpl();
 		}
 		return service;
 	}

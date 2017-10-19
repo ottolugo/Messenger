@@ -9,7 +9,7 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStat
 public class MessageCache {
 	private HashMap<Code, BroadcastMessage> messages;
 
-	MessageCache() {
+	public MessageCache() {
 		messages = new HashMap<Code, BroadcastMessage>();
 	}
 
