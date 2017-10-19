@@ -22,7 +22,7 @@ public class SocketThreadManager {
 	 * 
 	 * @param thread que se lanzo para la insercion
 	 */
-	public void addSendMessageThread(Thread thread) {
+	public static void addSendMessageThread(Thread thread) {
 		checkinitialiceSendMessageThreads();
 		activeSendMessageThreads.add(thread);
 	}
@@ -32,7 +32,7 @@ public class SocketThreadManager {
 	 * 
 	 * @param thread a eliminar
 	 */
-	public void dropSendMessageThread(Thread thread) {
+	public static void dropSendMessageThread(Thread thread) {
 		checkinitialiceSendMessageThreads();
 		activeSendMessageThreads.remove(thread);
 	}
@@ -42,7 +42,7 @@ public class SocketThreadManager {
 	 * 
 	 * @return lista de thread activos para envio de mensages
 	 */
-	public List<Thread> getActiveSendMessageThreads() {
+	public static List<Thread> getActiveSendMessageThreads() {
 		checkinitialiceSendMessageThreads();
 		Iterator<Thread> threadIterator = activeSendMessageThreads.iterator();
 		while (threadIterator.hasNext()) {
@@ -60,7 +60,7 @@ public class SocketThreadManager {
 	 * @param port puerto que se lee
 	 * @param thread hilo que se ejecuta
 	 */
-	public void addPortListenerThread(int port, Thread thread) {
+	public static void addPortListenerThread(int port, Thread thread) {
 		checkInicialiceListenerThread();
 		activePortListenerThreads.put(new Integer(port), thread);
 
@@ -71,7 +71,7 @@ public class SocketThreadManager {
 	 * 
 	 * @param port puerto que se quiere dejar de escuchar
 	 */
-	public void stopListenerThread(int port) {
+	public static void stopListenerThread(int port) {
 		checkInicialiceListenerThread();
 		Thread tostop = null;
 		tostop = activePortListenerThreads.get(new Integer(port));
@@ -84,7 +84,7 @@ public class SocketThreadManager {
 	 * 
 	 * @param port puerto que se deja
 	 */
-	public void dropPortListenerThread(int port) {
+	public static void dropPortListenerThread(int port) {
 		activePortListenerThreads.remove(new Integer(port));
 	}
 
@@ -93,7 +93,7 @@ public class SocketThreadManager {
 	 * 
 	 * @return
 	 */
-	public Map<Integer, Thread> getPorListenerThreads() {
+	public static Map<Integer, Thread> getPorListenerThreads() {
 		Set<Integer> keys = activePortListenerThreads.keySet();
 		keys.iterator();
 		for (Integer actualKey : keys) {
@@ -111,21 +111,21 @@ public class SocketThreadManager {
 	 * 
 	 * @return el semaforo para los diferentes envios
 	 */
-	public Semaphore getSendMessageSemaphore() {
+	public static Semaphore getSendMessageSemaphore() {
 		if (sendMessagePortSemaphore == null) {
 			sendMessagePortSemaphore = new Semaphore(1);
 		}
 		return sendMessagePortSemaphore;
 	}
 
-	private void checkInicialiceListenerThread() {
+	private static void checkInicialiceListenerThread() {
 		if (activePortListenerThreads == null) {
 			activePortListenerThreads = new HashMap<Integer, Thread>();
 		}
 
 	}
 
-	private void checkinitialiceSendMessageThreads() {
+	private static void checkinitialiceSendMessageThreads() {
 		if (activeSendMessageThreads == null) {
 			activeSendMessageThreads = new ArrayList<Thread>();
 		}
