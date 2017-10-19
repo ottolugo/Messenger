@@ -1,8 +1,14 @@
-package oesia.formacion.messenger.P2P.FIFO;
+package oesia.formacion.messenger.P2P.FIFO.fifoThreadCheck;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import oesia.formacion.messenger.P2P.FIFO.messageManagers.AckManager;
+import oesia.formacion.messenger.P2P.FIFO.messageManagers.BroadcastManager;
+import oesia.formacion.messenger.P2P.FIFO.messageManagers.GuideManager;
+import oesia.formacion.messenger.P2P.FIFO.messageManagers.KeepAliveManager;
+import oesia.formacion.messenger.P2P.FIFO.messageManagers.MessageManager;
+import oesia.formacion.messenger.P2P.FIFO.queue.FifoQueue;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;

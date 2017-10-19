@@ -1,5 +1,7 @@
-package oesia.formacion.messenger.P2P.FIFO;
+package oesia.formacion.messenger.P2P.FIFO.boundaries;
 
+import oesia.formacion.messenger.P2P.FIFO.messageManagers.config.MessageManagerConfiguration;
+import oesia.formacion.messenger.P2P.FIFO.queue.FifoQueue;
 import oesia.formacion.messenger.P2P.domain.boundaries.FIFOservice;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 

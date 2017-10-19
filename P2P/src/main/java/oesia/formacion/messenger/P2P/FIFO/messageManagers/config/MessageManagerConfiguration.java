@@ -1,4 +1,6 @@
-package oesia.formacion.messenger.P2P.FIFO;
+package oesia.formacion.messenger.P2P.FIFO.messageManagers.config;
+
+import oesia.formacion.messenger.P2P.FIFO.fifoThreadCheck.MessageCheck;
 
 public class MessageManagerConfiguration {
 	/**

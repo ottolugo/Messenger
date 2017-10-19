@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.FIFO;
+package oesia.formacion.messenger.P2P.FIFO.queue;
 
 import java.util.LinkedList;
 import java.util.List;

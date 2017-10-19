@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.FIFO;
+package oesia.formacion.messenger.P2P.FIFO.messageManagers;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
