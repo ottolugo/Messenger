@@ -7,7 +7,7 @@ public class FIFOserviceImpl implements FIFOservice {
 	private final FifoStack fifo;
 
 	public FIFOserviceImpl() {
-		this.fifo = FifoFactory.ge
+		this.fifo = FifoFactory.getFifo();
 	}
 
 	@Override
