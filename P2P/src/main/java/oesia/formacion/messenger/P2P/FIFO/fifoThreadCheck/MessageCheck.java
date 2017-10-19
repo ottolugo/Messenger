@@ -19,16 +19,13 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 
 /**
  * 
- * this thread check the fifo queue and depending on the message calls a MessageManager to do its job(manageMessage)
+ * this thread check the fifo queue and depending on the message calls a
+ * MessageManager to do its job(manageMessage)
  * 
  * @author jcagigas
  *
  */
 public class MessageCheck extends Thread {
-
-	/**
-	 * Esta variable se ocupa de tener un log
-	 */
 	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
 	private Map<MessageType, MessageManager> messageManagers;
 	private LocalConfiguration config = Configuration.getConfiguration();
@@ -36,7 +33,7 @@ public class MessageCheck extends Thread {
 	private String user;
 
 	/*
-	 * Constructor que prepara los tipos de mensages
+	 * Constructor which main function is to instance all the Message Managers
 	 */
 	public MessageCheck() {
 		this.limitTime = config.getMessageTimeout();
