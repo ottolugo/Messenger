@@ -9,7 +9,7 @@ public class BroadcastMessage extends Message implements Serializable {
 
 	private static final long serialVersionUID = -6623249859711995672L;
 	private String contenido;
-	private StatusMessage status;
+	private MessageStatus status;
 
 	@Override
 	public MessageType getType() {
@@ -49,11 +49,11 @@ public class BroadcastMessage extends Message implements Serializable {
 		this.contenido = contenido;
 	}
 
-	public StatusMessage getStatus() {
+	public MessageStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusMessage status) {
+	public void setStatus(MessageStatus status) {
 		this.status = status;
 	}
 
