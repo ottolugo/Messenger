@@ -1,6 +1,8 @@
 package oesia.formacion.messenger.P2P.socket.senders;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -28,11 +30,15 @@ public class SendMessageRunable implements Runnable {
 		DatagramSocket datagramSocket = null;
 		int datagramLeng = SocketConfiguration.DATAGRAMSIZE;
 		byte[] bufferDatos = new byte[datagramLeng];
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
 		// Se enviara el mensage para todos los puertos
 		for (Integer port : ports) {
 			try {
-
+				// Se pasa el objeto a bites
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+				objectOutputStream.writeObject(message);
+				bufferDatos = outputStream.toByteArray();
 				// Se saca la direccion a la que hacer el Broadcast
 				String sendAdress = SocketConfiguration.getIPGROUP();
 				InetAddress inetAddress = null;

@@ -20,6 +20,7 @@ public class SocketThreadManager {
 	public static void checkSender() {
 		if (sendThread == null) {
 			sendThread = new Thread(SendMessageFIFO.getInstance());
+			sendThread.start();
 		}
 	}
 
@@ -54,6 +55,7 @@ public class SocketThreadManager {
 	 * @param port puerto que se deja
 	 */
 	public static void dropPortListenerThread(int port) {
+		checkInicialiceListenerThread();
 		activePortListenerThreads.remove(new Integer(port));
 	}
 
@@ -63,6 +65,7 @@ public class SocketThreadManager {
 	 * @return
 	 */
 	public static Map<Integer, Thread> getPorListenerThreads() {
+		checkInicialiceListenerThread();
 		Set<Integer> keys = activePortListenerThreads.keySet();
 		keys.iterator();
 		for (Integer actualKey : keys) {

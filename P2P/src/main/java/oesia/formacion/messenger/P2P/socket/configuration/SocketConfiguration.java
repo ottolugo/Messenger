@@ -1,5 +1,6 @@
 package oesia.formacion.messenger.P2P.socket.configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SocketConfiguration {
@@ -25,6 +26,9 @@ public class SocketConfiguration {
 	 * @return listado de puertos que estan en uso
 	 */
 	public static List<Integer> getPortNumbers() {
+		if (portnumbers == null) {
+			portnumbers = new ArrayList<Integer>();
+		}
 		return portnumbers;
 	}
 
