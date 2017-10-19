@@ -1,6 +1,5 @@
 package oesia.formacion.messenger.P2P.socket.configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SocketConfiguration {
@@ -18,19 +17,6 @@ public class SocketConfiguration {
 	private static List<Integer> portnumbers = null;
 
 	private SocketConfiguration() {
-	}
-
-	/**
-	 * Se utiliza para lanzar la escucha en el puerto.
-	 * 
-	 * @param listenPort puerto de escucha en el que empezara a escribir/leer
-	 */
-	public static void start(int listenPort) {
-		if (portnumbers == null) {
-			portnumbers = new ArrayList<Integer>();
-		}
-		portnumbers.add(new Integer(listenPort));
-
 	}
 
 	/**

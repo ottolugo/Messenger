@@ -2,6 +2,7 @@ package oesia.formacion.messenger.P2P.socket.bonduaries;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.SocketService;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 import oesia.formacion.messenger.P2P.socket.senders.SendMessageManager;
 
 public class SocketServiceImpl implements SocketService {
@@ -31,7 +32,9 @@ public class SocketServiceImpl implements SocketService {
 
 	@Override
 	public void startService(int port) {
-		// TODO Auto-generated method stub
+		MessagePortListener messagePortListener;
+		messagePortListener = new MessagePortListener(port);
+		messagePortListener.start();
 
 	}
 
