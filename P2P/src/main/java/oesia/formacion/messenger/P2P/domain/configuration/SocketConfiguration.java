@@ -6,7 +6,7 @@ import oesia.formacion.messenger.P2P.socket.bonduaries.SocketServiceImpl;
 public class SocketConfiguration {
 	private static SocketService service;
 
-	public SocketService getService() {
+	public static SocketService getService() {
 		if (service == null) {
 			service = SocketServiceImpl.getInstance();
 		}

@@ -15,7 +15,6 @@ public class KeepAliveMessage extends Message implements Serializable {
 
 	public KeepAliveMessage(Code code) {
 		super(code);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
