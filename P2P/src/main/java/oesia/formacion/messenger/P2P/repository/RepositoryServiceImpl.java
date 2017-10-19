@@ -2,7 +2,9 @@ package oesia.formacion.messenger.P2P.repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,13 +23,14 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
-import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
 
 public class RepositoryServiceImpl implements RepositoryService {
 
+	private final Logger LOG = Logger.getLogger(RepositoryServiceImpl.class.getName());
+	
 	@Override
 	public void logMessage(BroadcastMessage msg) {
 		insertLog(msg);
@@ -83,15 +86,15 @@ public class RepositoryServiceImpl implements RepositoryService {
 			transformer.transform(source, result);
 
 		} catch (ParserConfigurationException e) {
-			System.out.println(e.getMessage());
+			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage() ));
 		} catch (SAXException e) {
-			System.out.println(e.getMessage());
+			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage() ));
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage() ));
 		} catch (TransformerConfigurationException e) {
-			System.out.println(e.getMessage());
+			LOG.info(MessageFormat.format("Error TransformerConfigurationException {0} ", e.getMessage() ));
 		} catch (TransformerException e) {
-			System.out.println(e.getMessage());
+			LOG.info(MessageFormat.format("Error TransformerException {0} ", e.getMessage() ));
 		}
 	}
 }
