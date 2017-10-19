@@ -16,7 +16,7 @@ public class App extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("FXMLChat.fxml"));
 
 		Scene scene = new Scene(root);
-
+		// scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle("ITChat");
 		stage.show();
