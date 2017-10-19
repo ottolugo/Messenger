@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -66,12 +67,15 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 			}
 			nodeMain.appendChild(message);
-			System.out.println("\n");
+			
+			message.appendChild(doc.createTextNode(msg.getContenido()));
 			
 			TransformerFactory transFactory = TransformerFactory.newInstance();
 			Transformer transformer = transFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
+			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			
+			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File("src/LogMsg.xml"));
 			transformer.transform(source, result);
 
