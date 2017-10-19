@@ -9,6 +9,10 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 
 public class MessageCheck extends Thread {
+	/**
+	 * this thread check the fifo queue and depending on the message calls a
+	 * MessageManager to do its job(manageMessage)
+	 */
 	private Map<MessageType, MessageManager> messageManagers;
 	private LocalConfiguration config = Configuration.getConfiguration();
 	private int limitTime;

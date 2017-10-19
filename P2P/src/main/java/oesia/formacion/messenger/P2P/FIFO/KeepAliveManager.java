@@ -5,6 +5,13 @@ import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMes
 import oesia.formacion.messenger.P2P.domain.managers.FIFOMessageManager;
 
 public class KeepAliveManager extends MessageManager {
+	/**
+	 * this manager is in charge of the KeepAlive Messages only, on its method
+	 * it just sends the message to the right fifoManager with no validation
+	 * 
+	 * @param limitTime
+	 * @param user
+	 */
 
 	public KeepAliveManager(int limitTime, String user) {
 		super(limitTime, user);

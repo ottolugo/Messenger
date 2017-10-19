@@ -6,6 +6,9 @@ import java.time.temporal.ChronoUnit;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 
 public abstract class MessageManager {
+	/**
+	 * abstract class that rules the structure of the message managers
+	 */
 	private int limitTime;
 	private String user;
 
