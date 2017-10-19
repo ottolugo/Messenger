@@ -19,7 +19,8 @@ public class MessageCache {
 
 	public void updateMessage(Code code, MessageStatus status) {
 		BroadcastMessage msg = messages.get(code);
-		msg.setStatus(status);
-		msg.allNotify();
+		if (msg != null) {
+			msg.setStatus(status);
+		}
 	}
 }

@@ -23,6 +23,6 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void sentMessage(Code code) {
-		// TODO cosas
+		// TODO updatear en cache de mensajes
 	}
 }

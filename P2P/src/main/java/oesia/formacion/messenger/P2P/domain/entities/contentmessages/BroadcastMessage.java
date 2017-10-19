@@ -67,6 +67,7 @@ public class BroadcastMessage extends Message implements Serializable, Observabl
 
 	public void setStatus(MessageStatus status) {
 		this.status = status;
+		allNotify();
 	}
 
 	@Override
