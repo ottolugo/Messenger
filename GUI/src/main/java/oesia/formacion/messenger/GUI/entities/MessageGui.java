@@ -4,55 +4,99 @@ import java.time.LocalDateTime;
 
 import oesia.formacion.messenger.GUI.util.DateUtil;
 
-public class Message {
+public class MessageGui {
 
     private String message;
     private String sender;
+    private String receiver;
     private boolean broadcastedMessage;
-    private MessageStatus status;
+    private MessageStatusGui status;
     private LocalDateTime messageTime;
 
     /**
-     * Constructor for Message
+     * Constructor for Message if message is broadcasted
      * 
      * @param message
      *            String of characters message you want to send is made of
      * @param sender
      *            String of the name the person that send the message
-     * @param broadcastedMessage
-     *            Boolean we you say if its a message for all connected people
-     *            or not
      */
-    public Message(String message, String sender, boolean broadcastedMessage) {
+    public MessageGui(String message, String sender) {
 	this.message = message;
 	this.sender = sender;
-	this.broadcastedMessage = broadcastedMessage;
-	this.status = MessageStatus.SEND;
+	this.receiver = null;
+	this.broadcastedMessage = true;
+	this.status = MessageStatusGui.NEW;
 	this.messageTime = LocalDateTime.now();
     }
 
     /**
-     * Constructor for Message
+     * Constructor for Message if message is broadcasted
      * 
      * @param message
      *            String of characters message you want to send is made of
      * @param sender
-     *            String of the name the person that send the message
-     * @param broadcastedMessage
-     *            Boolean we you say if its a message for all connected people
-     *            or not
+     *            String with the name of the person that send the message
+     * @param receiver
+     *            String with the name of the person that receive the message
      * @param status
      *            MessageStatus of a message.
      * @param date
      *            LocalDateTime with the creation date of the message
      */
-    public Message(String message, String sender, boolean broadcastedMessage, MessageStatus status,
+    public MessageGui(String message, String sender, MessageStatusGui status,
 	    LocalDateTime date) {
 	this.message = message;
 	this.sender = sender;
-	this.broadcastedMessage = broadcastedMessage;
+	this.receiver = null;
+	this.broadcastedMessage = true;
 	this.status = status;
 	this.messageTime = date;
+    }
+
+    /**
+     * Constructor for Message if message is addressed to an user
+     * 
+     * @param message
+     *            String of characters message you want to send is made of
+     * @param sender
+     *            String with the name of the person that send the message
+     * @param receiver
+     *            String with the name of the person that receive the message
+     * @param status
+     *            MessageStatus of a message.
+     * @param date
+     *            LocalDateTime with the creation date of the message
+     */
+    public MessageGui(String message, String sender, String receiver, MessageStatusGui status,
+	    LocalDateTime date) {
+	this.message = message;
+	this.sender = sender;
+	this.receiver = receiver;
+	this.broadcastedMessage = false;
+	this.status = status;
+	this.messageTime = date;
+    }
+
+    /**
+     * Constructor for Message if message is addressed to an user
+     * 
+     * @param message
+     *            String of characters message you want to send is made of
+     * @param sender
+     *            String with the name of the person that send the message
+     * @param receiver
+     *            String with the name of the person that receive the message
+     * @param status
+     *            MessageStatus of a message.
+     */
+    public MessageGui(String message, String sender, String receiver) {
+	this.message = message;
+	this.sender = sender;
+	this.receiver = receiver;
+	this.broadcastedMessage = false;
+	this.status = MessageStatusGui.NEW;
+	this.messageTime = LocalDateTime.now();
     }
 
     /**
@@ -61,7 +105,7 @@ public class Message {
      * @return MessageStatus
      * 
      */
-    public MessageStatus getStatus() {
+    public MessageStatusGui getStatus() {
 	return status;
     }
 
@@ -71,7 +115,7 @@ public class Message {
      * @param status
      *            MessageStatus to be set
      */
-    public void setStatus(MessageStatus status) {
+    public void setStatus(MessageStatusGui status) {
 	this.status = status;
     }
 
@@ -111,6 +155,25 @@ public class Message {
      */
     public void setSender(String sender) {
 	this.sender = sender;
+    }
+
+    /**
+     * Get the receiver of the message
+     * 
+     * @return String
+     */
+    public String getReceiver() {
+	return receiver;
+    }
+
+    /**
+     * Set the receiver of the message
+     * 
+     * @param receiver
+     *            String to be set
+     */
+    public void setReceiver(String receiver) {
+	this.receiver = receiver;
     }
 
     /**
