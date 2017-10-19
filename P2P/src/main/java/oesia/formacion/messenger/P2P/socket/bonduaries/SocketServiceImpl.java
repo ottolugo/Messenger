@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.socket.bounduaries;
+package oesia.formacion.messenger.P2P.socket.bonduaries;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.SocketService;
 import oesia.formacion.messenger.P2P.domain.entities.Message;

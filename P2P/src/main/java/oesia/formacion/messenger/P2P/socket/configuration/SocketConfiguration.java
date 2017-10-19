@@ -8,7 +8,13 @@ public class SocketConfiguration {
 	 * Direccion a la que se le hace el broadcast
 	 */
 	private static final String IPGROUP = "10.236.255.255";
+	/**
+	 * Tamaño del datagrama
+	 */
 	public static final int DATAGRAMSIZE = 4096;
+	/**
+	 * puertos que se escuchan y en los que se lanzan
+	 */
 	private static List<Integer> portnumbers = null;
 
 	private SocketConfiguration() {
