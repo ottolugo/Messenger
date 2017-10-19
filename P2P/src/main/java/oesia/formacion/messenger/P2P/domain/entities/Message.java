@@ -2,11 +2,17 @@ package oesia.formacion.messenger.P2P.domain.entities;
 
 public abstract class Message {
 	private Code code;
+
 	public abstract MessageType getType();
-	
+
+	public Message(Code code) {
+		this.code = code;
+	}
+
 	public Code getCode() {
 		return code;
 	}
+
 	public void setCode(Code code) {
 		this.code = code;
 	}

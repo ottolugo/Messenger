@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oesia.formacion.messenger.GUI.ChatController">
+   <children>
+      <SplitPane layoutX="3.0" layoutY="3.0" prefHeight="403.0" prefWidth="503.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <SplitPane dividerPositions="0.6666666666666666" layoutX="204.0" layoutY="77.0" prefHeight="160.0" prefWidth="200.0">
+              <items>
+                  <SplitPane>
+                     <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <AnchorPane prefHeight="298.0" prefWidth="329.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ListView fx:id="lvMensajes" prefHeight="300.0" prefWidth="327.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <TextArea fx:id="taMensaje" layoutY="300.0" prefHeight="99.0" prefWidth="255.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="300.0" />
+                              <Button layoutX="253.0" layoutY="297.0" mnemonicParsing="false" onAction="#sendMensaje" onDragEntered="#sendMensaje" prefHeight="99.0" prefWidth="76.0" text="Enviar" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="299.0">
+                                 <font>
+                                    <Font name="System Bold Italic" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane>
+                     <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <ListView fx:id="lvUser" layoutX="8.0" layoutY="8.0" prefHeight="206.0" prefWidth="145.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button layoutX="56.0" layoutY="343.0" mnemonicParsing="false" onAction="#desselectUser" text="TODOS" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="343.0">
+                                 <font>
+                                    <Font name="System Bold Italic" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -2,12 +2,18 @@ package oesia.formacion.messenger.P2P.domain.entities.contentmessages;
 
 import java.io.Serializable;
 
+import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 
 public class GuidedMessage extends BroadcastMessage implements Serializable {
 
 	private String userDestinity;
 	private static final long serialVersionUID = -3251749199683153295L;
+
+	public GuidedMessage(Code code, String contenido, String userDestinity) {
+		super(code, contenido);
+		this.userDestinity = userDestinity;
+	}
 
 	@Override
 	public int hashCode() {
