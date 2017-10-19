@@ -2,6 +2,8 @@ package oesia.formacion.messenger.GUI.entities;
 
 import java.time.LocalDateTime;
 
+import oesia.formacion.messenger.GUI.util.DateUtil;
+
 public class Message {
 
     private String message;
@@ -149,4 +151,16 @@ public class Message {
     public void setMessageTime(LocalDateTime messageTime) {
 	this.messageTime = messageTime;
     }
+
+    /**
+     * Returns a string of the sender of the message, the hour the message was
+     * send and the message
+     * 
+     * @return String
+     */
+    @Override
+    public String toString() {
+	return sender + ": " + DateUtil.format(messageTime) + ": " + message;
+    }
+
 }
