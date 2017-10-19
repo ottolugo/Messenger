@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.repository.repoImpl;
+package oesia.formacion.messenger.P2P.repository;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
 

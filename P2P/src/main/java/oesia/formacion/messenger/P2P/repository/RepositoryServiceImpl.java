@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.repository.repoImpl;
+package oesia.formacion.messenger.P2P.repository;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	/*
-	 * insert a broadcast to the file.
+	 * insert a log to the file.
 	 */
 	private void insertLog(BroadcastMessage msg) {
 		// Clases necesarias para insertar en xml.
@@ -50,12 +50,14 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 			// preparar el archivo xml para recibir los datos.
 			doc.getDocumentElement().normalize();
-			// Se obtiene el nodo padre de LogMsg
+			
+			// Se crea el nodo principal
 			Node nodeMain = doc.getDocumentElement();
 			// se agrega una nueva etiqueta al documento
 			// Se crea una etiqueta dentro del padre
 			Element message = doc.createElement("Message");
-			// Se crea las etiquetas hijas.
+			
+			// Se crea los atributos de la etiqueta principal.
 			if (msg instanceof Message) {
 				Message sms = (Message) msg;
 				message.setAttribute("user", sms.getCode().getUser());
@@ -63,11 +65,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");	        
 				String dateFormat = msg.getCode().getDate().format(formatter);
 				message.setAttribute("date", dateFormat);
-				
 
 			}
 			nodeMain.appendChild(message);
 			
+			//Se inserta contenido al xml.
 			message.appendChild(doc.createTextNode(msg.getContenido()));
 			
 			TransformerFactory transFactory = TransformerFactory.newInstance();
@@ -91,5 +93,4 @@ public class RepositoryServiceImpl implements RepositoryService {
 			System.out.println(e.getMessage());
 		}
 	}
-
 }
