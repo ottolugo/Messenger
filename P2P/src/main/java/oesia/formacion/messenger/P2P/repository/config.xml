@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-	<whoami>Alguien</whoami>
+	<Whoami>Alguien</Whoami>
 	<KeepAliveTimeout>30</KeepAliveTimeout>
 	<MessageTimeout>5</MessageTimeout>
 	<port>27759</port>

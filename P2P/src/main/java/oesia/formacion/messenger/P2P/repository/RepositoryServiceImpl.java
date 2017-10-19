@@ -20,6 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
@@ -31,6 +32,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	private final Logger LOG = Logger.getLogger(RepositoryServiceImpl.class.getName());
 	
+	
 	@Override
 	public void logMessage(BroadcastMessage msg) {
 		insertLog(msg);
@@ -38,8 +40,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public LocalConfiguration getConfiguration() {
-		LocalConfiguration reciveLocalConfig;
-		return null;
+		LocalConfiguration reciveLocalConfig = loadXml();
+		return reciveLocalConfig;
 	}
 
 	/*
@@ -96,5 +98,54 @@ public class RepositoryServiceImpl implements RepositoryService {
 		} catch (TransformerException e) {
 			LOG.info(MessageFormat.format("Error TransformerException {0} ", e.getMessage() ));
 		}
+	}
+	
+	private LocalConfiguration loadXml()
+	{
+		LocalConfiguration localConfig = null;
+		
+		try {
+			File fXmlFile = new File("src/config.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder;
+			dBuilder = dbFactory.newDocumentBuilder();
+			
+			Document doc = dBuilder.parse(fXmlFile);
+			
+			doc.getDocumentElement().normalize();
+			
+			NodeList nList = doc.getElementsByTagName("configuration");
+			
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+
+					eElement.getElementsByTagName("Whoami").item(0).getTextContent();
+					eElement.getElementsByTagName("KeepAliveTimeout").item(0).getTextContent();
+					eElement.getElementsByTagName("MessageTimeout").item(0).getTextContent();
+					eElement.getElementsByTagName("port").item(0).getTextContent();
+					localConfig = new LocalConfiguration(eElement.getElementsByTagName("Whoami").item(0).getTextContent(),
+							Integer.parseInt(eElement.getElementsByTagName("KeepAliveTimeout").item(0).getTextContent()),
+							Integer.parseInt(eElement.getElementsByTagName("MessageTimeout").item(0).getTextContent()), 
+							Integer.parseInt(eElement.getElementsByTagName("port").item(0).getTextContent()));
+				}
+			}
+			
+		} catch (ParserConfigurationException e) {
+			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage() ));
+		} catch (SAXException e) {
+			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage() ));
+		} catch (IOException e) {
+			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage() ));
+		}
+		
+		return localConfig;
+		
 	}
 }
