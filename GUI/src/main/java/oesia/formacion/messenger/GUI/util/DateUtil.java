@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.domain.util;
+package oesia.formacion.messenger.GUI.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

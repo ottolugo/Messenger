@@ -25,7 +25,7 @@ public class FIFOMessageManager {
 	 * 
 	 * @param msg
 	 */
-	public static void receiveKeepalive(KeepAliveMessage msg) {
+	public static void receiveKeepAlive(KeepAliveMessage msg) {
 		// TODO gestionar
 	}
 
