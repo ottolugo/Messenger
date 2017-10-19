@@ -15,14 +15,11 @@ public class SendMessageManager {
 	 */
 	public static void sendMessage(Message msg) {
 
-		// Se prepara el thread, se lanza y se agrega a la lista de threads
-		Thread sendMessageThread = null;
+		// Se prepara la tarea y se agrega a la lista de tareas
+		SocketThreadManager.checkSender();
 		SendMessageRunable runableToStart = null;
 		runableToStart = new SendMessageRunable(msg);
-		sendMessageThread = new Thread(runableToStart);
-
-		sendMessageThread.start();
-		SocketThreadManager.addSendMessageThread(sendMessageThread);
+		SendMessageFIFO.getInstance().addWork(runableToStart);
 	}
 
 }
