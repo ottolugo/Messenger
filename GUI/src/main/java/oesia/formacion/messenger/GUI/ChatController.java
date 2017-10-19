@@ -26,32 +26,7 @@ public class ChatController implements Initializable {
 
 		lvUser.setItems(items);
 
-		mensagges = FXCollections.observableArrayList("Maria 15:50:23: Hola que ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?", "Alejandro: 15:51:00: Programar y tu q ase?",
-				"Alejandro: 15:51:00: Programar y tu q ase?"
-
-		);
+		mensagges = FXCollections.observableArrayList();
 
 		lvMensajes.setPrefHeight(500);
 
