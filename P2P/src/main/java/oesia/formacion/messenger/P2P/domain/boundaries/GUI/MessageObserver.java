@@ -8,5 +8,5 @@ public interface MessageObserver {
 	 * 
 	 * @param status
 	 */
-	public void notify(MessageStatus status);
+	public void update(MessageStatus status);
 }

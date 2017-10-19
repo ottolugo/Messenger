@@ -6,5 +6,5 @@ public interface GUIObserver<T> {
 	 * 
 	 * @param obj
 	 */
-	public void notify(T obj);
+	public void update(T obj);
 }

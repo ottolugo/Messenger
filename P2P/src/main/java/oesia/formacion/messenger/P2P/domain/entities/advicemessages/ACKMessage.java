@@ -15,6 +15,11 @@ public class ACKMessage extends Message implements Serializable {
 
 	private Code codeRespost;
 
+	public ACKMessage(Code code, Code codeRespost) {
+		super(code);
+		this.codeRespost = codeRespost;
+	}
+
 	public Code getCodeRespost() {
 		return codeRespost;
 	}
