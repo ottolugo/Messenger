@@ -1,5 +1,6 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
+import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 
 /**
@@ -16,5 +17,12 @@ public class SocketMessageManager {
 	 */
 	public static void receiveMessage(Message msg) {
 		// TODO recibir mensaje y pasar a FIFO
+	}
+	/**
+	 * Executed when the message is sent
+	 * @param msg
+	 */
+	public static void sentMessage(Code code) {
+		// TODO cosas
 	}
 }
