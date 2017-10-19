@@ -29,4 +29,10 @@ public class SocketServiceImpl implements SocketService {
 
 	}
 
+	@Override
+	public void startService(int port) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
