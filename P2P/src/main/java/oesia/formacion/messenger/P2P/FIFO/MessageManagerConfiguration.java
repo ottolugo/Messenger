@@ -1,15 +1,15 @@
 package oesia.formacion.messenger.P2P.FIFO;
 
 public class MessageManagerConfiguration {
-	private static Fifo fifoStack = null;
+	private static MessageCheck messageManager = null;
 
-	public static Fifo startMessageManager(int time, String user) {
-		if (fifoStack == null) {
-			fifoStack = new Fifo(time, user);
-			fifoStack.start();
+	public static MessageCheck startMessageManager() {
+		if (messageManager == null) {
+			messageManager = new MessageCheck();
+			messageManager.start();
 			// messageManager.start();
 		}
-		return fifoStack;
+		return messageManager;
 	}
 
 }
