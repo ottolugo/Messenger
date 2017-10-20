@@ -1,11 +1,14 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
 import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
+import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
+import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
+import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 
 /**
@@ -16,18 +19,16 @@ import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
  */
 public class PreprocessorMessageManager {
 	/**
-	 * Sends the broadcast message from the preprocessor to the domain
-	 * It sends the broadcasted message to the gui
+	 * Sends the broadcast message from the preprocessor to the domain It sends the broadcasted message to the gui
 	 * 
 	 * @param msg
 	 */
 	public static void receiveBroadcast(UserMessage msg) {
-		// TODO send to GUI
+		NotifierReceivedMessage.getInstance().notify(msg);
 	}
 
 	/**
-	 * Sends the keepalive message from the preprocessor to the domain
-	 * It sends an ACK automatically
+	 * Sends the keepalive message from the preprocessor to the domain It sends an ACK automatically
 	 * 
 	 * @param msg
 	 */
@@ -36,12 +37,14 @@ public class PreprocessorMessageManager {
 	}
 
 	/**
-	 * Sends the ack message from the preprocessor to the domain
-	 * It updates the message from the response to "Arrived"
+	 * Sends the ack message from the preprocessor to the domain If response to our last keepalive updates the userlist
+	 * If on sended messages cache updates the message from the response to "Arrived"
 	 * 
 	 * @param msg
 	 */
 	public static void receiveACK(ACKMessage msg) {
-		CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
+		if (!KeepAliveConfiguration.checkACK(msg)) {
+			CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
+		}
 	}
 }

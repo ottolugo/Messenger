@@ -8,7 +8,7 @@ public class LoadConfiguration {
 		LocalConfiguration config = RepositoryConfiguration.getService().getConfiguration();
 		PreprocessorConfiguration.getPreprocessorService().startService();
 		SocketConfiguration.getService().startService(config.getPort());
-		KeepaliverConfiguration.getKeepAliverService().startService();
+		KeepAliverConfiguration.getKeepAliverService().startService();
 	}
 	
 }

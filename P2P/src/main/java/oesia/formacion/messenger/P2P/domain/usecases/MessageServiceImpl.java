@@ -8,8 +8,8 @@ import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
-import oesia.formacion.messenger.P2P.domain.notifiers.NotifierRecievedMessage;
-import oesia.formacion.messenger.P2P.domain.notifiers.NotifierRecievedUserList;
+import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
+import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
 
 public class MessageServiceImpl implements MessageService {
 
@@ -24,13 +24,13 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void msgSubscribe(GUIObserver<UserMessage> obs) {
-		NotifierRecievedMessage.getInstance().addObserver(obs);
+		NotifierReceivedMessage.getInstance().addObserver(obs);
 
 	}
 
 	@Override
 	public void listSubscribe(GUIObserver<List<String>> obs) {
-		NotifierRecievedUserList.getInstance().addObserver(obs);
+		NotifierReceivedUserList.getInstance().addObserver(obs);
 	}
 
 	@Override
