@@ -36,19 +36,6 @@ public abstract class MessageManager {
 
 	/**
 	 * check if the message is good to go
-	 */
-	public boolean isValid(Message message) {
-		LocalDateTime date = LocalDateTime.now();
-		if (message.getCode().getDate().until(date, ChronoUnit.SECONDS) < limitTime
-				&& message.getCode().getUser().equals(user)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * check if the message is good to go
 	 * 
 	 * @param message
 	 * @return
