@@ -18,8 +18,17 @@ public class AckManager extends MessageManager {
 
 	@Override
 	public void manageMessage(Message message) {
-		if (this.isValid(message)) {
+		if (this.itIsNotMe(message) && this.isDateValid(message) && this.notForMe(message)) {
 			FIFOMessageManager.receiveACK((ACKMessage) message);
+		}
+	}
+
+	private boolean notForMe(Message message) {
+		ACKMessage ack = (ACKMessage) message;
+		if (ack.getCodeRespost().getUser().equals(this.getUser())) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 

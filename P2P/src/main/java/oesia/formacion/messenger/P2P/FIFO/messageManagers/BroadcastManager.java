@@ -17,7 +17,7 @@ public class BroadcastManager extends MessageManager {
 
 	@Override
 	public void manageMessage(Message message) {
-		if (this.isDateValid(message)) {
+		if (this.isDateValid(message) && this.itIsNotMe(message)) {
 			FIFOMessageManager.receiveBroadcast((BroadcastMessage) message);
 		}
 

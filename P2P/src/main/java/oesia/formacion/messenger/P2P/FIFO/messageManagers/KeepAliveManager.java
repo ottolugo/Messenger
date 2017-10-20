@@ -18,7 +18,9 @@ public class KeepAliveManager extends MessageManager {
 
 	@Override
 	public void manageMessage(Message message) {
-		FIFOMessageManager.receiveKeepAlive((KeepAliveMessage) message);
+		if (this.itIsNotMe(message)) {
+			FIFOMessageManager.receiveKeepAlive((KeepAliveMessage) message);
+		}
 
 	}
 
