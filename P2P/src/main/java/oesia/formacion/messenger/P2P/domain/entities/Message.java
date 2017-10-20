@@ -19,7 +19,7 @@ public abstract class Message {
 
 	@Override
 	public String toString() {
-		return "Message [code=" + code + "]";
+		return "Message [type = " + getType() + " code=" + code + "]";
 	}
 
 	@Override

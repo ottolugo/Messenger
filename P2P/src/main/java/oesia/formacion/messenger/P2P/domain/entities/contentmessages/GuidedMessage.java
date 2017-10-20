@@ -42,7 +42,7 @@ public class GuidedMessage extends UserMessage implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GuidedMessage [userDestinity=" + userDestinity + "]";
+		return super.toString() + " userDestinity=" + userDestinity + ".";
 	}
 
 	public String getUserDestinity() {

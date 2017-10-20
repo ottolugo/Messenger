@@ -66,7 +66,7 @@ public class UserMessage extends Message implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BroadcastMessage [contenido=" + contenido + ", status=" + status + "]";
+		return super.toString() + " contenido=" + contenido + ".";
 	}
 
 }

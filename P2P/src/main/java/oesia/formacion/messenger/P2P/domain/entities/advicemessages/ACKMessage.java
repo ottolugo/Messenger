@@ -35,7 +35,7 @@ public class ACKMessage extends Message implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ACKMessage [codeRespost=" + codeResponse + "]";
+		return super.toString() + " codeResponse=" + codeResponse + ".";
 	}
 
 	@Override
