@@ -5,6 +5,7 @@ import java.util.List;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public interface MessageService {
+	public void start();
 	/**
 	 * Sends a message from the GUI to the P2P
 	 * 
