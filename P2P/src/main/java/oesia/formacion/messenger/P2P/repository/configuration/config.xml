@@ -3,6 +3,6 @@
 	<Whoami>Alguien</Whoami>
 	<KeepAliveTimeout>30</KeepAliveTimeout>
 	<MessageTimeout>5</MessageTimeout>
-	<port>27759</port>
+	<port>1496</port>
 </configuration>
 
