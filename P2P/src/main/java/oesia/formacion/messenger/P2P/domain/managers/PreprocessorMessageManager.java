@@ -8,7 +8,6 @@ import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMes
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
-import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 
 /**
