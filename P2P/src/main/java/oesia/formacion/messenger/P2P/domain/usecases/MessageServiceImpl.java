@@ -6,6 +6,7 @@ import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageService;
 import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
+import oesia.formacion.messenger.P2P.domain.configuration.LoadConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
@@ -36,6 +37,11 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public String whoami() {
 		return Configuration.getConfiguration().getWhoami();
+	}
+
+	@Override
+	public void start() {
+		LoadConfiguration.start();
 	}
 
 }
