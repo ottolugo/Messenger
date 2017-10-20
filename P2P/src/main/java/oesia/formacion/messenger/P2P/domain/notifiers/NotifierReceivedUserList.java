@@ -5,19 +5,19 @@ import java.util.List;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 
-public class NotifierRecievedUserList implements DomainObservable<List<String>, GUIObserver<List<String>>> {
+public class NotifierReceivedUserList implements DomainObservable<List<String>, GUIObserver<List<String>>> {
 
-	private static NotifierRecievedUserList instance = null;
+	private static NotifierReceivedUserList instance = null;
 
 	private List<GUIObserver<List<String>>> observers = null;
 
-	private NotifierRecievedUserList() {
+	private NotifierReceivedUserList() {
 		observers = new ArrayList<GUIObserver<List<String>>>();
 	}
 
-	public static NotifierRecievedUserList getInstance() {
+	public static NotifierReceivedUserList getInstance() {
 		if (instance == null) {
-			instance = new NotifierRecievedUserList();
+			instance = new NotifierReceivedUserList();
 		}
 		return instance;
 	}

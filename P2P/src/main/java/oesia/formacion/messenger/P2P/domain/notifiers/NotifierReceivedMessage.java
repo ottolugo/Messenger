@@ -6,18 +6,18 @@ import java.util.List;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
-public class NotifierRecievedMessage implements DomainObservable<UserMessage, GUIObserver<UserMessage>> {
+public class NotifierReceivedMessage implements DomainObservable<UserMessage, GUIObserver<UserMessage>> {
 
-	private static NotifierRecievedMessage instance = null;
+	private static NotifierReceivedMessage instance = null;
 	private List<GUIObserver<UserMessage>> observers = null;
 
-	private NotifierRecievedMessage() {
+	private NotifierReceivedMessage() {
 		observers = new ArrayList<GUIObserver<UserMessage>>();
 	}
 
-	public static NotifierRecievedMessage getInstance() {
+	public static NotifierReceivedMessage getInstance() {
 		if (instance == null) {
-			instance = new NotifierRecievedMessage();
+			instance = new NotifierReceivedMessage();
 		}
 		return instance;
 	}
