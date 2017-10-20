@@ -8,5 +8,7 @@ public class MessageWrapper implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3115786624518625576L;
+	
+	//public static MessageWrapper
 
 }
