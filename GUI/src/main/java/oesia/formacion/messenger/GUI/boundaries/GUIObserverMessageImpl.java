@@ -7,7 +7,7 @@ public class GUIObserverMessageImpl implements GUIObserver<UserMessage> {
 
     public void update(UserMessage obj) {
 	// TODO Auto-generated method stub
-
+    	System.out.println("Mensaje recibido:" + obj);
     }
 
 }
