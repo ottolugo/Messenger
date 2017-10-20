@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.util.Callback;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
+import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
 
 public class ChatController implements Initializable {
@@ -56,7 +57,8 @@ public class ChatController implements Initializable {
 			    // System.out.println("hay algo en el item: " +
 			    // item.toString());
 			    // TODO Centralizar el messageFactory
-			    MessageManager mm = new MessageManager();
+
+			    MessageManager mm = MessageManagerFactory.getMessageManager();
 			    if (item.getSender().equals(mm.whoIAm())) {
 				// MessageFactory.getMessageService().whoami())
 				switch (item.getStatus()) {

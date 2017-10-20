@@ -2,12 +2,12 @@ package oesia.formacion.messenger.GUI.boundaries;
 
 public class MessageManagerFactory {
 
-    MessageManager messageManager = null;
+    private static MessageManager messageManager = null;
 
     private MessageManagerFactory() {
     }
 
-    public MessageManager getMessageManager() {
+    public static MessageManager getMessageManager() {
 	if (messageManager == null) {
 	    messageManager = new MessageManager();
 	}
