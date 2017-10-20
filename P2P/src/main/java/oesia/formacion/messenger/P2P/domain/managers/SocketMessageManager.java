@@ -1,7 +1,10 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
+import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
+import oesia.formacion.messenger.P2P.domain.configuration.PreprocessorConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 
 /**
  * This class is used by the socket to send messages to the domain
@@ -16,13 +19,13 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void receiveMessage(Message msg) {
-		// TODO recibir mensaje y pasar a FIFO
+		PreprocessorConfiguration.getFIFOservice().put(msg);
 	}
 	/**
 	 * Executed when the message is sent
 	 * @param msg
 	 */
 	public static void sentMessage(Code code) {
-		// TODO updatear en cache de mensajes
+		CacheConfiguration.getMessageCache().updateMessage(code, MessageStatus.SENT);
 	}
 }
