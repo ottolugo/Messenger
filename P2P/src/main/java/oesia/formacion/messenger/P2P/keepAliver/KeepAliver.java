@@ -9,7 +9,7 @@ public class KeepAliver extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				this.wait((Configuration.getConfiguration().getKeepAliveTimeout()) * 1000);
+				sleep((Configuration.getConfiguration().getKeepAliveTimeout()) * 1000);
 				KeepAliverManager.sendKeepAlive();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
