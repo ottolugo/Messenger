@@ -30,6 +30,7 @@ public class UdpListenerRunnable implements Runnable {
 	@Override
 	public void run() {
 		DatagramSocket socket = null;
+		LOG.log(Level.INFO, "Se lanza el observador del puerto: " + socketPort);
 		try {
 			// Se saca primero el tamaño del datagrama de la configuracion del socket
 			int bytes = SocketConfiguration.DATAGRAMSIZE;
@@ -48,6 +49,7 @@ public class UdpListenerRunnable implements Runnable {
 
 				// Casteando a message
 				try {
+					LOG.log(Level.INFO, "Se recepciono" + objectInputStream.readObject().toString());
 					Message message = (Message) objectInputStream.readObject();
 					LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
 					SocketMessageManager.receiveMessage(message);
