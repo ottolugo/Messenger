@@ -1,13 +1,12 @@
 package oesia.formacion.messenger.P2P.keepAliver;
 
-import oesia.formacion.messenger.P2P.domain.boundaries.KeepaliverService;
+import oesia.formacion.messenger.P2P.domain.boundaries.KeepAliverService;
 
-public class KeepAliverImpl implements KeepaliverService {
+public class KeepAliverServiceImpl implements KeepAliverService {
 
 	@Override
 	public void startService() {
 		KeepAliverConfiguration.startKeepAlive();
-
 	}
 
 }

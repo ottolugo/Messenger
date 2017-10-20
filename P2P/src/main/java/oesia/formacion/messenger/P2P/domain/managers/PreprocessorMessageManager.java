@@ -1,15 +1,12 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
-import java.time.LocalDateTime;
-
 import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
-import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
-import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
+import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 
 /**
  * This class is used by the FIFO to send messages to the domain
@@ -35,7 +32,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveKeepAlive(KeepAliveMessage msg) {
-		SocketConfiguration.getService().sendMessage(new ACKMessage(getMyCode(), msg.getCode()));
+		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
 	}
 
 	/**
@@ -46,9 +43,5 @@ public class PreprocessorMessageManager {
 	 */
 	public static void receiveACK(ACKMessage msg) {
 		CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
-	}
-	
-	private static Code getMyCode(){
-		return new Code(Configuration.getConfiguration().getWhoami(), LocalDateTime.now());
 	}
 }
