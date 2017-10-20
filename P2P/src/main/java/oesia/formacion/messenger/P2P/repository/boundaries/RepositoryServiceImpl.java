@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.repository;
+package oesia.formacion.messenger.P2P.repository.boundaries;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +27,7 @@ import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
+import oesia.formacion.messenger.P2P.domain.util.DateUtil;
 
 public class RepositoryServiceImpl implements RepositoryService {
 
@@ -68,8 +69,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 				Message sms = (Message) msg;
 				message.setAttribute("user", sms.getCode().getUser());
 				
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");	        
-				String dateFormat = msg.getCode().getDate().format(formatter);
+				String dateFormat = DateUtil.format(msg.getCode().getDate());
+				
 				message.setAttribute("date", dateFormat);
 
 			}
