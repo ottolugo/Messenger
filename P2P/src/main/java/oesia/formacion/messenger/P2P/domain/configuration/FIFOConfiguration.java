@@ -1,5 +1,6 @@
 package oesia.formacion.messenger.P2P.domain.configuration;
 
+import oesia.formacion.messenger.P2P.FIFO.boundaries.FIFOServiceImpl;
 import oesia.formacion.messenger.P2P.domain.boundaries.FIFOservice;
 
 public class FIFOConfiguration {
@@ -7,7 +8,7 @@ public class FIFOConfiguration {
 	
 	public static FIFOservice getFIFOservice(){
 		if(service == null){
-			//TODO consultar con Javier
+			service = new FIFOServiceImpl();
 		}
 		return service;
 	}
