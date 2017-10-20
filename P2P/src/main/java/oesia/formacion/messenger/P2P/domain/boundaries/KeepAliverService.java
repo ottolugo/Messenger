@@ -1,6 +1,6 @@
 package oesia.formacion.messenger.P2P.domain.boundaries;
 
-public interface KeepaliverService {
+public interface KeepAliverService {
 	/**
 	 * Starts the keepaliver service
 	 * 

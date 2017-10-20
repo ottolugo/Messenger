@@ -12,7 +12,6 @@ public class KeepAliver extends Thread {
 				this.wait((Configuration.getConfiguration().getKeepAliveTimeout()) * 1000);
 				KeepAliverManager.sendKeepAlive();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
