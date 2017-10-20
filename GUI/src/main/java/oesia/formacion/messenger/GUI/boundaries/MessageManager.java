@@ -8,17 +8,17 @@ import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageService;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public class MessageManager {
-    MessageService serviceMessage = null;
+	MessageService serviceMessage = null;
 
-    public MessageManager() {
-	serviceMessage = MessageFactory.getMessageService();
-    }
+	public MessageManager() {
+		serviceMessage = MessageFactory.getMessageService();
+	}
 
-    public void sendMessage(MessageGui message) {
-	UserMessage um = Converter.convertIntoMessage(message);
-	MessageObserver mo = new MessageObserverImpl(message);
-	um.addObserver(mo);
-	serviceMessage.sendMessage(um);
-    }
+	public void sendMessage(MessageGui message) {
+		UserMessage um = Converter.convertIntoMessage(message);
+		MessageObserver mo = new MessageObserverImpl(message);
+		um.addObserver(mo);
+		serviceMessage.sendMessage(um);
+	}
 
 }
