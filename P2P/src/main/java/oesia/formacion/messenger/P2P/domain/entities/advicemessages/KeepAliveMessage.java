@@ -13,6 +13,10 @@ public class KeepAliveMessage extends Message implements Serializable {
 	 */
 	private static final long serialVersionUID = 8515746137849974358L;
 
+	public KeepAliveMessage(){
+		super();
+	}
+	
 	public KeepAliveMessage(Code code) {
 		super(code);
 	}

@@ -9,6 +9,10 @@ public class GuidedMessage extends UserMessage implements Serializable {
 
 	private String userDestinity;
 	private static final long serialVersionUID = -3251749199683153295L;
+	
+	public GuidedMessage(){
+		super();
+	}
 
 	public GuidedMessage(Code code, String contenido, String userDestinity) {
 		super(code, contenido);

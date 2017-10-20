@@ -14,6 +14,10 @@ public class ACKMessage extends Message implements Serializable {
 	private static final long serialVersionUID = 132496653241888073L;
 
 	private Code codeResponse;
+	
+	public ACKMessage(){
+		super();
+	}
 
 	public ACKMessage(Code code, Code codeRespost) {
 		super(code);

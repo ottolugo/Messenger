@@ -4,6 +4,10 @@ public abstract class Message {
 	private Code code;
 
 	public abstract MessageType getType();
+	
+	public Message(){
+		
+	}
 
 	public Message(Code code) {
 		this.code = code;

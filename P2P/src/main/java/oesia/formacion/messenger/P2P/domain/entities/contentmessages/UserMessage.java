@@ -11,6 +11,10 @@ public class UserMessage extends Message implements Serializable {
 	private static final long serialVersionUID = -6623249859711995672L;
 	private String contenido;
 	private MessageStatus status;
+	
+	public UserMessage(){
+		super();
+	}
 
 	public UserMessage(Code code, String contenido) {
 		super(code);
