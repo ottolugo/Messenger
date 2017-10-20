@@ -16,7 +16,6 @@ import javafx.scene.control.TextArea;
 import javafx.util.Callback;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
-import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageFactory;
 
 public class ChatController implements Initializable {
 	@FXML
@@ -61,7 +60,8 @@ public class ChatController implements Initializable {
 							setText(item.toString());
 							System.out.println("hay algo en el item: " + item.toString());
 							// TODO Centralizar el messageFactory
-							if (item.getSender().equals(MessageFactory.getMessageService().whoami())) {
+							if (item.getSender().equals("Maria")) {
+								// MessageFactory.getMessageService().whoami())
 								switch (item.getStatus()) {
 								case ARRIVED:
 									setStyle("-fx-background-color:#ABEBC6");
@@ -102,7 +102,7 @@ public class ChatController implements Initializable {
 		MessageManager messageManager = new MessageManager();
 		System.out.println(mensaje);
 		messageManager.sendMessage(mensaje);
-		mensagges.add(mensaje);
+		// mensagges.add(mensaje);
 
 		taMensaje.setText("");
 	}
