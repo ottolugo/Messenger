@@ -26,7 +26,7 @@ import org.xml.sax.SAXException;
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public class RepositoryServiceImpl implements RepositoryService {
 
@@ -34,7 +34,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	
 	
 	@Override
-	public void logMessage(BroadcastMessage msg) {
+	public void logMessage(UserMessage msg) {
 		insertLog(msg);
 	}
 
@@ -47,7 +47,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	/*
 	 * insert a log to the file.
 	 */
-	private void insertLog(BroadcastMessage msg) {
+	private void insertLog(UserMessage msg) {
 		// Clases necesarias para insertar en xml.
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

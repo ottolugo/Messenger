@@ -1,8 +1,8 @@
-package oesia.formacion.messenger.P2P.FIFO.messageManagers;
+package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
-import oesia.formacion.messenger.P2P.domain.managers.FIFOMessageManager;
+import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
 
 /**
  * this manager is in charge of the ACKmessages only, on its method it check if
@@ -19,7 +19,7 @@ public class AckManager extends MessageManager {
 	@Override
 	public void manageMessage(Message message) {
 		if (this.isValid(message)) {
-			FIFOMessageManager.receiveACK((ACKMessage) message);
+			PreprocessorMessageManager.receiveACK((ACKMessage) message);
 		}
 	}
 

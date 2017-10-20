@@ -1,8 +1,8 @@
-package oesia.formacion.messenger.P2P.FIFO.messageManagers;
+package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.GuidedMessage;
-import oesia.formacion.messenger.P2P.domain.managers.FIFOMessageManager;
+import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
 
 /**
  * this manager is in charge of the Guide Messages only, on its method it check
@@ -18,7 +18,7 @@ public class GuideManager extends MessageManager {
 	@Override
 	public void manageMessage(Message message) {
 		if (this.isValid(message)) {
-			FIFOMessageManager.receiveBroadcast((GuidedMessage) message);
+			PreprocessorMessageManager.receiveBroadcast((GuidedMessage) message);
 		}
 
 	}

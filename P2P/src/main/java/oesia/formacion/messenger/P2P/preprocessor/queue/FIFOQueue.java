@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.FIFO.queue;
+package oesia.formacion.messenger.P2P.preprocessor.queue;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,7 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  * @author jcagigas
  *
  */
-public class FifoQueue {
+public class FIFOQueue {
 	private static List<Message> fifo = new LinkedList<Message>();
 	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
 

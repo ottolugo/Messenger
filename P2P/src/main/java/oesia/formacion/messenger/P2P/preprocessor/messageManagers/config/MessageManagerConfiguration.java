@@ -1,9 +1,9 @@
-package oesia.formacion.messenger.P2P.FIFO.messageManagers.config;
+package oesia.formacion.messenger.P2P.preprocessor.messageManagers.config;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import oesia.formacion.messenger.P2P.FIFO.fifoThreadCheck.MessageCheck;
+import oesia.formacion.messenger.P2P.preprocessor.preprocessorThreadCheck.MessageCheck;
 import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 
 /**

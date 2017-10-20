@@ -1,7 +1,7 @@
 package oesia.formacion.messenger.P2P.domain.configuration;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.SocketService;
-import oesia.formacion.messenger.P2P.socket.bonduaries.SocketServiceImpl;
+import oesia.formacion.messenger.P2P.socket.boundaries.SocketServiceImpl;
 
 public class SocketConfiguration {
 	private static SocketService service;

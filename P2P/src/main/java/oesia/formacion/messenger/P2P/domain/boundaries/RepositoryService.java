@@ -1,7 +1,7 @@
 package oesia.formacion.messenger.P2P.domain.boundaries;
 
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public interface RepositoryService {
 	/**
@@ -9,7 +9,7 @@ public interface RepositoryService {
 	 * 
 	 * @param msg
 	 */
-	public void logMessage(BroadcastMessage msg);
+	public void logMessage(UserMessage msg);
 
 	/**
 	 * Load the configuration from the repository

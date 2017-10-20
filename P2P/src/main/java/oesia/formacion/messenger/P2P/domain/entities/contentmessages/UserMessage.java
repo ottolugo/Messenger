@@ -9,14 +9,14 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 import oesia.formacion.messenger.P2P.domain.entities.ObservableMessage;
 
-public class BroadcastMessage extends Message implements Serializable, ObservableMessage {
+public class UserMessage extends Message implements Serializable, ObservableMessage {
 
 	private static final long serialVersionUID = -6623249859711995672L;
 	private String contenido;
 	private MessageStatus status;
 	private ArrayList<MessageObserver> observers;
 
-	public BroadcastMessage(Code code, String contenido) {
+	public UserMessage(Code code, String contenido) {
 		super(code);
 		this.contenido = contenido;
 		this.status = MessageStatus.NEW;
@@ -44,7 +44,7 @@ public class BroadcastMessage extends Message implements Serializable, Observabl
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BroadcastMessage other = (BroadcastMessage) obj;
+		UserMessage other = (UserMessage) obj;
 		if (contenido == null) {
 			if (other.contenido != null)
 				return false;

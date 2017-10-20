@@ -1,9 +1,9 @@
-package oesia.formacion.messenger.P2P.FIFO.boundaries;
+package oesia.formacion.messenger.P2P.preprocessor.boundaries;
 
-import oesia.formacion.messenger.P2P.FIFO.messageManagers.config.MessageManagerConfiguration;
-import oesia.formacion.messenger.P2P.FIFO.queue.FifoQueue;
-import oesia.formacion.messenger.P2P.domain.boundaries.FIFOservice;
+import oesia.formacion.messenger.P2P.domain.boundaries.PreprocessorService;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.config.MessageManagerConfiguration;
+import oesia.formacion.messenger.P2P.preprocessor.queue.FIFOQueue;
 
 /**
  * FifoServiceImpl implements FifoService, startService make an instance of MessageCheck and starts the thread. put just
@@ -11,7 +11,7 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
  * 
  * @author JCAGIGAS
  */
-public class FIFOServiceImpl implements FIFOservice {
+public class PreprocessorServiceImpl implements PreprocessorService {
 
 	@Override
 	public void startService() {
@@ -21,7 +21,7 @@ public class FIFOServiceImpl implements FIFOservice {
 
 	@Override
 	public void put(Message msg) {
-		FifoQueue.addMessage(msg);
+		FIFOQueue.addMessage(msg);
 	}
 
 }

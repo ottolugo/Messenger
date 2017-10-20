@@ -1,20 +1,20 @@
-package oesia.formacion.messenger.P2P.FIFO.fifoThreadCheck;
+package oesia.formacion.messenger.P2P.preprocessor.preprocessorThreadCheck;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import oesia.formacion.messenger.P2P.FIFO.messageManagers.AckManager;
-import oesia.formacion.messenger.P2P.FIFO.messageManagers.BroadcastManager;
-import oesia.formacion.messenger.P2P.FIFO.messageManagers.GuideManager;
-import oesia.formacion.messenger.P2P.FIFO.messageManagers.KeepAliveManager;
-import oesia.formacion.messenger.P2P.FIFO.messageManagers.MessageManager;
-import oesia.formacion.messenger.P2P.FIFO.queue.FifoQueue;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.AckManager;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.BroadcastManager;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.GuideManager;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.KeepAliveManager;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.MessageManager;
+import oesia.formacion.messenger.P2P.preprocessor.queue.FIFOQueue;
 import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 
 /**
@@ -49,8 +49,8 @@ public class MessageCheck extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			if (FifoQueue.gotMessages()) {
-				Message message = FifoQueue.getMessage();
+			if (FIFOQueue.gotMessages()) {
+				Message message = FIFOQueue.getMessage();
 				MessageManager messageManager = this.messageManagers.get(message.getType());
 				messageManager.manageMessage(message);
 				LOG.log(Level.FINE, "message sent" + messageManager);
