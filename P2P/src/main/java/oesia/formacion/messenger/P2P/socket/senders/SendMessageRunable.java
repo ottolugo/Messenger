@@ -56,7 +56,8 @@ public class SendMessageRunable implements Runnable {
 				}
 			} catch (IOException e) {
 				LOG.log(Level.WARNING,
-						"Se interrumpio el envio del mensage por problemas de envio: " + message.toString());
+						"Se interrumpio el envio del mensage por problemas de envio: " + message.toString() + "\n");
+				//e.printStackTrace();
 			}
 		}
 

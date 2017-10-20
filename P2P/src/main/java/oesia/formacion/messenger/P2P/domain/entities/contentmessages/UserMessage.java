@@ -1,26 +1,21 @@
 package oesia.formacion.messenger.P2P.domain.entities.contentmessages;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageObserver;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
-import oesia.formacion.messenger.P2P.domain.entities.ObservableMessage;
 
-public class UserMessage extends Message implements Serializable, ObservableMessage {
+public class UserMessage extends Message implements Serializable {
 
 	private static final long serialVersionUID = -6623249859711995672L;
 	private String contenido;
 	private MessageStatus status;
-	private ArrayList<MessageObserver> observers;
 
 	public UserMessage(Code code, String contenido) {
 		super(code);
 		this.contenido = contenido;
 		this.status = MessageStatus.NEW;
-		this.observers = new ArrayList<MessageObserver>();
 	}
 
 	@Override
@@ -67,37 +62,11 @@ public class UserMessage extends Message implements Serializable, ObservableMess
 
 	public void setStatus(MessageStatus status) {
 		this.status = status;
-		allNotify();
 	}
 
 	@Override
 	public String toString() {
 		return "BroadcastMessage [contenido=" + contenido + ", status=" + status + "]";
-	}
-
-	@Override
-	public void notify(MessageObserver obs) {
-		if (observers.contains(obs)) {
-			obs.update(status);
-		}
-	}
-
-	@Override
-	public void allNotify() {
-		for (MessageObserver messageObserver : observers) {
-			messageObserver.update(status);
-		}
-	}
-
-	@Override
-	public void addObserver(MessageObserver obs) {
-		observers.add(obs);
-
-	}
-
-	@Override
-	public void dropObserver(MessageObserver obs) {
-		observers.remove(obs);
 	}
 
 }

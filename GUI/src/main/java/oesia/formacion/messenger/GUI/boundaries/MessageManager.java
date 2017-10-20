@@ -5,6 +5,7 @@ import oesia.formacion.messenger.GUI.util.Converter;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageFactory;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageObserver;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageService;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.ObservableUserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public class MessageManager {
@@ -16,9 +17,10 @@ public class MessageManager {
 
 	public void sendMessage(MessageGui message) {
 		UserMessage um = Converter.convertIntoMessage(message);
+		ObservableUserMessage oum = new ObservableUserMessage(um);
 		MessageObserver mo = new MessageObserverImpl(message);
-		um.addObserver(mo);
-		serviceMessage.sendMessage(um);
+		oum.addObserver(mo);
+		serviceMessage.sendMessage(oum);
 	}
 
     public String whoIAm() {
