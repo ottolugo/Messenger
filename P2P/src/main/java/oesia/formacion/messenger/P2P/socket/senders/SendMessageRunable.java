@@ -49,7 +49,7 @@ public class SendMessageRunable implements Runnable {
 					datagramPacket = new DatagramPacket(bufferDatos, bufferDatos.length, inetAddress, port);
 					datagramSocket = new DatagramSocket();
 					datagramSocket.send(datagramPacket);
-
+					LOG.log(Level.INFO, "Mensage enviado:" + message.toString());
 					datagramSocket.close();
 				} catch (UnknownHostException e1) {
 					LOG.log(Level.WARNING, "Fallo en la direccion del Broadcast " + sendAdress);
@@ -57,7 +57,7 @@ public class SendMessageRunable implements Runnable {
 			} catch (IOException e) {
 				LOG.log(Level.WARNING,
 						"Se interrumpio el envio del mensage por problemas de envio: " + message.toString() + "\n");
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
 		}
 
