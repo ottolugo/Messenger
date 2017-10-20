@@ -21,4 +21,8 @@ public class MessageManager {
 	serviceMessage.sendMessage(um);
     }
 
+    public String whoIAm() {
+	return serviceMessage.whoami();
+    }
+
 }
