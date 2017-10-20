@@ -99,11 +99,12 @@ public class ChatController implements Initializable {
 
 	@FXML
 	public void sendMensaje() {
-		MessageGui mensaje = new MessageGui(taMensaje.getText(), "Maria");
 		MessageManager messageManager = new MessageManager();
+		MessageGui mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
+
 		System.out.println(mensaje);
 		messageManager.sendMessage(mensaje);
-		// mensagges.add(mensaje);
+		mensagges.add(mensaje);
 
 		taMensaje.setText("");
 	}
