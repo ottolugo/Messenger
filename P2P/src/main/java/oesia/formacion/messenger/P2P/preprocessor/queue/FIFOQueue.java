@@ -1,7 +1,6 @@
 package oesia.formacion.messenger.P2P.preprocessor.queue;
 
 import java.util.LinkedList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
@@ -18,6 +17,7 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  */
 public class FIFOQueue {
 	private LinkedList<Message> fifo;
+	@SuppressWarnings("unused")
 	private final Logger LOG;
 
 	
@@ -33,7 +33,7 @@ public class FIFOQueue {
 	 * @param message
 	 */
 	public void addMessage(Message message) {
-		LOG.log(Level.INFO, "Message recived: " + message);
+		//LOG.log(Level.INFO, "Message recived: " + message);
 		fifo.addLast(message);
 	}
 
@@ -45,7 +45,7 @@ public class FIFOQueue {
 	public Message getMessage() {
 		Message message = fifo.get(0);
 		fifo.removeFirst();
-		LOG.log(Level.INFO, "Message requested: " + message);
+		//LOG.log(Level.INFO, "Message requested: " + message);
 		return message;
 	}
 
