@@ -7,7 +7,7 @@ public class SocketConfiguration {
 	/**
 	 * Direccion a la que se le hace el broadcast
 	 */
-	private static final String IPGROUP = "10.236.255.255";
+	private static final String IPGROUP = "10.236.50.255";
 	/**
 	 * Tamaño del datagrama
 	 */
