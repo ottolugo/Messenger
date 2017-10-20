@@ -60,7 +60,8 @@ public class ChatController implements Initializable {
 							setText(item.toString());
 							System.out.println("hay algo en el item: " + item.toString());
 							// TODO Centralizar el messageFactory
-							if (item.getSender().equals("Maria")) {
+							MessageManager mm = new MessageManager();
+							if (item.getSender().equals(mm.whoIAm())) {
 								// MessageFactory.getMessageService().whoami())
 								switch (item.getStatus()) {
 								case ARRIVED:
