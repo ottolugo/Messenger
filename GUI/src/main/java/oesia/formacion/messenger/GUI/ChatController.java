@@ -36,9 +36,13 @@ public class ChatController implements Initializable {
 
 		lvUser.setItems(items);
 
-		lvMensajes.setPrefHeight(500);
+		// lvMensajes.setPrefWidth(40);
+		lvMensajes.setMaxWidth(50);
+		// setWrapText(true);
 		List<MessageGui> listM = new ArrayList<MessageGui>();
-		listM.add(new MessageGui("Hola que ase", "Maria"));
+		listM.add(new MessageGui(
+				"Hola que ase, jaskdfjklasdf ,sdf jkasdfjksdf klsadjfkñjasdfksdf .asdfksdjfklasd fjkasdfm,sdfjksd f",
+				"Maria"));
 		mensagges = FXCollections.observableArrayList(listM);
 		System.out.println("Mostrando mensajes de observable list" + mensagges);
 
@@ -77,7 +81,9 @@ public class ChatController implements Initializable {
 									break;
 								}
 							} else {
-								setStyle("-fx-background-color:#ABD9EB;");
+								setWrapText(true);
+								setStyle(
+										"-fx-border-color: #ABEBC6;-fx-border-insets: 2;-fx-border-width: 2;-fx-border-style: solid;-fx-border-radius: 25px;-fx-background-color:#ABD9EB;");
 							}
 
 						}
@@ -98,7 +104,7 @@ public class ChatController implements Initializable {
 		messageManager.sendMessage(mensaje);
 		mensagges.add(mensaje);
 
-		// taMensaje.setText("");
+		taMensaje.setText("");
 	}
 
 	@FXML
