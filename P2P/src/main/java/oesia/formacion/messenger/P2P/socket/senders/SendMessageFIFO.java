@@ -12,6 +12,9 @@ public class SendMessageFIFO implements Runnable {
 	}
 
 	public static SendMessageFIFO getInstance() {
+		if(instance == null){
+			instance = new SendMessageFIFO();
+		}
 		return instance;
 	}
 
