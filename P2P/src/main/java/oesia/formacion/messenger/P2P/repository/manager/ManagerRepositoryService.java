@@ -16,4 +16,9 @@ public interface ManagerRepositoryService {
 	 */
 	public LocalConfiguration loadXml();
 
+	/**
+	 * carga la dirección que configura el cliente en el archivo -> /configuration/config.xml
+	 */
+	public String loadDirXml();
+	
 }

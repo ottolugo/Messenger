@@ -135,4 +135,47 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		return localConfig;
 	}
 
+	@Override
+	public String loadDirXml() {
+
+		String toretDir = null;
+		
+		try {
+			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder;
+			dBuilder = dbFactory.newDocumentBuilder();
+
+			Document doc = dBuilder.parse(fXmlFile);
+
+			doc.getDocumentElement().normalize();
+
+			NodeList nList = doc.getElementsByTagName("configuration");
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+
+					eElement.getElementsByTagName("dir").item(0).getTextContent();
+					toretDir = eElement.getElementsByTagName("dir").item(0).getTextContent();
+				}
+			}
+
+		} catch (ParserConfigurationException e) {
+			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage()));
+		} catch (SAXException e) {
+			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
+		} catch (IOException e) {
+			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage()));
+		}
+		
+		return toretDir;
+	}
+
 }
