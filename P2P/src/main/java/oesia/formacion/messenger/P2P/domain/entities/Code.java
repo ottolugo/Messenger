@@ -1,8 +1,13 @@
 package oesia.formacion.messenger.P2P.domain.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Code {
+public class Code implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7556911829874666039L;
 	private String user;
 	private LocalDateTime date;
 	
