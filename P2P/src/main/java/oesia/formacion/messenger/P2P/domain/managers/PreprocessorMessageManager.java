@@ -2,11 +2,13 @@ package oesia.formacion.messenger.P2P.domain.managers;
 
 import java.time.LocalDateTime;
 
+import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 /**
@@ -17,16 +19,18 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage
  */
 public class PreprocessorMessageManager {
 	/**
-	 * Sends the broadcast message from the fifo to the domain
+	 * Sends the broadcast message from the preprocessor to the domain
+	 * It sends the broadcasted message to the gui
 	 * 
 	 * @param msg
 	 */
 	public static void receiveBroadcast(UserMessage msg) {
-		// TODO gestionar
+		// TODO send to GUI
 	}
 
 	/**
-	 * Sends the broadcast message from the fifo to the domain
+	 * Sends the keepalive message from the preprocessor to the domain
+	 * It sends an ACK automatically
 	 * 
 	 * @param msg
 	 */
@@ -35,12 +39,13 @@ public class PreprocessorMessageManager {
 	}
 
 	/**
-	 * Sends the broadcast message from the fifo to the domain
+	 * Sends the ack message from the preprocessor to the domain
+	 * It updates the message from the response to "Arrived"
 	 * 
 	 * @param msg
 	 */
 	public static void receiveACK(ACKMessage msg) {
-		// TODO gestionar
+		CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
 	}
 	
 	private static Code getMyCode(){
