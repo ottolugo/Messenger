@@ -2,6 +2,7 @@ package oesia.formacion.messenger.P2P.preprocessor.boundaries;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.PreprocessorService;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.FIFOQueueManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.config.MessageManagerConfiguration;
 import oesia.formacion.messenger.P2P.preprocessor.queue.FIFOQueue;
 
@@ -21,7 +22,7 @@ public class PreprocessorServiceImpl implements PreprocessorService {
 
 	@Override
 	public void put(Message msg) {
-		FIFOQueue.addMessage(msg);
+		FIFOQueueManager.getFIFOQueue().addMessage(msg);
 	}
 
 }

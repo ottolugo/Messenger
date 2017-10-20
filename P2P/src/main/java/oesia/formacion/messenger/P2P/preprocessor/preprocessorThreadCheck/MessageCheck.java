@@ -11,6 +11,7 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.AckManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.BroadcastManager;
+import oesia.formacion.messenger.P2P.preprocessor.messageManagers.FIFOQueueManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.GuideManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.KeepAliveManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.MessageManager;
@@ -49,8 +50,14 @@ public class MessageCheck extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			if (FIFOQueue.gotMessages()) {
-				Message message = FIFOQueue.getMessage();
+			try {
+				//El sleep se introduce para que no se cuelgue el hilo al hacer espera activa
+				sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			while (FIFOQueueManager.getFIFOQueue().gotMessages()) {
+				Message message = FIFOQueueManager.getFIFOQueue().getMessage();
 				MessageManager messageManager = this.messageManagers.get(message.getType());
 				if (messageManager.itIsNotMe(message)) {
 					messageManager.manageMessage(message);

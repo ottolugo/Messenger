@@ -23,6 +23,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveBroadcast(UserMessage msg) {
+		System.out.println("Message received from preprocessor: " + msg);
 		NotifierReceivedMessage.getInstance().notify(msg);
 	}
 
@@ -32,6 +33,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveKeepAlive(KeepAliveMessage msg) {
+		System.out.println("Message received from preprocessor: " + msg);
 		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
 	}
 
@@ -42,6 +44,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveACK(ACKMessage msg) {
+		System.out.println("Message received from preprocessor: " + msg);
 		if (!KeepAliveConfiguration.checkACK(msg)) {
 			CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
 		}

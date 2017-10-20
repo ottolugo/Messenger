@@ -19,6 +19,7 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void receiveMessage(Message msg) {
+		System.out.println("Message received, passing to Preprocessor: " + msg);
 		PreprocessorConfiguration.getPreprocessorService().put(msg);
 	}
 	/**
@@ -26,6 +27,7 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void sentMessage(Code code) {
+		System.out.println("Message sent updating status on cache: " + code);
 		CacheConfiguration.getMessageCache().updateMessage(code, MessageStatus.SENT);
 	}
 }

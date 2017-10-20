@@ -17,15 +17,22 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  *
  */
 public class FIFOQueue {
-	private static LinkedList<Message> fifo = new LinkedList<Message>();
-	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
+	private LinkedList<Message> fifo;
+	private final Logger LOG;
+
+	
+	
+	public FIFOQueue() {
+		fifo = new LinkedList<Message>();
+		LOG = Logger.getLogger(MessagePortListener.class.getName());
+	}
 
 	/**
 	 * add message to the queue
 	 * 
 	 * @param message
 	 */
-	public static void addMessage(Message message) {
+	public void addMessage(Message message) {
 		LOG.log(Level.INFO, "Message recived: " + message);
 		fifo.addLast(message);
 	}
@@ -35,7 +42,7 @@ public class FIFOQueue {
 	 * 
 	 * @return
 	 */
-	public static Message getMessage() {
+	public Message getMessage() {
 		Message message = fifo.get(0);
 		fifo.removeFirst();
 		LOG.log(Level.INFO, "Message requested: " + message);
@@ -47,7 +54,7 @@ public class FIFOQueue {
 	 * 
 	 * @return
 	 */
-	public static boolean gotMessages() {
+	public boolean gotMessages() {
 		if (fifo.size() > 0) {
 			return true;
 		} else {
