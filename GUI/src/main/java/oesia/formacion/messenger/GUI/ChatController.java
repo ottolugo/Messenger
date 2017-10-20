@@ -1,8 +1,6 @@
 package oesia.formacion.messenger.GUI;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -38,11 +36,8 @@ public class ChatController implements Initializable {
 		// lvMensajes.setPrefWidth(40);
 		lvMensajes.setMaxWidth(50);
 		// setWrapText(true);
-		List<MessageGui> listM = new ArrayList<MessageGui>();
-		listM.add(new MessageGui(
-				"Hola que ase, jaskdfjklasdf ,sdf jkasdfjksdf klsadjfkñjasdfksdf .asdfksdjfklasd fjkasdfm,sdfjksd f",
-				"Maria"));
-		mensagges = FXCollections.observableArrayList(listM);
+
+		mensagges = FXCollections.observableArrayList();
 		System.out.println("Mostrando mensajes de observable list" + mensagges);
 
 		lvMensajes.setItems(mensagges);
@@ -99,14 +94,16 @@ public class ChatController implements Initializable {
 
 	@FXML
 	public void sendMensaje() {
-		MessageManager messageManager = new MessageManager();
-		MessageGui mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
+		if (!taMensaje.getText().equals("")) {
+			MessageManager messageManager = new MessageManager();
+			MessageGui mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
 
-		System.out.println(mensaje);
-		messageManager.sendMessage(mensaje);
-		mensagges.add(mensaje);
+			System.out.println(mensaje);
+			messageManager.sendMessage(mensaje);
+			mensagges.add(mensaje);
 
-		taMensaje.setText("");
+			taMensaje.setText("");
+		}
 	}
 
 	@FXML
