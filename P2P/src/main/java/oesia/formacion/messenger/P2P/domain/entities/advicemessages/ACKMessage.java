@@ -20,11 +20,11 @@ public class ACKMessage extends Message implements Serializable {
 		this.codeResponse = codeRespost;
 	}
 
-	public Code getCodeRespost() {
+	public Code getCodeResponse() {
 		return codeResponse;
 	}
 
-	public void setCodeRespost(Code codeRespost) {
+	public void setCodeResponse(Code codeRespost) {
 		this.codeResponse = codeRespost;
 	}
 
