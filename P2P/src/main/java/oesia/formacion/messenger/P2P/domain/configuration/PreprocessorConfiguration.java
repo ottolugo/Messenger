@@ -6,7 +6,7 @@ import oesia.formacion.messenger.P2P.preprocessor.boundaries.PreprocessorService
 public class PreprocessorConfiguration {
 	private static PreprocessorService service;
 	
-	public static PreprocessorService getFIFOservice(){
+	public static PreprocessorService getPreprocessorService(){
 		if(service == null){
 			service = new PreprocessorServiceImpl();
 		}

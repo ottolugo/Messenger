@@ -19,7 +19,7 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void receiveMessage(Message msg) {
-		PreprocessorConfiguration.getFIFOservice().put(msg);
+		PreprocessorConfiguration.getPreprocessorService().put(msg);
 	}
 	/**
 	 * Executed when the message is sent
