@@ -9,11 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.util.Callback;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
+import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageFactory;
 
 public class ChatController implements Initializable {
 	@FXML
@@ -33,7 +35,6 @@ public class ChatController implements Initializable {
 
 		lvUser.setItems(items);
 
-		lvMensajes.getStylesheets().add(getClass().getResource("send.css").toExternalForm());
 		lvMensajes.setPrefHeight(500);
 		List<MessageGui> listM = new ArrayList<MessageGui>();
 		listM.add(new MessageGui("Hola que ase", "Maria"));
@@ -54,40 +55,37 @@ public class ChatController implements Initializable {
 						if (item != null) {
 							setText(item.toString());
 							System.out.println("hay algo en el item: " + item.toString());
+							// TODO Centralizar el messageFactory
+							if (item.getSender().equals(MessageFactory.getMessageService().whoami())) {
+								switch (item.getStatus()) {
+								case ARRIVED:
+									setStyle("-fx-background-color:#ABEBC6");
+									setAlignment(Pos.BASELINE_RIGHT);
+									break;
+								case CANCELED:
+									setStyle("-fx-background-color:#F98282;");
+									setAlignment(Pos.BASELINE_RIGHT);
+									break;
+								case NEW:
+									setStyle("-fx-background-color:#F0B47D;");
+									setAlignment(Pos.BASELINE_RIGHT);
+									break;
+								case SENT:
+									setStyle("-fx-background-color:#F0EA7D");
+									setAlignment(Pos.BASELINE_RIGHT);
+									break;
+								}
+							} else {
+								setStyle("-fx-background-color:#ABD9EB;");
+							}
+
 						}
-						// else {
-						// setText("tEXTO CAMBIADO");
-						// System.out.println("ITEM NULL nº: " + cosas++);
-						// }
+
 					}
 				};
 				return cell;
 			}
 		});
-		/*
-		 * lvMensajes.setCellFactory(new Callback<ListView<MessageGui>,
-		 * ListCell<MessageGui>>() {
-		 * 
-		 * public ListCell<MessageGui> call(ListView<MessageGui> p) { final Text
-		 * text = new Text(); final ListCell<MessageGui> cell = new
-		 * ListCell<MessageGui>() {
-		 * 
-		 * @Override public void updateItem(MessageGui item, boolean empty) {
-		 * super.updateItem(item, empty); if (item != null) { if
-		 * (item.getStatus() == MessageStatusGui.CANCELED) {
-		 * text.setFill(Color.RED); } // TODO, PROBAR Y TERMINAR DE RELLENAR LOS
-		 * COLORES, // MEJOR PONER UN SWITCH, ESOT ES UNA PRUEBA
-		 * 
-		 * // text.setContent(item.getMessage()); //
-		 * cell.setText(item.getMessage());
-		 * 
-		 * // setNode(text); } else {
-		 * System.out.println("item es igual a null"); } }
-		 * 
-		 * }; return cell; }
-		 * 
-		 * });
-		 */
 
 	}
 

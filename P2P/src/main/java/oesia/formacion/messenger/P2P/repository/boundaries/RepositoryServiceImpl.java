@@ -32,7 +32,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	private final Logger LOG = Logger.getLogger(RepositoryServiceImpl.class.getName());
 	
-	
 	@Override
 	public void logMessage(UserMessage msg) {
 		insertLog(msg);
@@ -44,8 +43,9 @@ public class RepositoryServiceImpl implements RepositoryService {
 		return reciveLocalConfig;
 	}
 
-	/*
-	 * insert a log to the file.
+	/**
+	 * @param msg
+	 * @do: Insert a log in the file xml.
 	 */
 	private void insertLog(UserMessage msg) {
 		// Clases necesarias para insertar en xml.
@@ -59,8 +59,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 			
 			// Se crea el nodo principal
 			Node nodeMain = doc.getDocumentElement();
-			// se agrega una nueva etiqueta al documento
-			// Se crea una etiqueta dentro del padre
 			Element message = doc.createElement("Message");
 			
 			// Se crea los atributos de la etiqueta principal.
@@ -75,7 +73,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 			nodeMain.appendChild(message);
 			
-			//Se inserta contenido al xml.
 			message.appendChild(doc.createTextNode(msg.getContenido()));
 			
 			TransformerFactory transFactory = TransformerFactory.newInstance();
@@ -100,6 +97,9 @@ public class RepositoryServiceImpl implements RepositoryService {
 		}
 	}
 	
+	/**
+	 * @return LocalConfiguration: get archive config.xml
+	 */
 	private LocalConfiguration loadXml()
 	{
 		LocalConfiguration localConfig = null;
