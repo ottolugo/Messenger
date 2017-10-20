@@ -2,7 +2,7 @@ package oesia.formacion.messenger.P2P.domain.boundaries;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 
-public interface FIFOservice {
+public interface PreprocessorService {
 	/**
 	 * Starts the fifo service with the specified user and the set timeout
 	 * 

@@ -3,22 +3,22 @@ package oesia.formacion.messenger.P2P.domain.util;
 import java.util.HashMap;
 
 import oesia.formacion.messenger.P2P.domain.entities.Code;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 
 public class MessageCache {
-	private HashMap<Code, BroadcastMessage> messages;
+	private HashMap<Code, UserMessage> messages;
 
 	public MessageCache() {
-		messages = new HashMap<Code, BroadcastMessage>();
+		messages = new HashMap<Code, UserMessage>();
 	}
 
-	public void addMessage(BroadcastMessage msg) {
+	public void addMessage(UserMessage msg) {
 		messages.put(msg.getCode(), msg);
 	}
 
 	public void updateMessage(Code code, MessageStatus status) {
-		BroadcastMessage msg = messages.get(code);
+		UserMessage msg = messages.get(code);
 		if (msg != null) {
 			msg.setStatus(status);
 		}

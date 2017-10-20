@@ -3,26 +3,26 @@ package oesia.formacion.messenger.GUI.util;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
 import oesia.formacion.messenger.GUI.entities.MessageStatusGui;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.GuidedMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 
 public class Converter {
 
-    public static BroadcastMessage convertIntoMessage(MessageGui message) {
-	BroadcastMessage returnValue;
+    public static UserMessage convertIntoMessage(MessageGui message) {
+	UserMessage returnValue;
 	Code code = new Code();
 	code.setDate(message.getMessageTime());
 	code.setUser(message.getSender());
 	if (message.isBroadcastedMessage()) {
-	    returnValue = new BroadcastMessage(code, message.getMessage());
+	    returnValue = new UserMessage(code, message.getMessage());
 	} else {
 	    returnValue = new GuidedMessage(code, message.getMessage(), message.getReceiver());
 	}
 	return returnValue;
     }
 
-    public static MessageGui convertIntoMessage(BroadcastMessage message) {
+    public static MessageGui convertIntoMessage(UserMessage message) {
 	MessageGui returnValue = null;
 	switch (message.getType()) {
 	    case GUIDED:

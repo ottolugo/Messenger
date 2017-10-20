@@ -1,7 +1,7 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
 import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
-import oesia.formacion.messenger.P2P.domain.configuration.FIFOConfiguration;
+import oesia.formacion.messenger.P2P.domain.configuration.PreprocessorConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
@@ -19,7 +19,7 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void receiveMessage(Message msg) {
-		FIFOConfiguration.getFIFOservice().put(msg);
+		PreprocessorConfiguration.getFIFOservice().put(msg);
 	}
 	/**
 	 * Executed when the message is sent

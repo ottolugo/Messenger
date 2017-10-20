@@ -1,8 +1,8 @@
-package oesia.formacion.messenger.P2P.FIFO.messageManagers;
+package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.BroadcastMessage;
-import oesia.formacion.messenger.P2P.domain.managers.FIFOMessageManager;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
+import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
 
 /**
  * this manager is in charge of the Broadcast Messages only, on its method it
@@ -18,7 +18,7 @@ public class BroadcastManager extends MessageManager {
 	@Override
 	public void manageMessage(Message message) {
 		if (this.isDateValid(message)) {
-			FIFOMessageManager.receiveBroadcast((BroadcastMessage) message);
+			PreprocessorMessageManager.receiveBroadcast((UserMessage) message);
 		}
 
 	}
