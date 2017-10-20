@@ -2,7 +2,6 @@ package oesia.formacion.messenger.P2P.preprocessor.preprocessorThreadCheck;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
@@ -15,7 +14,6 @@ import oesia.formacion.messenger.P2P.preprocessor.messageManagers.FIFOQueueManag
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.GuideManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.KeepAliveManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.MessageManager;
-import oesia.formacion.messenger.P2P.preprocessor.queue.FIFOQueue;
 import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 
 /**
@@ -27,6 +25,7 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  *
  */
 public class MessageCheck extends Thread {
+	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
 	private Map<MessageType, MessageManager> messageManagers;
 	private LocalConfiguration config = Configuration.getConfiguration();
@@ -61,9 +60,9 @@ public class MessageCheck extends Thread {
 				MessageManager messageManager = this.messageManagers.get(message.getType());
 				if (messageManager.itIsNotMe(message)) {
 					messageManager.manageMessage(message);
-					LOG.log(Level.FINE, "message sent" + messageManager);
+					//LOG.log(Level.FINE, "message sent" + messageManager);
 				} else {
-					LOG.log(Level.INFO, "message received but not sent" + messageManager);
+					//LOG.log(Level.INFO, "message received but not sent" + messageManager);
 				}
 			}
 		}

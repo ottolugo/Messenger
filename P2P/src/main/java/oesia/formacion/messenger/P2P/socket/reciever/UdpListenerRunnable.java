@@ -52,7 +52,7 @@ public class UdpListenerRunnable implements Runnable {
 				try {
 					Object obj = objectInputStream.readObject();
 					Message message = (Message) obj;
-					LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
+					//LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
 					SocketMessageManager.receiveMessage(message);
 
 				} catch (ClassNotFoundException e) {

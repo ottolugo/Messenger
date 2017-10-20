@@ -4,7 +4,6 @@ import oesia.formacion.messenger.P2P.domain.boundaries.PreprocessorService;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.FIFOQueueManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.config.MessageManagerConfiguration;
-import oesia.formacion.messenger.P2P.preprocessor.queue.FIFOQueue;
 
 /**
  * FifoServiceImpl implements FifoService, startService make an instance of MessageCheck and starts the thread. put just
