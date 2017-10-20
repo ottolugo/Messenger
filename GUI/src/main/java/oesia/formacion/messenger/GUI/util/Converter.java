@@ -3,9 +3,9 @@ package oesia.formacion.messenger.GUI.util;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
 import oesia.formacion.messenger.GUI.entities.MessageStatusGui;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.GuidedMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public class Converter {
 
@@ -39,7 +39,7 @@ public class Converter {
 	return returnValue;
     }
 
-    private static MessageStatusGui convertIntoMessageStatus(MessageStatus state) {
+    public static MessageStatusGui convertIntoMessageStatus(MessageStatus state) {
 	MessageStatusGui returnValue;
 	switch (state) {
 	    case SENT:

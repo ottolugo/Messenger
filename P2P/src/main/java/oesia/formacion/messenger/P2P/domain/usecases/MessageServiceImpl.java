@@ -5,11 +5,14 @@ import java.util.List;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageService;
 import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
+import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
+import oesia.formacion.messenger.P2P.domain.notifiers.NotifierRecievedMessage;
+import oesia.formacion.messenger.P2P.domain.notifiers.NotifierRecievedUserList;
 
 public class MessageServiceImpl implements MessageService {
-	
+
 	public MessageServiceImpl() {
 	}
 
@@ -21,20 +24,18 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void msgSubscribe(GUIObserver<UserMessage> obs) {
-		// TODO Auto-generated method stub
-		
+		NotifierRecievedMessage.getInstance().addObserver(obs);
+
 	}
 
 	@Override
 	public void listSubscribe(GUIObserver<List<String>> obs) {
-		// TODO Auto-generated method stub
-		
+		NotifierRecievedUserList.getInstance().addObserver(obs);
 	}
 
 	@Override
 	public String whoami() {
-		// TODO Auto-generated method stub
-		return null;
+		return Configuration.getConfiguration().getWhoami();
 	}
 
 }
