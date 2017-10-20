@@ -13,7 +13,6 @@ public class KeepAliveManager extends MessageManager {
 
 	public KeepAliveManager(int limitTime, String user) {
 		super(limitTime, user);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -6,6 +6,11 @@ public class Code {
 	private String user;
 	private LocalDateTime date;
 	
+	public Code(String user, LocalDateTime date) {
+		super();
+		this.user = user;
+		this.date = date;
+	}
 	public String getUser() {
 		return user;
 	}

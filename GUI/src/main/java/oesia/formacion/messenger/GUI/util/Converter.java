@@ -11,9 +11,7 @@ public class Converter {
 
     public static UserMessage convertIntoMessage(MessageGui message) {
 	UserMessage returnValue;
-	Code code = new Code();
-	code.setDate(message.getMessageTime());
-	code.setUser(message.getSender());
+	Code code = new Code(message.getSender(), message.getMessageTime());
 	if (message.isBroadcastedMessage()) {
 	    returnValue = new UserMessage(code, message.getMessage());
 	} else {

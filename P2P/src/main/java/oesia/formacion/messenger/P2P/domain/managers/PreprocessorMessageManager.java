@@ -1,5 +1,10 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
+import java.time.LocalDateTime;
+
+import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
+import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
+import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
@@ -26,7 +31,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveKeepAlive(KeepAliveMessage msg) {
-		// TODO gestionar
+		SocketConfiguration.getService().sendMessage(new ACKMessage(getMyCode(), msg.getCode()));
 	}
 
 	/**
@@ -36,5 +41,9 @@ public class PreprocessorMessageManager {
 	 */
 	public static void receiveACK(ACKMessage msg) {
 		// TODO gestionar
+	}
+	
+	private static Code getMyCode(){
+		return new Code(Configuration.getConfiguration().getWhoami(), LocalDateTime.now());
 	}
 }
