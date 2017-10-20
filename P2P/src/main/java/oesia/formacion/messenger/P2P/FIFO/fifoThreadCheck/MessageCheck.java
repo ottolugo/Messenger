@@ -52,8 +52,12 @@ public class MessageCheck extends Thread {
 			if (FifoQueue.gotMessages()) {
 				Message message = FifoQueue.getMessage();
 				MessageManager messageManager = this.messageManagers.get(message.getType());
-				messageManager.manageMessage(message);
-				LOG.log(Level.FINE, "message sent" + messageManager);
+				if (messageManager.itIsNotMe(message)) {
+					messageManager.manageMessage(message);
+					LOG.log(Level.FINE, "message sent" + messageManager);
+				} else {
+					LOG.log(Level.INFO, "message received but not sent" + messageManager);
+				}
 			}
 		}
 	}
