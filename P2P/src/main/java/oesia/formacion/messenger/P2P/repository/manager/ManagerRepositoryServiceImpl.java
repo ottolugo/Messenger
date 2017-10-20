@@ -38,7 +38,7 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new File("src/LogMsg.xml"));
+			Document doc = docBuilder.parse(RepositoryServiceImpl.class.getResource("../log/LogMsg.xml").getFile());
 
 			// preparar el archivo xml para recibir los datos.
 			doc.getDocumentElement().normalize();
@@ -67,7 +67,8 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("src/LogMsg.xml"));
+			StreamResult result = new StreamResult(
+					RepositoryServiceImpl.class.getResource("../log/LogMsg.xml").getFile());
 			transformer.transform(source, result);
 
 		} catch (ParserConfigurationException e) {
@@ -89,7 +90,7 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		LocalConfiguration localConfig = null;
 
 		try {
-			File fXmlFile = new File("src/config.xml");
+			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactory.newDocumentBuilder();
