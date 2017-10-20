@@ -23,4 +23,13 @@ public class AckManager extends MessageManager {
 		}
 	}
 
+	private boolean isForMe(Message message) {
+		ACKMessage ack = (ACKMessage) message;
+		if (ack.getCodeResponse().getUser().equals(this.getUser())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

@@ -53,6 +53,20 @@ public abstract class MessageManager {
 	 * @param message
 	 * @return
 	 */
+	public boolean itIsNotMe(Message message) {
+		if (message.getCode().getUser().equals(user)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * check if the message is good to go
+	 * 
+	 * @param message
+	 * @return
+	 */
 	public boolean isDateValid(Message message) {
 		LocalDateTime date = LocalDateTime.now();
 		if (message.getCode().getDate().until(date, ChronoUnit.SECONDS) < limitTime) {
