@@ -14,6 +14,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.util.Callback;
+import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageFactory;
 
@@ -91,8 +92,12 @@ public class ChatController implements Initializable {
 
 	@FXML
 	public void sendMensaje() {
-		// mensagges.add(taMensaje.getText());
-		// lvMensajes.setItems(mensagges);
+		MessageGui mensaje = new MessageGui(taMensaje.getText(), "Maria");
+		MessageManager messageManager = new MessageManager();
+		System.out.println(mensaje);
+		messageManager.sendMessage(mensaje);
+		mensagges.add(mensaje);
+
 		// taMensaje.setText("");
 	}
 
