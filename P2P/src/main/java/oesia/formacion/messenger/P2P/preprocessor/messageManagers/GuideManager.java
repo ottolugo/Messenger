@@ -17,10 +17,19 @@ public class GuideManager extends MessageManager {
 
 	@Override
 	public void manageMessage(Message message) {
-		if (this.isValid(message)) {
+		if (this.isDateValid(message) && this.isForMe(message)) {
 			PreprocessorMessageManager.receiveBroadcast((GuidedMessage) message);
 		}
 
+	}
+
+	private boolean isForMe(Message message) {
+		GuidedMessage guided = (GuidedMessage) message;
+		if (guided.getUserDestinity().equals(this.getUser())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

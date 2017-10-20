@@ -18,8 +18,17 @@ public class AckManager extends MessageManager {
 
 	@Override
 	public void manageMessage(Message message) {
-		if (this.isValid(message)) {
+		if (this.isDateValid(message) && this.isForMe(message)) {
 			PreprocessorMessageManager.receiveACK((ACKMessage) message);
+		}
+	}
+
+	private boolean isForMe(Message message) {
+		ACKMessage ack = (ACKMessage) message;
+		if (ack.getCodeResponse().getUser().equals(this.getUser())) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
