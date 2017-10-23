@@ -25,14 +25,13 @@ public class ChatController implements Initializable {
 	ListView<String> lvUser;
 	int cosas = 0;
 
-	public static ObservableList<MessageGui> mensagges;
+	public static ObservableList<MessageGui> mensagges = FXCollections.observableArrayList();
 	public static ObservableList<String> items = FXCollections.observableArrayList();
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		mensagges = FXCollections.observableArrayList();
-
 		lvMensajes.setItems(mensagges);
+		lvUser.setItems(items);
 
 		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
 
@@ -44,13 +43,10 @@ public class ChatController implements Initializable {
 						super.updateItem(item, empty);
 						if (item != null) {
 							setText(item.toString());
-							// System.out.println("hay algo en el item: " +
-							// item.toString());
-							// TODO Centralizar el messageFactory
 
 							MessageManager mm = MessageManagerFactory.getMessageManager();
 							if (item.getSender().equals(mm.whoIAm())) {
-								// MessageFactory.getMessageService().whoami())
+
 								switch (item.getStatus()) {
 								case ARRIVED:
 									setStyle("-fx-background-color:#ABEBC6");
@@ -104,18 +100,7 @@ public class ChatController implements Initializable {
 	@FXML
 	public void desselectUser() {
 		lvUser.getSelectionModel().clearSelection();
-		/*
-		 * List<String> jjjj = new ArrayList<String>(); jjjj =
-		 * GUIObserverUserListImpl.listaUser;
-		 * 
-		 * rellenarUser(jjjj);
-		 */
-	}
 
-	/*
-	 * public void rellenarUser(List<String> user) { // items =
-	 * FXCollections.observableArrayList(user); items.clear();
-	 * items.addAll(user); lvUser.setItems(items); }
-	 */
+	}
 
 }
