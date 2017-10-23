@@ -6,7 +6,7 @@
   <artifactId>GUI</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-
+ 
   <name>GUI</name>
   <url>http://maven.apache.org</url>
 
@@ -27,4 +27,5 @@
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
+  
 </project>
