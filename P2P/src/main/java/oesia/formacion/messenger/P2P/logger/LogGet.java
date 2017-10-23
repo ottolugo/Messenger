@@ -52,7 +52,6 @@ public class LogGet {
 			handler = new ConsoleHandler();
 			// El nivel para los que se muestran por pantalla
 			handler.setLevel(Level.WARNING);
-			System.out.println(handler.getLevel());
 			handler.setFormatter(new ConsoleLogFormatter());
 		}
 		return handler;
