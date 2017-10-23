@@ -16,7 +16,7 @@ import oesia.formacion.messenger.GUI.entities.MessageGui;
  */
 public class App extends Application {
 
-	private static ChatController cc;
+	private ChatController cc;
 	private static App app;
 
 	public static App getApp() {
