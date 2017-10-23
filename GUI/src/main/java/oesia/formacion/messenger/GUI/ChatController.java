@@ -1,6 +1,7 @@
 package oesia.formacion.messenger.GUI;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,8 +27,22 @@ public class ChatController implements Initializable {
 	ListView<String> lvUser;
 	int cosas = 0;
 
-	private ObservableList<MessageGui> mensagges = FXCollections.observableArrayList();
-	private ObservableList<String> items = FXCollections.observableArrayList();
+	private ObservableList<MessageGui> mensagges;
+	private ObservableList<String> items;
+	private List<String> users = new ArrayList<String>();
+	MessageManager messageManager = MessageManagerFactory.getMessageManager();
+
+	public ChatController() {
+		mensagges = FXCollections.observableArrayList();
+		items = FXCollections.observableArrayList(users);
+		// mensagges.addListener(new ListChangeListener<MessageGui>() {
+		//
+		// public void onChanged(ListChangeListener.Change<? extends MessageGui>
+		// chance) {
+		//
+		// }
+		// });
+	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -43,28 +58,13 @@ public class ChatController implements Initializable {
 					protected void updateItem(MessageGui item, boolean empty) {
 						super.updateItem(item, empty);
 						if (item != null) {
-							// setText(item.toString());
+							setText(item.toString());
 
 							MessageManager mm = MessageManagerFactory.getMessageManager();
 							if (item.getSender().equals(mm.whoIAm())) {
-								switch (item.getStatus()) {
-								case ARRIVED:
-									setStyle("-fx-background-color:#ABEBC6");
-									setAlignment(Pos.BASELINE_RIGHT);
-									break;
-								case CANCELED:
-									setStyle("-fx-background-color:#F98282;");
-									setAlignment(Pos.BASELINE_RIGHT);
-									break;
-								case NEW:
-									setStyle("-fx-background-color:#F0B47D;");
-									setAlignment(Pos.BASELINE_RIGHT);
-									break;
-								case SENT:
-									setStyle("-fx-background-color:#F0EA7D");
-									setAlignment(Pos.BASELINE_RIGHT);
-									break;
-								}
+								setStyle("-fx-background-color:" + item.getStatus().getColor());
+								setAlignment(Pos.BASELINE_RIGHT);
+
 							} else {
 								setWrapText(true);
 								setAlignment(Pos.BASELINE_LEFT);
@@ -84,8 +84,8 @@ public class ChatController implements Initializable {
 
 	@FXML
 	public void sendMensaje() {
-		MessageManager messageManager = MessageManagerFactory.getMessageManager();
-		if (!taMensaje.getText().equals("")) {
+
+		if (!taMensaje.getText().trim().equals("")) {
 			int indice = lvUser.getSelectionModel().getSelectedIndex();
 			MessageGui mensaje;
 			if (indice >= 0) {
@@ -96,7 +96,7 @@ public class ChatController implements Initializable {
 				mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
 
 			}
-			mensagges.add(mensaje);
+			addMessage(mensaje);
 			taMensaje.setText("");
 			messageManager.sendMessage(mensaje);
 		}
