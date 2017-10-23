@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.P2P.repository.manager;
+package oesia.formacion.messenger.P2P.repository.boundaries;
 
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
