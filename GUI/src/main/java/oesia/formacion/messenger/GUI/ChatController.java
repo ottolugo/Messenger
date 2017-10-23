@@ -1,8 +1,6 @@
 package oesia.formacion.messenger.GUI;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -31,23 +29,10 @@ public class ChatController implements Initializable {
 	public static ObservableList<String> items = FXCollections.observableArrayList();
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		List<String> prueba = new ArrayList<String>();
-		prueba.add("ola");
-		prueba.add("cara");
-		prueba.add("cola");
-		lvUser.setItems(items);
-		prueba.add("prueba");
-		// rellenarUser(prueba);
-
-		// lvMensajes.setPrefWidth(40);
-		lvMensajes.setMaxWidth(50);
-		// setWrapText(true);
 
 		mensagges = FXCollections.observableArrayList();
-		System.out.println("Mostrando mensajes de observable list" + mensagges);
 
 		lvMensajes.setItems(mensagges);
-		System.out.println("Mostrando mensajes de listView" + lvMensajes.getItems());
 
 		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
 
@@ -85,7 +70,9 @@ public class ChatController implements Initializable {
 									break;
 								}
 							} else {
+
 								setWrapText(true);
+								setAlignment(Pos.BASELINE_LEFT);
 								setStyle(
 										"-fx-border-color: #ABEBC6;-fx-border-insets: 2;-fx-border-width: 2;-fx-border-style: solid;-fx-border-radius: 25px;-fx-background-color:#ABD9EB;");
 							}
