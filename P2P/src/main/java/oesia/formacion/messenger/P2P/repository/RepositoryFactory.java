@@ -1,8 +1,8 @@
 package oesia.formacion.messenger.P2P.repository;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
+import oesia.formacion.messenger.P2P.repository.boundaries.ManagerRepositoryService;
 import oesia.formacion.messenger.P2P.repository.boundaries.RepositoryServiceImpl;
-import oesia.formacion.messenger.P2P.repository.manager.ManagerRepositoryService;
 import oesia.formacion.messenger.P2P.repository.manager.ManagerRepositoryServiceImpl;
 
 public class RepositoryFactory {

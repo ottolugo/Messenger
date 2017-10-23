@@ -26,63 +26,41 @@ import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.util.DateUtil;
+import oesia.formacion.messenger.P2P.repository.boundaries.ManagerRepositoryService;
 import oesia.formacion.messenger.P2P.repository.boundaries.RepositoryServiceImpl;
 
 public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
 	private final Logger LOG = Logger.getLogger(RepositoryServiceImpl.class.getName());
 
-	@Override
-	public void insertLog(UserMessage msg) {
-		// Clases necesarias para insertar en xml.
+	private static Document document;
+
+	public ManagerRepositoryServiceImpl() {
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder constructor = null;
 		try {
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(RepositoryServiceImpl.class.getResource("../log/LogMsg.xml").getFile());
-
-			// preparar el archivo xml para recibir los datos.
-			doc.getDocumentElement().normalize();
-
-			// Se crea el nodo principal
-			Node nodeMain = doc.getDocumentElement();
-			Element message = doc.createElement("Message");
-
-			// Se crea los atributos de la etiqueta principal.
-			if (msg instanceof Message) {
-				Message sms = (Message) msg;
-				message.setAttribute("user", sms.getCode().getUser());
-
-				String dateFormat = DateUtil.format(msg.getCode().getDate());
-
-				message.setAttribute("date", dateFormat);
-
-			}
-			nodeMain.appendChild(message);
-
-			message.appendChild(doc.createTextNode(msg.getContenido()));
-
-			TransformerFactory transFactory = TransformerFactory.newInstance();
-			Transformer transformer = transFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(
-					RepositoryServiceImpl.class.getResource("../log/LogMsg.xml").getFile());
-			transformer.transform(source, result);
-
+			constructor = docFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage()));
-		} catch (SAXException e) {
-			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
-		} catch (IOException e) {
-			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage()));
-		} catch (TransformerConfigurationException e) {
-			LOG.info(MessageFormat.format("Error TransformerConfigurationException {0} ", e.getMessage()));
-		} catch (TransformerException e) {
-			LOG.info(MessageFormat.format("Error TransformerException {0} ", e.getMessage()));
+			e.printStackTrace();
 		}
 
+		// Creamos el documento XML
+		document = constructor.newDocument();
+	}
+	
+	@Override
+	public void insertLog(UserMessage msg) {
+		
+		insertInDocument(msg);
+		try {
+			writeToArchive();
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+			LOG.info(MessageFormat.format("Error TransformerXMLConfigurationException {0} ", e.getMessage()));
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			LOG.info(MessageFormat.format("Error XMLTransformerException {0} ", e.getMessage()));
+		}
 	}
 
 	@Override
@@ -92,8 +70,7 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		try {
 			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder;
-			dBuilder = dbFactory.newDocumentBuilder();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
 			Document doc = dBuilder.parse(fXmlFile);
 
@@ -139,7 +116,7 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 	public String loadDirXml() {
 
 		String toretDir = null;
-		
+
 		try {
 			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -168,14 +145,56 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 			}
 
 		} catch (ParserConfigurationException e) {
-			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage()));
+			LOG.info(MessageFormat.format("Error XMLParserConfigurationException {0} ", e.getMessage()));
 		} catch (SAXException e) {
 			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
 		} catch (IOException e) {
-			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage()));
+			LOG.info(MessageFormat.format("Error IOExceptionXML {0} ", e.getMessage()));
 		}
-		
+
 		return toretDir;
+	}
+	
+	public void writeToArchive() throws TransformerConfigurationException, TransformerException {
+
+		// Creamos el objecto transformador
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+		// Crear dir
+		File folderLog = new File(loadDirXml() + "/log");
+
+		// Archivo donde almacenaremos el XML
+		File archivo = new File(folderLog + "/LogMsg.xml");
+
+		// Fuente de datos, en este caso el documento XML
+		DOMSource source = new DOMSource(document);
+		// Resultado, el cual almacena en el archivo indicado
+		StreamResult result = new StreamResult(archivo);
+		// Transformamos de ña fuente DOM a el resultado, lo que almacena todo
+		// en el archivo
+		transformer.transform(source, result);
+	}
+
+	public void insertInDocument(UserMessage msg) {
+		// Creamos el elemento principal
+		Element message = document.createElement("Message");
+		// Hacemos el elemento entrada descender directo del nodo XML principal
+		document.appendChild(message);
+		// Se crea los atributos de la etiqueta principal.
+		if (msg instanceof Message) {
+			Message sms = (Message) msg;
+			message.setAttribute("user", sms.getCode().getUser());
+
+			String dateFormat = DateUtil.format(msg.getCode().getDate());
+
+			message.setAttribute("date", dateFormat);
+
+		}
+
+		message.appendChild(document.createTextNode(msg.getContenido()));
 	}
 
 }
