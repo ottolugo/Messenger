@@ -16,7 +16,7 @@ import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
  *
  */
 public class KeepAliveConfiguration {
-	private static ArrayList<String> users;
+	private static ArrayList<String> users = new ArrayList<String>();;
 
 	/**
 	 * This sends the userList to the notifier (if the userLists exists),
@@ -26,9 +26,6 @@ public class KeepAliveConfiguration {
 	public static void newKeepAlive() {
 		if (users != null) {
 			NotifierReceivedUserList.getInstance().notify(users);
-		}
-		else{
-			users = new ArrayList<String>();
 		}
 		Code newCode = CodeGenerator.getMyCode();
 		SocketConfiguration.getService().sendMessage(new KeepAliveMessage(newCode));
