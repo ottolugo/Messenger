@@ -17,6 +17,7 @@ public class ConsoleLogFormatter extends Formatter {
 		formatedText.append(record.getMessage());
 		formatedText.append("\nCode: ");
 		formatedText.append(record.getLevel());
+		formatedText.append("\n");
 		return formatedText.toString();
 	}
 

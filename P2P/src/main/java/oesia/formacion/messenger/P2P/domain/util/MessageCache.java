@@ -20,7 +20,9 @@ public class MessageCache {
 	public void updateMessage(Code code, MessageStatus status) {
 		ObservableUserMessage msg = messages.get(code);
 		if (msg != null) {
-			msg.setStatus(status);
+			if(!msg.getMessage().getStatus().equals(status)){
+				msg.setStatus(status);
+			}
 		}
 	}
 }
