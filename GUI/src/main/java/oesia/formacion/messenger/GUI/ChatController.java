@@ -33,8 +33,6 @@ public class ChatController implements Initializable {
 
 		// rellenarUser();
 
-		lvUser.setItems(items);
-
 		// lvMensajes.setPrefWidth(40);
 		lvMensajes.setMaxWidth(50);
 		// setWrapText(true);
@@ -117,6 +115,7 @@ public class ChatController implements Initializable {
 
 	public void rellenarUser(List<String> user) {
 		items = FXCollections.observableArrayList(user);
+		lvUser.setItems(items);
 	}
 
 }
