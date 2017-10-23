@@ -37,9 +37,9 @@ public class UdpListenerRunnable implements Runnable {
 			socket = new DatagramSocket(socketPort);
 			byte[] incomingData = new byte[bytes];
 			while (true) {
-				DatagramPacket datagramPacket = new DatagramPacket(incomingData, socketPort);
+				DatagramPacket datagramPacket = new DatagramPacket(incomingData, incomingData.length, socketPort);
 				// Se pide al socket que este a la escucha
-				//LOG.log(Level.INFO, "Se prepara la lectura de un nuevo paquete");
+				// LOG.log(Level.INFO, "Se prepara la lectura de un nuevo paquete");
 				socket.receive(datagramPacket);
 				// Datos recividos
 				byte[] recievedData = datagramPacket.getData();
@@ -52,7 +52,7 @@ public class UdpListenerRunnable implements Runnable {
 				try {
 					Object obj = objectInputStream.readObject();
 					Message message = (Message) obj;
-					//LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
+					// LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
 					SocketMessageManager.receiveMessage(message);
 
 				} catch (ClassNotFoundException e) {
