@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.managers.SocketMessageManager;
 import oesia.formacion.messenger.P2P.logger.LogGet;
-import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
+import oesia.formacion.messenger.P2P.socket.configuration.SocketInternalConfiguration;
 
 public class SendMessageRunable implements Runnable {
 
@@ -28,9 +28,9 @@ public class SendMessageRunable implements Runnable {
 	@Override
 	public void run() {
 		// Se preparan los datos para ser enviados
-		List<Integer> ports = SocketConfiguration.getPortNumbers();
+		List<Integer> ports = SocketInternalConfiguration.getPortNumbers();
 		DatagramSocket datagramSocket = null;
-		int datagramLeng = SocketConfiguration.DATAGRAMSIZE;
+		int datagramLeng = SocketInternalConfiguration.DATAGRAMSIZE;
 		byte[] bufferDatos = new byte[datagramLeng];
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -42,7 +42,7 @@ public class SendMessageRunable implements Runnable {
 				objectOutputStream.writeObject(message);
 				bufferDatos = outputStream.toByteArray();
 				// Se saca la direccion a la que hacer el Broadcast
-				String sendAdress = SocketConfiguration.getIPGROUP();
+				String sendAdress = SocketInternalConfiguration.getIPGROUP();
 				InetAddress inetAddress = null;
 				try {
 
