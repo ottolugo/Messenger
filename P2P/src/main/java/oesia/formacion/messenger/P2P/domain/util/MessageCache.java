@@ -1,5 +1,6 @@
 package oesia.formacion.messenger.P2P.domain.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,20 +34,29 @@ public class MessageCache {
 			if(!msg.getMessage().getStatus().equals(status)){
 				msg.setStatus(status);
 				//Borra el mensaje del listener si ha llegado o está cacelado
-				if(status.equals(MessageStatus.ARRIVED) || status.equals(MessageStatus.CANCELED)){
+				if(status.equals(MessageStatus.ARRIVED)){
 					messages.remove(code);
 				}
 			}
 		}
 	}
 	
+	/**
+	 * Checks all messages, updates to canceled all that expired and then
+	 * Eliminates all canceled messages from the cache
+	 */
 	public void checkMessages(){
+		ArrayList<Code> toErase = new ArrayList<Code>();
 		for(Map.Entry<Code, ObservableUserMessage> entry : messages.entrySet()) {
 		    Code key = entry.getKey();
 		    ObservableUserMessage value = entry.getValue();
 		    if(!DateUtil.isDateValid(value.getMessage())){
 		    	updateMessage(key, MessageStatus.CANCELED);
+		    	toErase.add(key);
 		    }
+		}
+		for (Code code : toErase) {
+			messages.remove(code);
 		}
 
 	}

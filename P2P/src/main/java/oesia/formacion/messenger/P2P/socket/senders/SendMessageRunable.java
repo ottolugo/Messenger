@@ -13,11 +13,12 @@ import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.managers.SocketMessageManager;
+import oesia.formacion.messenger.P2P.logger.LogGet;
 import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
 
 public class SendMessageRunable implements Runnable {
 
-	private static final Logger LOG = Logger.getLogger(SendMessageRunable.class.getName());
+	private static final Logger LOG = LogGet.getLogger(SendMessageRunable.class);
 	private Message message = null;
 
 	public SendMessageRunable(Message message) {
@@ -51,7 +52,7 @@ public class SendMessageRunable implements Runnable {
 					datagramSocket = new DatagramSocket();
 					datagramSocket.send(datagramPacket);
 					SocketMessageManager.sentMessage(message.getCode());
-					//LOG.log(Level.INFO, "Puerto: " + port + " - Mensage enviado:" + message.toString());
+					// LOG.log(Level.INFO, "Puerto: " + port + " - Mensage enviado:" + message.toString());
 					datagramSocket.close();
 				} catch (UnknownHostException e1) {
 					LOG.log(Level.WARNING, "Fallo en la direccion del Broadcast " + sendAdress);

@@ -11,11 +11,12 @@ import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.managers.SocketMessageManager;
+import oesia.formacion.messenger.P2P.logger.LogGet;
 import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
 
 public class UdpListenerRunnable implements Runnable {
 
-	private static final Logger LOG = Logger.getLogger(UdpListenerRunnable.class.getName());
+	private static final Logger LOG = LogGet.getLogger(UdpListenerRunnable.class);
 	private int socketPort = 0;
 
 	/**
@@ -54,6 +55,7 @@ public class UdpListenerRunnable implements Runnable {
 					Message message = (Message) obj;
 					// LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
 					SocketMessageManager.receiveMessage(message);
+					LOG.info("Se recive el mensage: " + message);
 
 				} catch (ClassNotFoundException e) {
 					// Este Catch es por si se recive algo que no sea un objeto
