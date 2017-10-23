@@ -6,6 +6,12 @@ import java.util.logging.LogRecord;
 public class ConsoleLogFormatter extends Formatter {
 
 	@Override
+	public synchronized String formatMessage(LogRecord arg0) {
+		// TODO Auto-generated method stub
+		return super.formatMessage(arg0);
+	}
+
+	@Override
 	public String format(LogRecord record) {
 		StringBuilder formatedText = new StringBuilder();
 		formatedText.append(record.getThreadID());
