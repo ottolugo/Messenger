@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration;
+import oesia.formacion.messenger.P2P.domain.configuration.RepositoryConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
@@ -30,6 +31,7 @@ public class PreprocessorMessageManager {
 	public static void receiveBroadcast(UserMessage msg) {
 		LOG.log(Level.FINE, "Broadcast message received from preprocessor: " + msg);
 		NotifierReceivedMessage.getInstance().notify(msg);
+		RepositoryConfiguration.getService().logMessage(msg);
 		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
 	}
 

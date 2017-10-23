@@ -6,6 +6,7 @@ import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageService;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.configuration.LoadConfiguration;
+import oesia.formacion.messenger.P2P.domain.configuration.RepositoryConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.ObservableUserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
@@ -22,6 +23,7 @@ public class MessageServiceImpl implements MessageService {
 	public void sendMessage(ObservableUserMessage msg) {
 		MessageCache.getCache().addMessage(msg);
 		SocketConfiguration.getService().sendMessage(msg.getMessage());
+		RepositoryConfiguration.getService().logMessage(msg.getMessage());
 	}
 
 	@Override
