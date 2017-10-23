@@ -15,10 +15,12 @@ public class LogGet {
 	public static Logger getLogger(Class<?> callerClass) {
 		Logger logConfigurated = Logger.getLogger(callerClass.getName());
 		ConsoleHandler handler = new ConsoleHandler();
+		// El nivel para los que se muestran por pantalla
 		handler.setLevel(Level.WARNING);
 		handler.setFormatter(new ConsoleLogFormatter());
 		logConfigurated.addHandler(handler);
 		try {
+			// Se agrega un filehandler para guardar todos los logs
 			FileHandler saveHandler = new FileHandler("../Logger.log", true);
 			saveHandler.setFormatter(new XMLFormatter());
 			saveHandler.setLevel(Level.ALL);
