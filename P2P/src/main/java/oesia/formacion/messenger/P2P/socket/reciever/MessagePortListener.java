@@ -5,12 +5,13 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import oesia.formacion.messenger.P2P.logger.LogGet;
 import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.socket.thread.SocketThreadManager;
 
 public class MessagePortListener {
 
-	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
+	private static final Logger LOG = LogGet.getLogger(MessagePortListener.class);
 	private int port;
 
 	public MessagePortListener(int port) {
