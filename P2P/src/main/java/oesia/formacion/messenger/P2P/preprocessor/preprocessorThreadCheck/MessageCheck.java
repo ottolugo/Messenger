@@ -2,19 +2,20 @@ package oesia.formacion.messenger.P2P.preprocessor.preprocessorThreadCheck;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
+import oesia.formacion.messenger.P2P.logger.LogGet;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.AckManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.BroadcastManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.FIFOQueueManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.GuideManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.KeepAliveManager;
 import oesia.formacion.messenger.P2P.preprocessor.messageManagers.MessageManager;
-import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 
 /**
  * 
@@ -25,8 +26,7 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  *
  */
 public class MessageCheck extends Thread {
-	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
+	private static final Logger LOG = LogGet.getLogger(MessageCheck.class);
 	private Map<MessageType, MessageManager> messageManagers;
 	private LocalConfiguration config = Configuration.getConfiguration();
 	private int limitTime;
@@ -60,9 +60,9 @@ public class MessageCheck extends Thread {
 				MessageManager messageManager = this.messageManagers.get(message.getType());
 				if (messageManager.itIsNotMe(message)) {
 					messageManager.manageMessage(message);
-					//LOG.log(Level.FINE, "message sent" + messageManager);
+					LOG.log(Level.FINE, "message sent" + messageManager);
 				} else {
-					//LOG.log(Level.INFO, "message received but not sent" + messageManager);
+					LOG.log(Level.FINE, "message received but not sent" + messageManager);
 				}
 			}
 		}

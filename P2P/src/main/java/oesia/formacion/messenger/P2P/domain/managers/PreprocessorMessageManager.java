@@ -1,5 +1,8 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
@@ -9,6 +12,7 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStat
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
+import oesia.formacion.messenger.P2P.logger.LogGet;
 
 /**
  * This class is used by the FIFO to send messages to the domain
@@ -17,13 +21,14 @@ import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
  *
  */
 public class PreprocessorMessageManager {
+	private static final Logger LOG = LogGet.getLogger(PreprocessorMessageManager.class);
 	/**
 	 * Sends the broadcast message from the preprocessor to the domain It sends the broadcasted message to the gui
 	 * 
 	 * @param msg
 	 */
 	public static void receiveBroadcast(UserMessage msg) {
-		System.out.println("BRoadcast Message received from preprocessor: " + msg);
+		LOG.log(Level.FINE, "Broadcast message received from preprocessor: " + msg);
 		NotifierReceivedMessage.getInstance().notify(msg);
 		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
 	}
@@ -34,7 +39,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveKeepAlive(KeepAliveMessage msg) {
-		System.out.println("KeepAlive Message received from preprocessor: " + msg);
+		LOG.log(Level.FINE, "KeepAlive message received from preprocessor: " + msg);
 		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
 	}
 
@@ -45,7 +50,7 @@ public class PreprocessorMessageManager {
 	 * @param msg
 	 */
 	public static void receiveACK(ACKMessage msg) {
-		System.out.println("ACK Message received from preprocessor: " + msg);
+		LOG.log(Level.FINE, "ACK message received from preprocessor: " + msg);
 		if (!KeepAliveConfiguration.checkACK(msg)) {
 			CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
 		}
