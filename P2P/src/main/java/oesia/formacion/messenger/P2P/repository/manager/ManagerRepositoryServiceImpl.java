@@ -167,13 +167,12 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		File folderLog = new File(loadDirXml() + "/log");
 
 		// Archivo donde almacenaremos el XML
-		File archivo = new File(folderLog + "/LogMsg.xml");
-
-		// Fuente de datos, en este caso el documento XML
+//		File archivo = new File(folderLog + "/LogMsg.xml");
+		File archivo = new File(RepositoryServiceImpl.class.getResource(folderLog + "/LogMsg.xml").getFile());
+		
 		DOMSource source = new DOMSource(document);
-		// Resultado, el cual almacena en el archivo indicado
 		StreamResult result = new StreamResult(archivo);
-		// Transformamos de ña fuente DOM a el resultado, lo que almacena todo
+		// Transformamos de la fuente DOM a el resultado, lo que almacena todo
 		// en el archivo
 		transformer.transform(source, result);
 	}
