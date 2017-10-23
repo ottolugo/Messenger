@@ -90,10 +90,10 @@ public class ChatController implements Initializable {
 			MessageGui mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
 
 			// System.out.println(mensaje);
-			messageManager.sendMessage(mensaje);
 			mensagges.add(mensaje);
-
 			taMensaje.setText("");
+			messageManager.sendMessage(mensaje);
+
 		}
 	}
 
