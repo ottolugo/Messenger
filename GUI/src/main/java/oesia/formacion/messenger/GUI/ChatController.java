@@ -85,15 +85,21 @@ public class ChatController implements Initializable {
 
 	@FXML
 	public void sendMensaje() {
+		MessageManager messageManager = new MessageManager();
 		if (!taMensaje.getText().equals("")) {
-			MessageManager messageManager = new MessageManager();
-			MessageGui mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
+			int indice = lvUser.getSelectionModel().getSelectedIndex();
+			MessageGui mensaje;
+			if (indice >= 0) {
+				String nombre = lvUser.getSelectionModel().getSelectedItem();
+				mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm(), nombre);
+			} else {
 
-			// System.out.println(mensaje);
+				mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
+
+			}
 			mensagges.add(mensaje);
 			taMensaje.setText("");
 			messageManager.sendMessage(mensaje);
-
 		}
 	}
 
