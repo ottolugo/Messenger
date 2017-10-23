@@ -57,13 +57,7 @@ public class UdpListenerRunnable implements Runnable {
 
 				} catch (ClassNotFoundException e) {
 					// Este Catch es por si se recive algo que no sea un objeto
-					Object recivido = new Object();
-					try {
-						recivido = objectInputStream.readObject();
-					} catch (ClassNotFoundException e1) {
-						LOG.log(Level.INFO, "No llego un objeto");
-					}
-					LOG.log(Level.INFO, "Se recepciono otra cosa: " + recivido.toString());
+					LOG.log(Level.INFO, "Se recepciono otra cosa");
 				}
 
 			}
