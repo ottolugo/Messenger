@@ -27,17 +27,17 @@ public class ChatController implements Initializable {
 	ListView<String> lvUser;
 	int cosas = 0;
 
-	ObservableList<MessageGui> mensagges;
-	ObservableList<String> items;
+	public static ObservableList<MessageGui> mensagges;
+	public static ObservableList<String> items = FXCollections.observableArrayList();
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		List<String> prueba = new ArrayList<String>();
 		prueba.add("ola");
 		prueba.add("cara");
 		prueba.add("cola");
-		items = FXCollections.observableArrayList(prueba);
+		lvUser.setItems(items);
 		prueba.add("prueba");
-		rellenarUser(prueba);
+		// rellenarUser(prueba);
 
 		// lvMensajes.setPrefWidth(40);
 		lvMensajes.setMaxWidth(50);
@@ -117,13 +117,18 @@ public class ChatController implements Initializable {
 	@FXML
 	public void desselectUser() {
 		lvUser.getSelectionModel().clearSelection();
+		/*
+		 * List<String> jjjj = new ArrayList<String>(); jjjj =
+		 * GUIObserverUserListImpl.listaUser;
+		 * 
+		 * rellenarUser(jjjj);
+		 */
 	}
 
-	public void rellenarUser(List<String> user) {
-		// items = FXCollections.observableArrayList(user);
-		items.clear();
-		items.addAll(user);
-		lvUser.setItems(items);
-	}
+	/*
+	 * public void rellenarUser(List<String> user) { // items =
+	 * FXCollections.observableArrayList(user); items.clear();
+	 * items.addAll(user); lvUser.setItems(items); }
+	 */
 
 }
