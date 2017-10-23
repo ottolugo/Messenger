@@ -1,8 +1,5 @@
 package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 
 /**
@@ -45,21 +42,6 @@ public abstract class MessageManager {
 			return false;
 		} else {
 			return true;
-		}
-	}
-
-	/**
-	 * check if the message is good to go
-	 * 
-	 * @param message
-	 * @return
-	 */
-	public boolean isDateValid(Message message) {
-		LocalDateTime date = LocalDateTime.now();
-		if (message.getCode().getDate().until(date, ChronoUnit.SECONDS) < limitTime) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 

@@ -9,7 +9,8 @@ public class LoadConfiguration {
 		Configuration.setConfiguration(config);
 		PreprocessorConfiguration.getPreprocessorService().startService();
 		SocketConfiguration.getService().startService(config.getPort());
-		KeepAliverConfiguration.getKeepAliverService().startService();
+		KeepAliverConfiguration.startKeepAliver();
+		CancelerConfiguration.startCanceler();
 	}
 
 }

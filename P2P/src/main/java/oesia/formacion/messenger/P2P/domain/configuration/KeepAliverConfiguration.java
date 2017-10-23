@@ -1,15 +1,15 @@
 package oesia.formacion.messenger.P2P.domain.configuration;
 
-import oesia.formacion.messenger.P2P.domain.boundaries.KeepAliverService;
-import oesia.formacion.messenger.P2P.keepAliver.KeepAliverServiceImpl;
+import oesia.formacion.messenger.P2P.keepAliver.KeepAliver;
 
 public class KeepAliverConfiguration {
-private static KeepAliverService service;
-	
-	public static KeepAliverService getKeepAliverService(){
-		if(service == null){
-			service = new KeepAliverServiceImpl();
+	private static KeepAliver keepAliver = null;
+
+	public static KeepAliver startKeepAliver() {
+		if (keepAliver == null) {
+			keepAliver = new KeepAliver();
+			keepAliver.start();
 		}
-		return service;
+		return keepAliver;
 	}
 }

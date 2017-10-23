@@ -3,6 +3,7 @@ package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
+import oesia.formacion.messenger.P2P.domain.util.DateUtil;
 
 /**
  * this manager is in charge of the ACKmessages only, on its method it check if
@@ -18,7 +19,7 @@ public class AckManager extends MessageManager {
 
 	@Override
 	public void manageMessage(Message message) {
-		if (isDateValid(message) && isForMe(message)) {
+		if (DateUtil.isDateValid(message) && isForMe(message)) {
 			PreprocessorMessageManager.receiveACK((ACKMessage) message);
 		}
 	}

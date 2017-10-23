@@ -4,7 +4,6 @@ import java.util.List;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageService;
-import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.configuration.LoadConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
@@ -12,6 +11,7 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.ObservableU
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
+import oesia.formacion.messenger.P2P.domain.util.MessageCache;
 
 public class MessageServiceImpl implements MessageService {
 
@@ -20,7 +20,7 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void sendMessage(ObservableUserMessage msg) {
-		CacheConfiguration.getMessageCache().addMessage(msg);
+		MessageCache.getCache().addMessage(msg);
 		SocketConfiguration.getService().sendMessage(msg.getMessage());
 	}
 

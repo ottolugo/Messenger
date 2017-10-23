@@ -1,10 +1,10 @@
 package oesia.formacion.messenger.P2P.domain.managers;
 
-import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.PreprocessorConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
+import oesia.formacion.messenger.P2P.domain.util.MessageCache;
 
 /**
  * This class is used by the socket to send messages to the domain
@@ -26,6 +26,6 @@ public class SocketMessageManager {
 	 * @param msg
 	 */
 	public static void sentMessage(Code code) {
-		CacheConfiguration.getMessageCache().updateMessage(code, MessageStatus.SENT);
+		MessageCache.getCache().updateMessage(code, MessageStatus.SENT);
 	}
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-	<Whoami>Maria</Whoami>
+	<Whoami>Alberto</Whoami>
 	<KeepAliveTimeout>30</KeepAliveTimeout>
 	<MessageTimeout>5</MessageTimeout>
 	<port>1496</port>
-	<dir>C:\Users\EXTypaz\Desktop</dir>
+	<dir>C:\Users\EXTamarino\Desktop</dir>
 </configuration>
 

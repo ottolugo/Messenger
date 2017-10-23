@@ -1,7 +1,7 @@
 package oesia.formacion.messenger.P2P.keepAliver;
 
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
-import oesia.formacion.messenger.P2P.domain.managers.KeepAliverManager;
+import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration;
 
 public class KeepAliver extends Thread {
 
@@ -10,11 +10,10 @@ public class KeepAliver extends Thread {
 		while (true) {
 			try {
 				sleep((Configuration.getConfiguration().getKeepAliveTimeout()) * 1000);
-				KeepAliverManager.sendKeepAlive();
+				KeepAliveConfiguration.newKeepAlive();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 

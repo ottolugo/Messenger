@@ -3,7 +3,6 @@ package oesia.formacion.messenger.P2P.domain.managers;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import oesia.formacion.messenger.P2P.domain.configuration.CacheConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
@@ -12,6 +11,7 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStat
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
+import oesia.formacion.messenger.P2P.domain.util.MessageCache;
 import oesia.formacion.messenger.P2P.logger.LogGet;
 
 /**
@@ -51,6 +51,6 @@ public class PreprocessorMessageManager {
 	 */
 	public static void receiveACK(ACKMessage msg) {
 		LOG.log(Level.FINE, "ACK message received from preprocessor: " + msg);
-		CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
+		MessageCache.getCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
 	}
 }
