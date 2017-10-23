@@ -1,6 +1,7 @@
 package oesia.formacion.messenger.GUI;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -30,8 +31,12 @@ public class ChatController implements Initializable {
 	ObservableList<String> items;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		List<String> prueba = new ArrayList<String>();
+		prueba.add("ola");
+		prueba.add("cara");
+		prueba.add("cola");
 
-		// rellenarUser();
+		rellenarUser(prueba);
 
 		// lvMensajes.setPrefWidth(40);
 		lvMensajes.setMaxWidth(50);
