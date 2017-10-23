@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.managers.SocketMessageManager;
 import oesia.formacion.messenger.P2P.logger.LogGet;
-import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
+import oesia.formacion.messenger.P2P.socket.configuration.SocketInternalConfiguration;
 
 public class UdpListenerRunnable implements Runnable {
 
@@ -34,7 +34,7 @@ public class UdpListenerRunnable implements Runnable {
 		LOG.log(Level.INFO, "Se lanza el observador del puerto: " + socketPort);
 		try {
 			// Se saca primero el tamaño del datagrama de la configuracion del socket
-			int bytes = SocketConfiguration.DATAGRAMSIZE;
+			int bytes = SocketInternalConfiguration.DATAGRAMSIZE;
 			socket = new DatagramSocket(socketPort);
 			byte[] incomingData = new byte[bytes];
 			while (true) {

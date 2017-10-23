@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.logger.LogGet;
-import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
+import oesia.formacion.messenger.P2P.socket.configuration.SocketInternalConfiguration;
 import oesia.formacion.messenger.P2P.socket.thread.SocketThreadManager;
 
 public class MessagePortListener {
@@ -26,7 +26,7 @@ public class MessagePortListener {
 	 */
 	public void start() {
 		// Comprueba primero los puertos actuales
-		List<Integer> activePorts = SocketConfiguration.getPortNumbers();
+		List<Integer> activePorts = SocketInternalConfiguration.getPortNumbers();
 		if (!activePorts.contains(new Integer(port))) {
 			activePorts.add(new Integer(port));
 		}
