@@ -40,7 +40,7 @@ public class PreprocessorMessageManager {
 	 */
 	public static void receiveKeepAlive(KeepAliveMessage msg) {
 		LOG.log(Level.FINE, "KeepAlive message received from preprocessor: " + msg);
-		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
+		KeepAliveConfiguration.receiveKeepAlive(msg);
 	}
 
 	/**
@@ -51,8 +51,6 @@ public class PreprocessorMessageManager {
 	 */
 	public static void receiveACK(ACKMessage msg) {
 		LOG.log(Level.FINE, "ACK message received from preprocessor: " + msg);
-		if (!KeepAliveConfiguration.checkACK(msg)) {
-			CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
-		}
+		CacheConfiguration.getMessageCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
 	}
 }

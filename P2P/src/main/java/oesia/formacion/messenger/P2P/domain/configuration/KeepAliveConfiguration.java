@@ -3,8 +3,9 @@ package oesia.formacion.messenger.P2P.domain.configuration;
 import java.util.ArrayList;
 
 import oesia.formacion.messenger.P2P.domain.entities.Code;
-import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
+import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
+import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 
 /**
  * This class stores the current KeepAlive code and connected users list and 
@@ -15,22 +16,22 @@ import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
  *
  */
 public class KeepAliveConfiguration {
-	private static Code code;
 	private static ArrayList<String> users;
 
 	/**
 	 * This sends the userList to the notifier (if the userLists exists),
-	 * updates the current keepAlive code and wipes the UserList
+	 * sends a KeepAliveMessage and wipes the UserList
 	 * @param codeToUpdate
 	 */
-	public static void updateKeepAliveCode(Code codeToUpdate) {
+	public static void newKeepAlive() {
 		if (users != null) {
 			NotifierReceivedUserList.getInstance().notify(users);
 		}
 		else{
 			users = new ArrayList<String>();
 		}
-		code = codeToUpdate;
+		Code newCode = CodeGenerator.getMyCode();
+		SocketConfiguration.getService().sendMessage(new KeepAliveMessage(newCode));
 		users.clear();
 	}
 
@@ -40,11 +41,9 @@ public class KeepAliveConfiguration {
 	 * @param msg
 	 * @return
 	 */
-	public static boolean checkACK(ACKMessage msg){
-		boolean checks = msg.getCodeResponse().equals(code);
-		if(checks){
+	public static void receiveKeepAlive(KeepAliveMessage msg){
+		if(!users.contains(msg.getCode().getUser())){
 			users.add(msg.getCode().getUser());
 		}
-		return checks;
 	}
 }
