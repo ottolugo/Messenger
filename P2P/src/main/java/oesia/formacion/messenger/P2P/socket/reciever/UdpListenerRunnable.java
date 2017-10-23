@@ -37,7 +37,7 @@ public class UdpListenerRunnable implements Runnable {
 			socket = new DatagramSocket(socketPort);
 			byte[] incomingData = new byte[bytes];
 			while (true) {
-				DatagramPacket datagramPacket = new DatagramPacket(incomingData, incomingData.length, socketPort);
+				DatagramPacket datagramPacket = new DatagramPacket(incomingData, incomingData.length);
 				// Se pide al socket que este a la escucha
 				// LOG.log(Level.INFO, "Se prepara la lectura de un nuevo paquete");
 				socket.receive(datagramPacket);
