@@ -42,11 +42,10 @@ public class ChatController implements Initializable {
 					protected void updateItem(MessageGui item, boolean empty) {
 						super.updateItem(item, empty);
 						if (item != null) {
-							setText(item.toString());
+							// setText(item.toString());
 
 							MessageManager mm = MessageManagerFactory.getMessageManager();
 							if (item.getSender().equals(mm.whoIAm())) {
-
 								switch (item.getStatus()) {
 								case ARRIVED:
 									setStyle("-fx-background-color:#ABEBC6");
@@ -66,7 +65,6 @@ public class ChatController implements Initializable {
 									break;
 								}
 							} else {
-
 								setWrapText(true);
 								setAlignment(Pos.BASELINE_LEFT);
 								setStyle(
