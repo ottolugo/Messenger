@@ -3,7 +3,7 @@ package oesia.formacion.messenger.P2P.socket.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocketConfiguration {
+public class SocketInternalConfiguration {
 	/**
 	 * Direccion a la que se le hace el broadcast
 	 */
@@ -17,7 +17,7 @@ public class SocketConfiguration {
 	 */
 	private static List<Integer> portnumbers = null;
 
-	private SocketConfiguration() {
+	private SocketInternalConfiguration() {
 	}
 
 	/**

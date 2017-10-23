@@ -1,5 +1,11 @@
 package oesia.formacion.messenger.P2P.domain.usecases;
 
+/**
+ * 
+ * @author ramunoz
+ *
+ * @param <T>
+ */
 public interface Usecase<T> {
 	/**
 	 * Se ocupa de ejecutar lo necesario para el caso de uso
