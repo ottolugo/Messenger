@@ -177,7 +177,6 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
 		// Crear dir
 		File folderLog = new File(loadDirXml() + "/log");
-
 		// Archivo donde almacenaremos el XML
 		// File archivo = new File(folderLog + "/LogMsg.xml");
 		File archivo = new File(ManagerRepositoryServiceImpl.class.getResource(folderLog + "/LogMsg.xml").getFile());
