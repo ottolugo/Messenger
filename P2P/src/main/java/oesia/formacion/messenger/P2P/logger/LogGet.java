@@ -1,11 +1,13 @@
 package oesia.formacion.messenger.P2P.logger;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.XMLFormatter;
 
@@ -34,6 +36,12 @@ public class LogGet {
 		Logger log = null;
 		if (logMap == null) {
 			logMap = new HashMap<Class<?>, Logger>();
+			try {
+				LogManager.getLogManager()
+						.readConfiguration(new FileInputStream(LogGet.class.getResource("log.properties").getFile()));
+			} catch (SecurityException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 		log = logMap.containsKey(callerClass) ? logMap.get(callerClass) : createLog(callerClass);
 		return log;
