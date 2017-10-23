@@ -16,7 +16,7 @@ import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
  *
  */
 public class KeepAliveConfiguration {
-	private static ArrayList<String> users = new ArrayList<String>();;
+	private static ArrayList<String> users = new ArrayList<String>();
 
 	/**
 	 * This sends the userList to the notifier (if the userLists exists),
