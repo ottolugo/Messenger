@@ -15,7 +15,7 @@ public class MessageObserverImpl implements MessageObserver {
 
     public void update(MessageStatus status) {
 	msg.setStatus(Converter.convertIntoMessageStatus(status));
-
+System.out.println("Upadated msg: " + msg + " To status " + status);
     }
 
 }

@@ -41,7 +41,7 @@ public class KeepAliveConfiguration {
 	 * @return
 	 */
 	public static boolean checkACK(ACKMessage msg){
-		boolean checks = msg.getCode().equals(code);
+		boolean checks = msg.getCodeResponse().equals(code);
 		if(checks){
 			users.add(msg.getCode().getUser());
 		}
