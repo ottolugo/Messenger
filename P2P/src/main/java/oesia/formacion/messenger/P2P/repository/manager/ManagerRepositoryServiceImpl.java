@@ -3,7 +3,9 @@ package oesia.formacion.messenger.P2P.repository.manager;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,16 +28,26 @@ import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.util.DateUtil;
+import oesia.formacion.messenger.P2P.logger.LogGet;
 import oesia.formacion.messenger.P2P.repository.boundaries.ManagerRepositoryService;
 import oesia.formacion.messenger.P2P.repository.boundaries.RepositoryServiceImpl;
 
 public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
-	private final Logger LOG = Logger.getLogger(RepositoryServiceImpl.class.getName());
+	private final Logger LOG = LogGet.getLogger(RepositoryServiceImpl.class);
+	private final Logger LOGMSG = Logger.getLogger(ManagerRepositoryServiceImpl.class.getName());
 
 	private static Document document;
 
 	public ManagerRepositoryServiceImpl() {
+		FileHandler logFileHandler;
+		try {
+			logFileHandler = new FileHandler("../msg.log", true);
+			logFileHandler.setFormatter(new SimpleFormatter());
+			LOGMSG.addHandler(logFileHandler);
+		} catch (SecurityException | IOException e1) {
+		}
+
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructor = null;
 		try {
@@ -47,10 +59,10 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		// Creamos el documento XML
 		document = constructor.newDocument();
 	}
-	
+
 	@Override
 	public void insertLog(UserMessage msg) {
-		
+
 		insertInDocument(msg);
 		try {
 			writeToArchive();
@@ -154,7 +166,7 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
 		return toretDir;
 	}
-	
+
 	public void writeToArchive() throws TransformerConfigurationException, TransformerException {
 
 		// Creamos el objecto transformador
@@ -167,9 +179,9 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		File folderLog = new File(loadDirXml() + "/log");
 
 		// Archivo donde almacenaremos el XML
-//		File archivo = new File(folderLog + "/LogMsg.xml");
+		// File archivo = new File(folderLog + "/LogMsg.xml");
 		File archivo = new File(ManagerRepositoryServiceImpl.class.getResource(folderLog + "/LogMsg.xml").getFile());
-		
+
 		DOMSource source = new DOMSource(document);
 		StreamResult result = new StreamResult(archivo);
 		// Transformamos de la fuente DOM a el resultado, lo que almacena todo
