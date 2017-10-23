@@ -18,6 +18,8 @@ import java.util.logging.XMLFormatter;
 public class LogGet {
 
 	private static Map<Class<?>, Logger> logMap = null;
+	private static FileHandler saveHandler = null;
+	private static ConsoleHandler handler = null;
 
 	private LogGet() {
 	}
@@ -39,22 +41,35 @@ public class LogGet {
 
 	private static Logger createLog(Class<?> callerClass) {
 		Logger logConfigurated = Logger.getLogger(callerClass.getName());
-		ConsoleHandler handler = new ConsoleHandler();
-		// El nivel para los que se muestran por pantalla
-		handler.setLevel(Level.WARNING);
-		handler.setFormatter(new ConsoleLogFormatter());
-		logConfigurated.addHandler(handler);
-		try {
-			// Se agrega un filehandler para guardar todos los logs
-			FileHandler saveHandler = new FileHandler("../Logger.log", false);
-			saveHandler.setLevel(Level.ALL);
-			saveHandler.setFormatter(new XMLFormatter());
-			logConfigurated.addHandler(saveHandler);
-
-		} catch (SecurityException e) {
-		} catch (IOException e) {
-		}
+		logConfigurated.addHandler(getConsoleHandler());
+		logConfigurated.addHandler(getFileHandler());
 		logMap.put(callerClass, logConfigurated);
 		return logConfigurated;
+	}
+
+	private static ConsoleHandler getConsoleHandler() {
+		if (handler == null) {
+			handler = new ConsoleHandler();
+			// El nivel para los que se muestran por pantalla
+			handler.setLevel(Level.WARNING);
+			System.out.println(handler.getLevel());
+			handler.setFormatter(new ConsoleLogFormatter());
+		}
+		return handler;
+	}
+
+	private static FileHandler getFileHandler() {
+		if (saveHandler == null) {
+			try {
+				// Se agrega un filehandler para guardar todos los logs
+				saveHandler = new FileHandler("../Logger.log", false);
+				saveHandler.setLevel(Level.ALL);
+				saveHandler.setFormatter(new XMLFormatter());
+			} catch (SecurityException e) {
+			} catch (IOException e) {
+			}
+		}
+		return saveHandler;
+
 	}
 }
