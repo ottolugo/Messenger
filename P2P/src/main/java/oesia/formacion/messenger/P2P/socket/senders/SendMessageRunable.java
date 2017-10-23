@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.domain.managers.SocketMessageManager;
 import oesia.formacion.messenger.P2P.socket.configuration.SocketConfiguration;
 
 public class SendMessageRunable implements Runnable {
@@ -49,6 +50,7 @@ public class SendMessageRunable implements Runnable {
 					datagramPacket = new DatagramPacket(bufferDatos, bufferDatos.length, inetAddress, port);
 					datagramSocket = new DatagramSocket();
 					datagramSocket.send(datagramPacket);
+					SocketMessageManager.sentMessage(message.getCode());
 					//LOG.log(Level.INFO, "Puerto: " + port + " - Mensage enviado:" + message.toString());
 					datagramSocket.close();
 				} catch (UnknownHostException e1) {
