@@ -55,7 +55,7 @@ public class UdpListenerRunnable implements Runnable {
 					Message message = (Message) obj;
 					// LOG.log(Level.INFO, "Se recepciono el mensage con codigo: " + message.getCode().toString());
 					SocketMessageManager.receiveMessage(message);
-					LOG.info("Se recive el mensage: " + message);
+					LOG.info("Se recibe el mensage: " + message);
 
 				} catch (ClassNotFoundException e) {
 					// Este Catch es por si se recive algo que no sea un objeto
