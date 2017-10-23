@@ -23,6 +23,7 @@ public class MessageServiceImpl implements MessageService {
 	public void sendMessage(ObservableUserMessage msg) {
 		MessageCache.getCache().addMessage(msg);
 		SocketConfiguration.getService().sendMessage(msg.getMessage());
+		// No borres esto
 		RepositoryConfiguration.getService().logMessage(msg.getMessage());
 	}
 
