@@ -5,3 +5,10 @@
 -fx-background-size: cover, auto;
 
 }
+#taMensaje .content{
+    -fx-background-image:url("../resource/itcfondo.png");
+-fx-background-position: left top, center;
+-fx-background-repeat: no-repeat;
+-fx-background-size: cover, auto;
+-fx-opacity:50%;
+}
