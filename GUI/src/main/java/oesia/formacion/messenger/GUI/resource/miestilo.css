@@ -1,0 +1,7 @@
+#lvMensajes{
+    -fx-background-image:url("../resource/fondo.jpg");
+	-fx-background-position: left top, center;
+-fx-background-repeat: no-repeat;
+-fx-background-size: cover, auto;
+
+}
