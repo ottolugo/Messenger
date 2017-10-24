@@ -28,30 +28,33 @@ public class ChatController implements Initializable {
 
 	private ObservableList<MessageGui> mensagges;
 	private ObservableList<String> items;
-	private List<String> users = new ArrayList<String>();
 	MessageManager messageManager = MessageManagerFactory.getMessageManager();
 
 	public ChatController() {
 		mensagges = FXCollections.observableArrayList();
-		items = FXCollections.observableArrayList(users);
-		// mensagges.addListener(new ListChangeListener<MessageGui>() {
-		//
-		// public void onChanged(ListChangeListener.Change<? extends MessageGui>
-		// chance) {
-		//
-		// }
-		// });
+		items = FXCollections.observableArrayList();
 	}
 
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		lvMensajes.setItems(mensagges);
 		lvUser.setItems(items);
 
 		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
+			@Override
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
 				return new ItemFormat();
 			}
+
+		});
+
+		lvUser.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+			@Override
+			public ListCell<String> call(ListView<String> param) {
+				return new UserFormat();
+			}
+
 		});
 
 	}
@@ -81,9 +84,21 @@ public class ChatController implements Initializable {
 		lvUser.getSelectionModel().clearSelection();
 	}
 
-	public void setUserList(List<String> userlist) {
-		items.clear();
-		items.addAll(userlist);
+	public void setUserList(List<String> userList) {
+		ArrayList<String> toErase = new ArrayList<String>();
+		for (String item : items) {
+			if (!userList.contains(item)) {
+				toErase.add(item);
+			}
+		}
+		for (String user : userList) {
+			if (!items.contains(user)) {
+				items.add(user);
+			}
+		}
+		for (String erase : toErase) {
+			items.remove(erase);
+		}
 	}
 
 	public void addMessage(MessageGui message) {

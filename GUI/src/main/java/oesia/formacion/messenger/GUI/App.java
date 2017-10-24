@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,20 +46,20 @@ public class App extends Application {
 	}
 
 	public void setUserList(List<String> userList) {
-		cc.setUserList(userList);
+		Platform.runLater(() -> {
+			cc.setUserList(userList);
+		});
 	}
 
 	public void addMessage(MessageGui message) {
-		cc.addMessage(message);
+		Platform.runLater(() -> {
+			cc.addMessage(message);
+		});
 	}
 
 	public static void main(String[] args) {
 		Launch.start();
 		launch(args);
 		System.exit(0);
-	}
-
-	public ChatController getChatController() {
-		return cc;
 	}
 }
