@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
 
@@ -40,7 +41,8 @@ public class App extends Application {
 		// scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle("ITChat");
-		// stage.getIcons()
+		stage.getIcons().add(new Image(
+				"https://pbs.twimg.com/profile_images/3274293417/eb346dec716adff0642b0ea9ed78b8e0_400x400.png"));
 		stage.show();
 
 	}
