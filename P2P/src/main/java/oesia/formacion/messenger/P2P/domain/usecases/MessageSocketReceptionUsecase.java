@@ -9,7 +9,7 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
  * @author ramunoz
  *
  */
-public class MessageSocketReception implements Usecase<Void> {
+public class MessageSocketReceptionUsecase implements Usecase<Void> {
 
 	private Message msg;
 
@@ -18,7 +18,7 @@ public class MessageSocketReception implements Usecase<Void> {
 	 * 
 	 * @param msg
 	 */
-	public MessageSocketReception(Message msg) {
+	public MessageSocketReceptionUsecase(Message msg) {
 		this.msg = msg;
 	}
 
