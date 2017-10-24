@@ -43,6 +43,7 @@ public class App extends Application {
 		stage.setTitle("ITChat");
 		stage.getIcons().add(new Image(
 				"https://pbs.twimg.com/profile_images/3274293417/eb346dec716adff0642b0ea9ed78b8e0_400x400.png"));
+
 		stage.show();
 
 	}

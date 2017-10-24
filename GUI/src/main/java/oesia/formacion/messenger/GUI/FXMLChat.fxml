@@ -38,7 +38,7 @@
                               <ListView fx:id="lvUser" layoutX="8.0" layoutY="8.0" prefHeight="206.0" prefWidth="145.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               <Button layoutX="56.0" layoutY="343.0" mnemonicParsing="false" onAction="#desselectUser" text="TODOS" textAlignment="CENTER" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="36.0">
                                  <font>
-                                    <Font name="System Bold Italic" size="15.0" />
+                                    <Font name="System Bold Italic" size="10.0" />
                                  </font>
                               </Button>
                            </children>
