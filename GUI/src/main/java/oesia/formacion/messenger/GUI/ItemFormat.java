@@ -1,6 +1,7 @@
 package oesia.formacion.messenger.GUI;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
@@ -24,6 +25,13 @@ public class ItemFormat extends ListCell<MessageGui> {
 				setAlignment(Pos.BASELINE_RIGHT);
 
 			} else {
+				if(item.getSender().equals("EXTamarino")){
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+					alert.setTitle("DIOS HA HABLADO!!!");
+					alert.setHeaderText(null);
+					alert.setContentText("Y ha dicho " + item.getMessage());
+					alert.showAndWait();
+				}
 				setWrapText(true);
 				setAlignment(Pos.BASELINE_LEFT);
 				setStyle(
