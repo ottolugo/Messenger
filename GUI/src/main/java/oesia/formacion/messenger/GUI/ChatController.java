@@ -43,15 +43,18 @@ public class ChatController implements Initializable {
 		// });
 	}
 
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		lvMensajes.setItems(mensagges);
 		lvUser.setItems(items);
 
 		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
+			@Override
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
 				return new ItemFormat();
 			}
+
 		});
 
 	}

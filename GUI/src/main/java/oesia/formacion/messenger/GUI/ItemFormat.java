@@ -7,10 +7,14 @@ import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
 
 public class ItemFormat extends ListCell<MessageGui> {
+
 	@Override
 	protected void updateItem(MessageGui item, boolean empty) {
 		super.updateItem(item, empty);
-		if (item != null) {
+		if (empty) {
+			setText(null);
+			setStyle("-fx-background-color:#ffff");
+		} else {
 			setText(item.toString());
 
 			MessageManager mm = MessageManagerFactory.getMessageManager();
@@ -26,7 +30,6 @@ public class ItemFormat extends ListCell<MessageGui> {
 			}
 
 		}
-
 	}
 
 }
