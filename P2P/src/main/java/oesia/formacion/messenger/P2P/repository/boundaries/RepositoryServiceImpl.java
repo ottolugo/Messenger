@@ -17,19 +17,20 @@ public class RepositoryServiceImpl implements RepositoryService {
 	private final ManagerRepositoryService managerRepositoryService;
 
 	public RepositoryServiceImpl() {
-		FileHandler logFileHandler;
-		try {
-			logFileHandler = new FileHandler("../msg.log", true);
-			logFileHandler.setFormatter(new SimpleFormatter());
-			LOGMSG.addHandler(logFileHandler);
-		} catch (SecurityException | IOException e1) {
-		}
+//		FileHandler logFileHandler;
+//		try {
+//			logFileHandler = new FileHandler("../msg.log", true);
+//			logFileHandler.setFormatter(new SimpleFormatter());
+//			LOGMSG.addHandler(logFileHandler);
+//		} catch (SecurityException | IOException e1) {
+//		}
 		this.managerRepositoryService = RepositoryFactory.getManagerRepositoryService();
 	}
 
 	@Override
 	public void logMessage(UserMessage msg) {
-		LOGMSG.info(msg.toString());
+//		LOGMSG.info(msg.toString());
+		this.managerRepositoryService.insertLog(msg);
 	}
 
 	@Override
