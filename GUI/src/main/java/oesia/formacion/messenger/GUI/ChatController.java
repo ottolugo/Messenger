@@ -87,7 +87,9 @@ public class ChatController implements Initializable {
 	public void setUserList(List<String> userList) {
 		ArrayList<String> toErase = new ArrayList<String>();
 		for (String item : items) {
-			toErase.add(item);
+			if (!userList.contains(item)) {
+				toErase.add(item);
+			}
 		}
 		for (String user : userList) {
 			if (!items.contains(user)) {
