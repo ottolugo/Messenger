@@ -25,13 +25,7 @@ public class ItemFormat extends ListCell<MessageGui> {
 				setAlignment(Pos.BASELINE_RIGHT);
 
 			} else {
-				if(item.getSender().equals("EXTamarino")){
-					Alert alert = new Alert(Alert.AlertType.WARNING);
-					alert.setTitle("DIOS HA HABLADO!!!");
-					alert.setHeaderText(null);
-					alert.setContentText("Y ha dicho " + item.getMessage());
-					alert.showAndWait();
-				}
+				Checker.check(item, false);
 				setWrapText(true);
 				setAlignment(Pos.BASELINE_LEFT);
 				setStyle(
