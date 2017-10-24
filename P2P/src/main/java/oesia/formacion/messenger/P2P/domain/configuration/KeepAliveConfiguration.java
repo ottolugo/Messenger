@@ -1,6 +1,7 @@
 package oesia.formacion.messenger.P2P.domain.configuration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
@@ -25,7 +26,7 @@ public class KeepAliveConfiguration {
 	 */
 	public static void newKeepAlive() {
 		if (users != null) {
-			NotifierReceivedUserList.getInstance().notify(users);
+			NotifierReceivedUserList.getInstance().notify(cloneThis());
 		}
 		Code newCode = CodeGenerator.getMyCode();
 		SocketConfiguration.getService().sendMessage(new KeepAliveMessage(newCode));
@@ -42,5 +43,14 @@ public class KeepAliveConfiguration {
 		if(!users.contains(msg.getCode().getUser())){
 			users.add(msg.getCode().getUser());
 		}
+	}
+	//To prevent concurrent modifications we clone the user list and send the clone
+	private static List<String> cloneThis(){
+		ArrayList<String> clone = new ArrayList<String>();
+		for (String user : users) {
+			clone.add(user);
+		}
+		return clone;
+		
 	}
 }

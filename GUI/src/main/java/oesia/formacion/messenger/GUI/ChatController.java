@@ -28,12 +28,11 @@ public class ChatController implements Initializable {
 
 	private ObservableList<MessageGui> mensagges;
 	private ObservableList<String> items;
-	private List<String> users = new ArrayList<String>();
 	MessageManager messageManager = MessageManagerFactory.getMessageManager();
 
 	public ChatController() {
 		mensagges = FXCollections.observableArrayList();
-		items = FXCollections.observableArrayList(users);
+		items = FXCollections.observableArrayList();
 	}
 
 	@Override
@@ -46,6 +45,14 @@ public class ChatController implements Initializable {
 			@Override
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
 				return new ItemFormat();
+			}
+
+		});
+
+		lvUser.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+			@Override
+			public ListCell<String> call(ListView<String> param) {
+				return new UserFormat();
 			}
 
 		});
@@ -77,10 +84,18 @@ public class ChatController implements Initializable {
 		lvUser.getSelectionModel().clearSelection();
 	}
 
-	public void setUserList(List<String> userlist) {
-		items.clear();
-		for (String string : userlist) {
-			items.add(string);
+	public void setUserList(List<String> userList) {
+		ArrayList<String> toErase = new ArrayList<String>();
+		for (String item : items) {
+			toErase.add(item);
+		}
+		for (String user : userList) {
+			if (!items.contains(user)) {
+				items.add(user);
+			}
+		}
+		for (String erase : toErase) {
+			items.remove(erase);
 		}
 	}
 

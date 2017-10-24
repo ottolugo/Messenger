@@ -52,7 +52,6 @@ public class App extends Application {
 	}
 
 	public void addMessage(MessageGui message) {
-		// messages.add(message);
 		Platform.runLater(() -> {
 			cc.addMessage(message);
 		});
