@@ -7,15 +7,15 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStat
 
 public class MessageObserverImpl implements MessageObserver {
 
-    private MessageGui msg;
+	private MessageGui msg;
 
-    MessageObserverImpl(MessageGui msg) {
-	this.msg = msg;
-    }
+	MessageObserverImpl(MessageGui msg) {
+		this.msg = msg;
+	}
 
-    public void update(MessageStatus status) {
-	msg.setStatus(Converter.convertIntoMessageStatus(status));
-System.out.println("Upadated msg: " + msg + " To status " + status);
-    }
+	public void update(MessageStatus status) {
+		msg.setStatus(Converter.convertIntoMessageStatus(status));
+
+	}
 
 }

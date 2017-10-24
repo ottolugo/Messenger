@@ -12,7 +12,7 @@ public class GUIObserverMessageImpl implements GUIObserver<UserMessage> {
 		// ChatController.mensagges.add(Converter.convertIntoMessage(obj));
 		//
 		App.getApp().addMessage(Converter.convertIntoMessage(obj));
-		System.out.println("Mensaje recibido:" + obj);
+
 	}
 
 }
