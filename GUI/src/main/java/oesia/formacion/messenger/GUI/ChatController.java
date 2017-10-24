@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -52,31 +51,7 @@ public class ChatController implements Initializable {
 		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
 
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
-				ListCell<MessageGui> cell = new ListCell<MessageGui>() {
-
-					@Override
-					protected void updateItem(MessageGui item, boolean empty) {
-						super.updateItem(item, empty);
-						if (item != null) {
-							setText(item.toString());
-
-							MessageManager mm = MessageManagerFactory.getMessageManager();
-							if (item.getSender().equals(mm.whoIAm())) {
-								setStyle("-fx-background-color:" + item.getStatus().getColor());
-								setAlignment(Pos.BASELINE_RIGHT);
-
-							} else {
-								setWrapText(true);
-								setAlignment(Pos.BASELINE_LEFT);
-								setStyle(
-										"-fx-border-color: #ABEBC6;-fx-border-insets: 2;-fx-border-width: 2;-fx-border-style: solid;-fx-border-radius: 25px;-fx-background-color:#ABD9EB;");
-							}
-
-						}
-
-					}
-				};
-				return cell;
+				return new ItemFormat();
 			}
 		});
 
