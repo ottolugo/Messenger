@@ -11,6 +11,7 @@ public class ItemFormat extends ListCell<MessageGui> {
 	@Override
 	protected void updateItem(MessageGui item, boolean empty) {
 		super.updateItem(item, empty);
+
 		if (empty) {
 			setText(null);
 			setStyle("-fx-background-color:#ffff");
@@ -31,5 +32,4 @@ public class ItemFormat extends ListCell<MessageGui> {
 
 		}
 	}
-
 }

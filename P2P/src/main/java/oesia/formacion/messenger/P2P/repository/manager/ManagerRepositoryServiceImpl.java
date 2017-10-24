@@ -38,15 +38,17 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 	private final Logger LOGMSG = Logger.getLogger(ManagerRepositoryServiceImpl.class.getName());
 
 	private static Document document;
+	private static boolean created = false;
+	private static boolean isCreated = false;
 
 	public ManagerRepositoryServiceImpl() {
-		FileHandler logFileHandler;
-		try {
-			logFileHandler = new FileHandler("../msg.log", true);
-			logFileHandler.setFormatter(new SimpleFormatter());
-			LOGMSG.addHandler(logFileHandler);
-		} catch (SecurityException | IOException e1) {
-		}
+//		FileHandler logFileHandler;
+//		try {
+//			logFileHandler = new FileHandler("../msg.log", true);
+//			logFileHandler.setFormatter(new SimpleFormatter());
+//			LOGMSG.addHandler(logFileHandler);
+//		} catch (SecurityException | IOException e1) {
+//		}
 
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructor = null;
@@ -56,16 +58,19 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 			e.printStackTrace();
 		}
 
-		// Creamos el documento XML
 		document = constructor.newDocument();
 	}
 
 	@Override
 	public void insertLog(UserMessage msg) {
-
-		insertInDocument(msg);
+		
 		try {
-			writeToArchive();
+			insertInDocument(msg);
+			if(!isCreated)
+			{
+				isCreated = writeToArchive();
+			}
+			
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();
 			LOG.info(MessageFormat.format("Error TransformerXMLConfigurationException {0} ", e.getMessage()));
@@ -74,7 +79,58 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 			LOG.info(MessageFormat.format("Error XMLTransformerException {0} ", e.getMessage()));
 		}
 	}
+	
 
+	public boolean writeToArchive() throws TransformerConfigurationException, TransformerException {
+
+		// Creamos el objecto transformador
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		StreamResult result = null;
+
+		// Crear dir
+		File folderLog = new File(loadDirXml() + "/log");
+		// Archivo donde almacenaremos el XML
+		
+		if(!created)
+		{
+			File archivo = new File(folderLog + "/LogMsg.xml");
+			folderLog.mkdir();
+			result = new StreamResult(archivo);
+			created = true;
+		}
+		else{
+			File archivo = new File(folderLog + "/LogMsg.xml");
+			result = new StreamResult(archivo);
+			created = true;
+		}
+
+		DOMSource source = new DOMSource(document);
+		transformer.transform(source, result);
+		
+		return created;
+	}
+
+	public void insertInDocument(UserMessage msg) {
+		Element message = document.createElement("Message");
+		// Hacemos el elemento entrada descender directo del nodo XML principal
+		document.appendChild(message);
+		// Se crea los atributos de la etiqueta principal.
+		if (msg instanceof Message) {
+			Message sms = (Message) msg;
+			message.setAttribute("user", sms.getCode().getUser());
+
+			String dateFormat = DateUtil.format(msg.getCode().getDate());
+
+			message.setAttribute("date", dateFormat);
+
+		}
+
+		message.appendChild(document.createTextNode(msg.getContenido()));
+	}
+
+	
 	@Override
 	public LocalConfiguration loadXml() {
 		LocalConfiguration localConfig = null;
@@ -123,7 +179,7 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
 		return localConfig;
 	}
-
+	
 	@Override
 	public String loadDirXml() {
 
@@ -166,45 +222,4 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
 		return toretDir;
 	}
-
-	public void writeToArchive() throws TransformerConfigurationException, TransformerException {
-
-		// Creamos el objecto transformador
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-		// Crear dir
-		File folderLog = new File(loadDirXml() + "/log");
-		// Archivo donde almacenaremos el XML
-		// File archivo = new File(folderLog + "/LogMsg.xml");
-		File archivo = new File(ManagerRepositoryServiceImpl.class.getResource(folderLog + "/LogMsg.xml").getFile());
-
-		DOMSource source = new DOMSource(document);
-		StreamResult result = new StreamResult(archivo);
-		// Transformamos de la fuente DOM a el resultado, lo que almacena todo
-		// en el archivo
-		transformer.transform(source, result);
-	}
-
-	public void insertInDocument(UserMessage msg) {
-		// Creamos el elemento principal
-		Element message = document.createElement("Message");
-		// Hacemos el elemento entrada descender directo del nodo XML principal
-		document.appendChild(message);
-		// Se crea los atributos de la etiqueta principal.
-		if (msg instanceof Message) {
-			Message sms = (Message) msg;
-			message.setAttribute("user", sms.getCode().getUser());
-
-			String dateFormat = DateUtil.format(msg.getCode().getDate());
-
-			message.setAttribute("date", dateFormat);
-
-		}
-
-		message.appendChild(document.createTextNode(msg.getContenido()));
-	}
-
 }
