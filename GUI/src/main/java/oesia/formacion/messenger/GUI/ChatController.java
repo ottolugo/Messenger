@@ -34,13 +34,6 @@ public class ChatController implements Initializable {
 	public ChatController() {
 		mensagges = FXCollections.observableArrayList();
 		items = FXCollections.observableArrayList(users);
-		// mensagges.addListener(new ListChangeListener<MessageGui>() {
-		//
-		// public void onChanged(ListChangeListener.Change<? extends MessageGui>
-		// chance) {
-		//
-		// }
-		// });
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -83,7 +76,9 @@ public class ChatController implements Initializable {
 
 	public void setUserList(List<String> userlist) {
 		items.clear();
-		items.addAll(userlist);
+		for (String string : userlist) {
+			items.add(string);
+		}
 	}
 
 	public void addMessage(MessageGui message) {

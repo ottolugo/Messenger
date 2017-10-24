@@ -29,7 +29,7 @@ public class ProcessMessageUsecase implements Usecase<Void> {
 			UserMessage recieved = (UserMessage) message;
 			PreprocessorMessageManager.receiveBroadcast(recieved);
 		} else {
-			LOG.warning("Llego algo equibocado al caso de uso de procesar mensage");
+			LOG.warning("Llego algo equivocado al caso de uso de procesar mensage");
 		}
 		return null;
 	}
