@@ -20,7 +20,7 @@ public class ItemFormat extends ListCell<MessageGui> {
 
 			MessageManager mm = MessageManagerFactory.getMessageManager();
 			if (item.getSender().equals(mm.whoIAm())) {
-				setStyle("-fx-background-color:" + item.getStatus().getColor());
+				setStyle("-fx-dark-text-color: rgb(50, 50, 50);;-fx-background-color:" + item.getStatus().getColor());
 				setAlignment(Pos.BASELINE_RIGHT);
 
 			} else {
@@ -28,7 +28,7 @@ public class ItemFormat extends ListCell<MessageGui> {
 				setWrapText(true);
 				setAlignment(Pos.BASELINE_LEFT);
 				setStyle(
-						"-fx-border-color: #ABEBC6;-fx-border-insets: 2;-fx-border-width: 2;-fx-border-style: solid;-fx-border-radius: 25px;-fx-background-color:#ABD9EB;");
+						"-fx-border-color: #ABEBC6;-fx-border-insets: 2;-fx-border-width: 2;-fx-border-style: solid;-fx-border-radius: 25px;-fx-background-color:#ABD9EB;-fx-color:black");
 			}
 
 		}
