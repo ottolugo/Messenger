@@ -49,7 +49,6 @@ public class ChatController implements Initializable {
 		lvUser.setItems(items);
 
 		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
-
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
 				return new ItemFormat();
 			}

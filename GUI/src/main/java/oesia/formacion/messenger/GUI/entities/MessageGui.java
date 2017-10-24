@@ -221,7 +221,7 @@ public class MessageGui {
 	 */
 	@Override
 	public String toString() {
-		return sender + ": " + DateUtil.format(messageTime) + ":\n " + message;
+		return sender + ": " + DateUtil.format(messageTime) + ": " + message;
 	}
 
 }
