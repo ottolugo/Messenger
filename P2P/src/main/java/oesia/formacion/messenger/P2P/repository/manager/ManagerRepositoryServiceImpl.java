@@ -42,13 +42,6 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 	private static boolean isCreated = false;
 
 	public ManagerRepositoryServiceImpl() {
-		FileHandler logFileHandler;
-		try {
-			logFileHandler = new FileHandler("../msg.log", true);
-			logFileHandler.setFormatter(new SimpleFormatter());
-			LOGMSG.addHandler(logFileHandler);
-		} catch (SecurityException | IOException e1) {
-		}
 
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructor = null;
@@ -61,56 +54,56 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		document = constructor.newDocument();
 	}
 
-	@Override
-	public void insertLog(UserMessage msg) {
-		
-		try {
-			insertInDocument(msg);
-			if(!isCreated)
-			{
-				isCreated = writeToArchive();
-			}
-			
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-			LOG.info(MessageFormat.format("Error TransformerXMLConfigurationException {0} ", e.getMessage()));
-		} catch (TransformerException e) {
-			e.printStackTrace();
-			LOG.info(MessageFormat.format("Error XMLTransformerException {0} ", e.getMessage()));
-		}
-	}
+//	@Override
+//	public void insertLog(UserMessage msg) {
+//		
+//		try {
+//			insertInDocument(msg);
+//			if(!isCreated)
+//			{
+//				isCreated = writeToArchive();
+//			}
+//			
+//		} catch (TransformerConfigurationException e) {
+//			e.printStackTrace();
+//			LOG.info(MessageFormat.format("Error TransformerXMLConfigurationException {0} ", e.getMessage()));
+//		} catch (TransformerException e) {
+//			e.printStackTrace();
+//			LOG.info(MessageFormat.format("Error XMLTransformerException {0} ", e.getMessage()));
+//		}
+//	}
 	
 
-	public boolean writeToArchive() throws TransformerConfigurationException, TransformerException {
-
-		// Creamos el objecto transformador
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		StreamResult result = null;
-
-		// Crear dir
-		File folderLog = new File(loadDirXml() + "/log");
-		// Archivo donde almacenaremos el XML
-		
-		if(!created)
-		{
-			File archivo = new File(folderLog + "/LogMsg.xml");
-			folderLog.mkdir();
-			result = new StreamResult(archivo);
-			created = true;
-		}
-		else{
-			File archivo = new File(folderLog + "/LogMsg.xml");
-			result = new StreamResult(archivo);
-			created = true;
-		}
-
-		DOMSource source = new DOMSource(document);
-		transformer.transform(source, result);
-		
-		return created;
-	}
+//	public boolean writeToArchive() throws TransformerConfigurationException, TransformerException {
+//
+//		// Creamos el objecto transformador
+//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//		Transformer transformer = transformerFactory.newTransformer();
+//		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+//		StreamResult result = null;
+//
+//		// Crear dir
+//		File folderLog = new File(loadDirXml() + "/log");
+//		// Archivo donde almacenaremos el XML
+//		
+//		if(!created)
+//		{
+//			File archivo = new File(folderLog + "/LogMsg.xml");
+//			folderLog.mkdir();
+//			result = new StreamResult(archivo);
+//			created = true;
+//		}
+//		else{
+//			File archivo = new File(folderLog + "/LogMsg.xml");
+//			result = new StreamResult(archivo);
+//			created = true;
+//		}
+//
+//		DOMSource source = new DOMSource(document);
+//		transformer.transform(source, result);
+//		
+//		return created;
+//	}
 
 	public void insertInDocument(UserMessage msg) {
 		Element message = document.createElement("Message");
@@ -130,92 +123,99 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 		message.appendChild(document.createTextNode(msg.getContenido()));
 	}
 
-	
 	@Override
-	public LocalConfiguration loadXml() {
-		LocalConfiguration localConfig = null;
-
-		try {
-			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-			Document doc = dBuilder.parse(fXmlFile);
-
-			doc.getDocumentElement().normalize();
-
-			NodeList nList = doc.getElementsByTagName("configuration");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-				Node nNode = nList.item(temp);
-
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-					Element eElement = (Element) nNode;
-
-					eElement.getElementsByTagName("Whoami").item(0).getTextContent();
-					eElement.getElementsByTagName("KeepAliveTimeout").item(0).getTextContent();
-					eElement.getElementsByTagName("MessageTimeout").item(0).getTextContent();
-					eElement.getElementsByTagName("port").item(0).getTextContent();
-					localConfig = new LocalConfiguration(
-							eElement.getElementsByTagName("Whoami").item(0).getTextContent(),
-							Integer.parseInt(
-									eElement.getElementsByTagName("KeepAliveTimeout").item(0).getTextContent()),
-							Integer.parseInt(eElement.getElementsByTagName("MessageTimeout").item(0).getTextContent()),
-							Integer.parseInt(eElement.getElementsByTagName("port").item(0).getTextContent()));
-				}
-			}
-
-		} catch (ParserConfigurationException e) {
-			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage()));
-		} catch (SAXException e) {
-			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
-		} catch (IOException e) {
-			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage()));
-		}
-
-		return localConfig;
+	public void insertLog(UserMessage msg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
-	@Override
-	public String loadDirXml() {
-
-		String toretDir = null;
-
-		try {
-			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder;
-			dBuilder = dbFactory.newDocumentBuilder();
-
-			Document doc = dBuilder.parse(fXmlFile);
-
-			doc.getDocumentElement().normalize();
-
-			NodeList nList = doc.getElementsByTagName("configuration");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-				Node nNode = nList.item(temp);
-
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-					Element eElement = (Element) nNode;
-
-					eElement.getElementsByTagName("dir").item(0).getTextContent();
-					toretDir = eElement.getElementsByTagName("dir").item(0).getTextContent();
-				}
-			}
-
-		} catch (ParserConfigurationException e) {
-			LOG.info(MessageFormat.format("Error XMLParserConfigurationException {0} ", e.getMessage()));
-		} catch (SAXException e) {
-			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
-		} catch (IOException e) {
-			LOG.info(MessageFormat.format("Error IOExceptionXML {0} ", e.getMessage()));
-		}
-
-		return toretDir;
-	}
+	
+	
+//	@Override
+//	public LocalConfiguration loadXml() {
+//		LocalConfiguration localConfig = null;
+//
+//		try {
+//			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
+//			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//
+//			Document doc = dBuilder.parse(fXmlFile);
+//
+//			doc.getDocumentElement().normalize();
+//
+//			NodeList nList = doc.getElementsByTagName("configuration");
+//
+//			for (int temp = 0; temp < nList.getLength(); temp++) {
+//
+//				Node nNode = nList.item(temp);
+//
+//				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+//
+//					Element eElement = (Element) nNode;
+//
+//					eElement.getElementsByTagName("Whoami").item(0).getTextContent();
+//					eElement.getElementsByTagName("KeepAliveTimeout").item(0).getTextContent();
+//					eElement.getElementsByTagName("MessageTimeout").item(0).getTextContent();
+//					eElement.getElementsByTagName("port").item(0).getTextContent();
+//					localConfig = new LocalConfiguration(
+//							eElement.getElementsByTagName("Whoami").item(0).getTextContent(),
+//							Integer.parseInt(
+//									eElement.getElementsByTagName("KeepAliveTimeout").item(0).getTextContent()),
+//							Integer.parseInt(eElement.getElementsByTagName("MessageTimeout").item(0).getTextContent()),
+//							Integer.parseInt(eElement.getElementsByTagName("port").item(0).getTextContent()));
+//				}
+//			}
+//
+//		} catch (ParserConfigurationException e) {
+//			LOG.info(MessageFormat.format("Error ParserConfigurationException {0} ", e.getMessage()));
+//		} catch (SAXException e) {
+//			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
+//		} catch (IOException e) {
+//			LOG.info(MessageFormat.format("Error IOException {0} ", e.getMessage()));
+//		}
+//
+//		return localConfig;
+//	}
+	
+//	@Override
+//	public String loadDirXml() {
+//
+//		String toretDir = null;
+//
+//		try {
+//			File fXmlFile = new File(RepositoryServiceImpl.class.getResource("../configuration/config.xml").getFile());
+//			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//			DocumentBuilder dBuilder;
+//			dBuilder = dbFactory.newDocumentBuilder();
+//
+//			Document doc = dBuilder.parse(fXmlFile);
+//
+//			doc.getDocumentElement().normalize();
+//
+//			NodeList nList = doc.getElementsByTagName("configuration");
+//
+//			for (int temp = 0; temp < nList.getLength(); temp++) {
+//
+//				Node nNode = nList.item(temp);
+//
+//				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+//
+//					Element eElement = (Element) nNode;
+//
+//					eElement.getElementsByTagName("dir").item(0).getTextContent();
+//					toretDir = eElement.getElementsByTagName("dir").item(0).getTextContent();
+//				}
+//			}
+//
+//		} catch (ParserConfigurationException e) {
+//			LOG.info(MessageFormat.format("Error XMLParserConfigurationException {0} ", e.getMessage()));
+//		} catch (SAXException e) {
+//			LOG.info(MessageFormat.format("Error SAXException {0} ", e.getMessage()));
+//		} catch (IOException e) {
+//			LOG.info(MessageFormat.format("Error IOExceptionXML {0} ", e.getMessage()));
+//		}
+//
+//		return toretDir;
+//	}
 }

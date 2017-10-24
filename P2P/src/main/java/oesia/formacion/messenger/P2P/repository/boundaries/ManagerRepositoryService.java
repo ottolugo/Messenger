@@ -11,14 +11,4 @@ public interface ManagerRepositoryService {
 	 */
 	public void insertLog(UserMessage msg);
 	
-	/**
-	 * @return LocalConfiguration: get archive config.xml
-	 */
-	public LocalConfiguration loadXml();
-
-	/**
-	 * carga la dirección que configura el cliente en el archivo -> /configuration/config.xml
-	 */
-	public String loadDirXml();
-	
 }

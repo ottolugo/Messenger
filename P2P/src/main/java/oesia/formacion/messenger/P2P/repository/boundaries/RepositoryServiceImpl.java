@@ -9,12 +9,14 @@ import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.repository.RepositoryFactory;
+import oesia.formacion.messenger.P2P.repository.configuration.DataConfiguration;
 import oesia.formacion.messenger.P2P.repository.manager.ManagerRepositoryServiceImpl;
 
 public class RepositoryServiceImpl implements RepositoryService {
 
 	private final Logger LOGMSG = Logger.getLogger(ManagerRepositoryServiceImpl.class.getName());
 	private final ManagerRepositoryService managerRepositoryService;
+	private final DataConfiguration dataConfiguration;
 
 	public RepositoryServiceImpl() {
 		FileHandler logFileHandler;
@@ -24,6 +26,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 			LOGMSG.addHandler(logFileHandler);
 		} catch (SecurityException | IOException e1) {
 		}
+		dataConfiguration = RepositoryFactory.getDataConfiguration();
+		
 		this.managerRepositoryService = RepositoryFactory.getManagerRepositoryService();
 	}
 
@@ -35,7 +39,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public LocalConfiguration getConfiguration() {
-		LocalConfiguration reciveLocalConfig = this.managerRepositoryService.loadXml();
+//		LocalConfiguration reciveLocalConfig = this.managerRepositoryService.loadXml();
+		LocalConfiguration reciveLocalConfig = new LocalConfiguration(dataConfiguration.getWhoIam(),
+				dataConfiguration.getKalTime(), 
+				dataConfiguration.getAckTimeout(),
+				dataConfiguration.getPort());
 		return reciveLocalConfig;
 	}
 }
