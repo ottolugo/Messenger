@@ -42,13 +42,13 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 	private static boolean isCreated = false;
 
 	public ManagerRepositoryServiceImpl() {
-//		FileHandler logFileHandler;
-//		try {
-//			logFileHandler = new FileHandler("../msg.log", true);
-//			logFileHandler.setFormatter(new SimpleFormatter());
-//			LOGMSG.addHandler(logFileHandler);
-//		} catch (SecurityException | IOException e1) {
-//		}
+		FileHandler logFileHandler;
+		try {
+			logFileHandler = new FileHandler("../msg.log", true);
+			logFileHandler.setFormatter(new SimpleFormatter());
+			LOGMSG.addHandler(logFileHandler);
+		} catch (SecurityException | IOException e1) {
+		}
 
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructor = null;
@@ -150,8 +150,6 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 
 				Node nNode = nList.item(temp);
 
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
@@ -200,8 +198,6 @@ public class ManagerRepositoryServiceImpl implements ManagerRepositoryService {
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
 				Node nNode = nList.item(temp);
-
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
