@@ -69,7 +69,7 @@ public class LogGet {
 		if (saveHandler == null) {
 			try {
 				// Se agrega un filehandler para guardar todos los logs
-				saveHandler = new FileHandler("../Logger.log", false);
+				saveHandler = new FileHandler("application.log", false);
 				saveHandler.setLevel(Level.ALL);
 				saveHandler.setFormatter(new XMLFormatter());
 			} catch (SecurityException e) {

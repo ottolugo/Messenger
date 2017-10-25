@@ -27,7 +27,7 @@ public class XmlMessage {
 	DOMSource domSource;
 	File archive;
 	StreamResult streamResult;
-	
+
 	public XmlMessage() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructor = null;
@@ -42,7 +42,7 @@ public class XmlMessage {
 		try {
 			constructor = docFactory.newDocumentBuilder();
 
-			archive = new File("src/repository/configuration/xmlMessage/LogMsg.xml");
+			archive = new File("LogMsg.xml");
 			domSource = new DOMSource(document);
 			streamResult = new StreamResult(archive);
 			try {
@@ -58,24 +58,22 @@ public class XmlMessage {
 
 		document = constructor.newDocument();
 	}
-	
+
 	public void insertInDocument(UserMessage msg) {
 		Element message = document.createElement("message");
 		document.appendChild(message);
-		
 
-		if(msg instanceof Message)
-		{
+		if (msg instanceof Message) {
 			message.setAttribute("user", System.getProperty("user.name"));
-			
+
 			String dateFormat = DateUtil.format(msg.getCode().getDate());
 			message.setAttribute("date", dateFormat);
 		}
-		
+
 		message.appendChild(document.createTextNode(msg.getContenido()));
 		try {
 			domSource = new DOMSource(document);
-			transformer.transform(domSource,  streamResult);
+			transformer.transform(domSource, streamResult);
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

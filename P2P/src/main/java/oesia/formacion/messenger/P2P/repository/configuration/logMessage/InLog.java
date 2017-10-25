@@ -10,29 +10,27 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage
 
 public class InLog {
 
-	private final static Logger logr = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
-	
-	
-	public InLog() {}
-	
-	public void setupLogger()
-	{
+	private final static Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	public InLog() {
+	}
+
+	public void setupLogger() {
 		ConsoleHandler ch = new ConsoleHandler();
 		ch.setLevel(Level.SEVERE);
 		logr.addHandler(ch);
-		
+
 		try {
-			FileHandler fh = new FileHandler("src/repository/configuration/LogMessage/myLog.log", true);
+			FileHandler fh = new FileHandler("myLog.log", true);
 			fh.setLevel(Level.FINE);
 			logr.addHandler(fh);
 		} catch (IOException e) {
-			logr.log(Level.SEVERE, "File log not working."+ e);
+			logr.log(Level.SEVERE, "File log not working." + e);
 		}
 	}
-	
-	public void test(UserMessage msg)
-	{
+
+	public void test(UserMessage msg) {
 		logr.info(msg.toString());
 	}
-	
+
 }
