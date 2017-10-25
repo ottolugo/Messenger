@@ -40,15 +40,22 @@ public class LogGet {
 		if (logMap == null) {
 			logMap = new HashMap<Class<?>, Logger>();
 			try {
+				// Se necesita leer el fichero de resource como stream de datos para poder pasarlo
 				InputStream inputFile = LogGet.class.getResourceAsStream("log.properties");
+				// Se crea el fichero temporal
 				File tempfile = File.createTempFile(String.valueOf(inputFile.toString()), ".tmp");
 				tempfile.deleteOnExit();
+				// Se asocia el fichero al outputFStream para modificar los datos
 				FileOutputStream outputFileStream = new FileOutputStream(tempfile);
 				byte[] bufferRead = new byte[1024];
 				int bytesRead;
+				// Se leen los datos
 				while ((bytesRead = inputFile.read(bufferRead)) != -1) {
 					outputFileStream.write(bufferRead, 0, bytesRead);
 				}
+				outputFileStream.close();
+
+				// Se leen las propiedades en el fichero temporal de Logger
 				FileInputStream logProperties;
 				logProperties = new FileInputStream(tempfile);
 				LogManager.getLogManager().readConfiguration(logProperties);
