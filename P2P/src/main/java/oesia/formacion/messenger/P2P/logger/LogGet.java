@@ -54,8 +54,8 @@ public class LogGet {
 					outputFileStream.write(bufferRead, 0, bytesRead);
 				}
 				outputFileStream.close();
-
-				// Se leen las propiedades en el fichero temporal de Logger
+				
+				//Se leen las propiedades en el fichero temporal de Logger
 				FileInputStream logProperties;
 				logProperties = new FileInputStream(tempfile);
 				LogManager.getLogManager().readConfiguration(logProperties);
