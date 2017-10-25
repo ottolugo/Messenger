@@ -24,7 +24,7 @@ public class ItemFormat extends ListCell<MessageGui> {
 			MessageManager mm = MessageManagerFactory.getMessageManager();
 			if (item.getSender().equals(mm.whoIAm())) {
 				setStyle("-fx-dark-text-color: rgb(50, 50, 50);;-fx-background-color:" + item.getStatus().getColor());
-				setAlignment(Pos.BASELINE_RIGHT);
+				label.setAlignment(Pos.BASELINE_RIGHT);
 
 			} else {
 				Checker.check(item, false);
