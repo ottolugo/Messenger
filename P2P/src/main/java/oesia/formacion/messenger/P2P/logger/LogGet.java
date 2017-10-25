@@ -1,7 +1,10 @@
 package oesia.formacion.messenger.P2P.logger;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.ConsoleHandler;
@@ -37,8 +40,18 @@ public class LogGet {
 		if (logMap == null) {
 			logMap = new HashMap<Class<?>, Logger>();
 			try {
-				LogManager.getLogManager()
-						.readConfiguration(new FileInputStream(LogGet.class.getResource("log.properties").getFile()));
+				InputStream inputFile = LogGet.class.getResourceAsStream("log.properties");
+				File tempfile = File.createTempFile(String.valueOf(inputFile.toString()), ".tmp");
+				tempfile.deleteOnExit();
+				FileOutputStream outputFileStream = new FileOutputStream(tempfile);
+				byte[] bufferRead = new byte[1024];
+				int bytesRead;
+				while ((bytesRead = inputFile.read(bufferRead)) != -1) {
+					outputFileStream.write(bufferRead, 0, bytesRead);
+				}
+				FileInputStream logProperties;
+				logProperties = new FileInputStream(tempfile);
+				LogManager.getLogManager().readConfiguration(logProperties);
 			} catch (SecurityException | IOException e) {
 				e.printStackTrace();
 			}
