@@ -38,6 +38,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public void logMessage(UserMessage msg) {
 		LOGMSG.info(msg.toString());
 //		inLog.test(msg);
+		xmlMessage.insertInDocument(msg);
 	}
 
 	@Override
