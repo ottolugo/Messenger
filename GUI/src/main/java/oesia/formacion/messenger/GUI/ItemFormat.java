@@ -16,8 +16,12 @@ public class ItemFormat extends ListCell<MessageGui> {
 			setText(null);
 			setStyle("-fx-background-color:#ffff");
 		} else {
-			setText(item.toString());
-
+			StringBuilder sb = new StringBuilder(item.toString());
+			int i = sb.indexOf("\n");
+			while ((i = sb.indexOf(" ", i + 20)) != -1) {
+				sb.replace(i, i + 1, "\n");
+			}
+			setText(sb.toString());
 			MessageManager mm = MessageManagerFactory.getMessageManager();
 			if (item.getSender().equals(mm.whoIAm())) {
 				setStyle("-fx-dark-text-color: rgb(50, 50, 50);;-fx-background-color:" + item.getStatus().getColor());
