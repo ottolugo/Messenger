@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
@@ -57,6 +59,13 @@ public class ChatController implements Initializable {
 
 		});
 
+	}
+
+	@FXML
+	private void sendOnType(KeyEvent key) {
+		if (key.getCode().equals(KeyCode.ENTER)) {
+			sendMensaje();
+		}
 	}
 
 	@FXML

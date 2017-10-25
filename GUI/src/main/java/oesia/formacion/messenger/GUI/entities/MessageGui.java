@@ -16,10 +16,8 @@ public class MessageGui {
 	/**
 	 * Constructor for Message if message is broadcasted
 	 * 
-	 * @param message
-	 *            String of characters message you want to send is made of
-	 * @param sender
-	 *            String of the name the person that send the message
+	 * @param message String of characters message you want to send is made of
+	 * @param sender String of the name the person that send the message
 	 */
 	public MessageGui(String message, String sender) {
 		this.message = message;
@@ -33,16 +31,11 @@ public class MessageGui {
 	/**
 	 * Constructor for Message if message is broadcasted
 	 * 
-	 * @param message
-	 *            String of characters message you want to send is made of
-	 * @param sender
-	 *            String with the name of the person that send the message
-	 * @param receiver
-	 *            String with the name of the person that receive the message
-	 * @param status
-	 *            MessageStatus of a message.
-	 * @param date
-	 *            LocalDateTime with the creation date of the message
+	 * @param message String of characters message you want to send is made of
+	 * @param sender String with the name of the person that send the message
+	 * @param receiver String with the name of the person that receive the message
+	 * @param status MessageStatus of a message.
+	 * @param date LocalDateTime with the creation date of the message
 	 */
 	public MessageGui(String message, String sender, MessageStatusGui status, LocalDateTime date) {
 		this.message = message;
@@ -56,16 +49,11 @@ public class MessageGui {
 	/**
 	 * Constructor for Message if message is addressed to an user
 	 * 
-	 * @param message
-	 *            String of characters message you want to send is made of
-	 * @param sender
-	 *            String with the name of the person that send the message
-	 * @param receiver
-	 *            String with the name of the person that receive the message
-	 * @param status
-	 *            MessageStatus of a message.
-	 * @param date
-	 *            LocalDateTime with the creation date of the message
+	 * @param message String of characters message you want to send is made of
+	 * @param sender String with the name of the person that send the message
+	 * @param receiver String with the name of the person that receive the message
+	 * @param status MessageStatus of a message.
+	 * @param date LocalDateTime with the creation date of the message
 	 */
 	public MessageGui(String message, String sender, String receiver, MessageStatusGui status, LocalDateTime date) {
 		this.message = message;
@@ -79,14 +67,10 @@ public class MessageGui {
 	/**
 	 * Constructor for Message if message is addressed to an user
 	 * 
-	 * @param message
-	 *            String of characters message you want to send is made of
-	 * @param sender
-	 *            String with the name of the person that send the message
-	 * @param receiver
-	 *            String with the name of the person that receive the message
-	 * @param status
-	 *            MessageStatus of a message.
+	 * @param message String of characters message you want to send is made of
+	 * @param sender String with the name of the person that send the message
+	 * @param receiver String with the name of the person that receive the message
+	 * @param status MessageStatus of a message.
 	 */
 	public MessageGui(String message, String sender, String receiver) {
 		this.message = message;
@@ -110,8 +94,7 @@ public class MessageGui {
 	/**
 	 * Set a status to the message
 	 * 
-	 * @param status
-	 *            MessageStatus to be set
+	 * @param status MessageStatus to be set
 	 */
 	public void setStatus(MessageStatusGui status) {
 		this.status = status;
@@ -129,8 +112,7 @@ public class MessageGui {
 	/**
 	 * Set message string to the message
 	 * 
-	 * @param message
-	 *            String to be set
+	 * @param message String to be set
 	 */
 	public void setMessage(String message) {
 		this.message = message;
@@ -148,8 +130,7 @@ public class MessageGui {
 	/**
 	 * Set the sender of the message
 	 * 
-	 * @param sender
-	 *            String to be set
+	 * @param sender String to be set
 	 */
 	public void setSender(String sender) {
 		this.sender = sender;
@@ -167,8 +148,7 @@ public class MessageGui {
 	/**
 	 * Set the receiver of the message
 	 * 
-	 * @param receiver
-	 *            String to be set
+	 * @param receiver String to be set
 	 */
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
@@ -186,8 +166,7 @@ public class MessageGui {
 	/**
 	 * Set if the message is broadcasted (true) or directed (false)
 	 * 
-	 * @param broadcastedMessage
-	 *            boolean to be set
+	 * @param broadcastedMessage boolean to be set
 	 */
 	public void setBroadcastedMessage(boolean broadcastedMessage) {
 		this.broadcastedMessage = broadcastedMessage;
@@ -206,16 +185,14 @@ public class MessageGui {
 	/**
 	 * Set the moment a message was created
 	 * 
-	 * @param messageTime
-	 *            LocalDateTime to be set
+	 * @param messageTime LocalDateTime to be set
 	 */
 	public void setMessageTime(LocalDateTime messageTime) {
 		this.messageTime = messageTime;
 	}
 
 	/**
-	 * Returns a string of the sender of the message, the hour the message was
-	 * send and the message
+	 * Returns a string of the sender of the message, the hour the message was send and the message
 	 * 
 	 * @return String
 	 */

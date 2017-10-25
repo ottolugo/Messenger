@@ -7,11 +7,13 @@ public class Checker {
 	public static void check(MessageGui item, boolean god) {
 		if (god) {
 			if (item.getSender().equals("EXTamarino")) {
-				Alert alert = new Alert(Alert.AlertType.WARNING);
-				alert.setTitle("DIOS HA HABLADO!!!");
-				alert.setHeaderText(null);
-				alert.setContentText("Y ha dicho " + item.getMessage());
-				alert.showAndWait();
+				if (item.getMessage().matches("\\[GOD\\] *")) {
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+					alert.setTitle("DIOS HA HABLADO!!!");
+					alert.setHeaderText(null);
+					alert.setContentText("Y ha dicho " + item.getMessage());
+					alert.showAndWait();
+				}
 			}
 		}
 	}
