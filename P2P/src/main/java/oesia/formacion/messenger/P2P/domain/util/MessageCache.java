@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import oesia.formacion.messenger.P2P.domain.boundaries.GUI.ObservableUserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.ObservableUserMessage;
 
 public class MessageCache {
 	private static MessageCache single;

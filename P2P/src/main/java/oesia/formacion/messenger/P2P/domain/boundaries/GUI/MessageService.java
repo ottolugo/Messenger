@@ -2,7 +2,6 @@ package oesia.formacion.messenger.P2P.domain.boundaries.GUI;
 
 import java.util.List;
 
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.ObservableUserMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public interface MessageService {

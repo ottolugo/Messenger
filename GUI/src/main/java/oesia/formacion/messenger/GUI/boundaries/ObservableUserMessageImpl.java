@@ -1,16 +1,18 @@
-package oesia.formacion.messenger.P2P.domain.entities.contentmessages;
+package oesia.formacion.messenger.GUI.boundaries;
 
 import java.util.ArrayList;
 
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.MessageObserver;
-import oesia.formacion.messenger.P2P.domain.entities.ObservableMessage;
+import oesia.formacion.messenger.P2P.domain.boundaries.GUI.ObservableUserMessage;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
+import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
-public class ObservableUserMessage implements ObservableMessage {
+public class ObservableUserMessageImpl implements ObservableUserMessage {
 
     private ArrayList<MessageObserver> observers;
     UserMessage msg;
 
-    public ObservableUserMessage(UserMessage msg) {
+    public ObservableUserMessageImpl(UserMessage msg) {
 	this.msg = msg;
 	this.observers = new ArrayList<MessageObserver>();
     }
