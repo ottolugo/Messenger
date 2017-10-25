@@ -8,7 +8,7 @@ public class Checker {
 		if (item.getMessage().matches("\\[ALERT\\] .*")) {
 			item.setMessage(item.getMessage().split("\\] ")[1]);
 			Alert alert = new Alert(Alert.AlertType.WARNING);
-			alert.setTitle("Mensaje Emergente!!!");
+			alert.setTitle("Mensaje Emergente de " + item.getSender());
 			alert.setHeaderText(null);
 			alert.setContentText(item.getMessage());
 			alert.show();
