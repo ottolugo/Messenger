@@ -61,8 +61,11 @@ public class ChatController implements Initializable {
 			public void handle(KeyEvent keyEvent) {
 				if (keyEvent.getCode() == KeyCode.ENTER) {
 					sendMessage();
+					keyEvent.consume();
+					taMessage.clear();
 				}
 			}
+
 		});
 	}
 
@@ -78,8 +81,8 @@ public class ChatController implements Initializable {
 				message = new MessageGui(taMessage.getText(), messageManager.whoIAm());
 			}
 			addMessage(message);
-			taMessage.setText("");
 			messageManager.sendMessage(message);
+			taMessage.clear();
 			taMessage.requestFocus();
 		}
 	}
