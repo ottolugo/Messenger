@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -22,7 +23,7 @@
                                     <ListView fx:id="lvMessages" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="298.0" prefWidth="329.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <TextArea fx:id="taMessage" layoutY="300.0" prefHeight="99.0" prefWidth="255.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="74.0" />
+                              <TextArea fx:id="taMessage" layoutY="300.0" prefHeight="99.0" prefWidth="255.0" stylesheets="@resource/miestilo.css" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="74.0" />
                               <Button layoutX="253.0" layoutY="297.0" mnemonicParsing="false" onAction="#sendMessage" onDragEntered="#sendMessage" prefHeight="99.0" prefWidth="76.0" text="Enviar" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <font>
                                     <Font name="System Bold Italic" size="15.0" />
