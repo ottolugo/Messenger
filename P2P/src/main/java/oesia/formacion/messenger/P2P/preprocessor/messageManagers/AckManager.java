@@ -12,25 +12,25 @@ import oesia.formacion.messenger.P2P.domain.util.DateUtil;
  */
 public class AckManager extends MessageManager {
 
-	public AckManager(int limitTime, String user) {
-		super(limitTime, user);
+    public AckManager(int limitTime, String user) {
+	super(limitTime, user);
 
-	}
+    }
 
-	@Override
-	public void manageMessage(Message message) {
-		if (DateUtil.isDateValid(message) && isForMe(message)) {
-			PreprocessorMessageManager.receiveACK((ACKMessage) message);
-		}
+    @Override
+    public void manageMessage(Message message) {
+	if (DateUtil.isDateValid(message) && isForMe(message)) {
+	    PreprocessorMessageManager.receiveACK((ACKMessage) message);
 	}
+    }
 
-	private boolean isForMe(Message message) {
-		ACKMessage ack = (ACKMessage) message;
-		if (ack.getCodeResponse().getUser().equals(this.getUser())) {
-			return true;
-		} else {
-			return false;
-		}
+    private boolean isForMe(Message message) {
+	ACKMessage ack = (ACKMessage) message;
+	if (ack.getCodeResponse().getUser().equals(this.getUser())) {
+	    return true;
+	} else {
+	    return false;
 	}
+    }
 
 }

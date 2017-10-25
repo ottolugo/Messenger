@@ -12,16 +12,16 @@ import oesia.formacion.messenger.P2P.domain.util.DateUtil;
  */
 public class BroadcastManager extends MessageManager {
 
-	public BroadcastManager(int limitTime, String user) {
-		super(limitTime, user);
+    public BroadcastManager(int limitTime, String user) {
+	super(limitTime, user);
+    }
+
+    @Override
+    public void manageMessage(Message message) {
+	if (DateUtil.isDateValid(message)) {
+	    PreprocessorMessageManager.receiveBroadcast((UserMessage) message);
 	}
 
-	@Override
-	public void manageMessage(Message message) {
-		if (DateUtil.isDateValid(message)) {
-			PreprocessorMessageManager.receiveBroadcast((UserMessage) message);
-		}
-
-	}
+    }
 
 }

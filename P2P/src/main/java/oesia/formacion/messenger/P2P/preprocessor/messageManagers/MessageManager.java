@@ -7,42 +7,42 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
  */
 public abstract class MessageManager {
 
-	private int limitTime;
-	private String user;
+    private int limitTime;
+    private String user;
 
-	public MessageManager(int limitTime, String user) {
-		this.limitTime = limitTime;
-		this.user = user;
+    public MessageManager(int limitTime, String user) {
+	this.limitTime = limitTime;
+	this.user = user;
 
+    }
+
+    /**
+     * send the message to the right fifoManager
+     * 
+     * @param message
+     */
+    public abstract void manageMessage(Message message);
+
+    public int getLimitTime() {
+	return limitTime;
+    }
+
+    public String getUser() {
+	return user;
+    }
+
+    /**
+     * check if the message is good to go
+     * 
+     * @param message
+     * @return
+     */
+    public boolean itIsNotMe(Message message) {
+	if (message.getCode().getUser().equals(user)) {
+	    return false;
+	} else {
+	    return true;
 	}
-
-	/**
-	 * send the message to the right fifoManager
-	 * 
-	 * @param message
-	 */
-	public abstract void manageMessage(Message message);
-
-	public int getLimitTime() {
-		return limitTime;
-	}
-
-	public String getUser() {
-		return user;
-	}
-
-	/**
-	 * check if the message is good to go
-	 * 
-	 * @param message
-	 * @return
-	 */
-	public boolean itIsNotMe(Message message) {
-		if (message.getCode().getUser().equals(user)) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+    }
 
 }

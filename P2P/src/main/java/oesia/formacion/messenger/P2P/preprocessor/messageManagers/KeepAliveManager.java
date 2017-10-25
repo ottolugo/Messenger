@@ -11,14 +11,14 @@ import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
  */
 public class KeepAliveManager extends MessageManager {
 
-	public KeepAliveManager(int limitTime, String user) {
-		super(limitTime, user);
-	}
+    public KeepAliveManager(int limitTime, String user) {
+	super(limitTime, user);
+    }
 
-	@Override
-	public void manageMessage(Message message) {
-		PreprocessorMessageManager.receiveKeepAlive((KeepAliveMessage) message);
+    @Override
+    public void manageMessage(Message message) {
+	PreprocessorMessageManager.receiveKeepAlive((KeepAliveMessage) message);
 
-	}
+    }
 
 }

@@ -12,25 +12,25 @@ import oesia.formacion.messenger.P2P.domain.util.DateUtil;
  */
 public class GuideManager extends MessageManager {
 
-	public GuideManager(int limitTime, String user) {
-		super(limitTime, user);
+    public GuideManager(int limitTime, String user) {
+	super(limitTime, user);
+    }
+
+    @Override
+    public void manageMessage(Message message) {
+	if (DateUtil.isDateValid(message) && this.isForMe(message)) {
+	    PreprocessorMessageManager.receiveBroadcast((GuidedMessage) message);
 	}
 
-	@Override
-	public void manageMessage(Message message) {
-		if (DateUtil.isDateValid(message) && this.isForMe(message)) {
-			PreprocessorMessageManager.receiveBroadcast((GuidedMessage) message);
-		}
+    }
 
+    private boolean isForMe(Message message) {
+	GuidedMessage guided = (GuidedMessage) message;
+	if (guided.getUserDestinity().equals(this.getUser())) {
+	    return true;
+	} else {
+	    return false;
 	}
-
-	private boolean isForMe(Message message) {
-		GuidedMessage guided = (GuidedMessage) message;
-		if (guided.getUserDestinity().equals(this.getUser())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    }
 
 }

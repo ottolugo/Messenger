@@ -22,59 +22,59 @@ import oesia.formacion.messenger.P2P.domain.util.DateUtil;
 
 public class XmlMessage {
 
-	Document document;
-	Transformer transformer;
-	DOMSource domSource;
-	File archive;
-	StreamResult streamResult;
+    Document document;
+    Transformer transformer;
+    DOMSource domSource;
+    File archive;
+    StreamResult streamResult;
 
-	public XmlMessage() {
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder constructor = null;
+    public XmlMessage() {
+	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder constructor = null;
 
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		try {
-			transformer = transformerFactory.newTransformer();
-		} catch (TransformerConfigurationException e1) {
-			e1.printStackTrace();
-		}
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		try {
-			constructor = docFactory.newDocumentBuilder();
-			archive = new File("LogMsg.xml");
-			domSource = new DOMSource(document);
-			streamResult = new StreamResult(archive);
-			try {
-				transformer.transform(domSource, streamResult);
-			} catch (TransformerException e) {
-				e.printStackTrace();
-			}
+	TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	try {
+	    transformer = transformerFactory.newTransformer();
+	} catch (TransformerConfigurationException e1) {
+	    e1.printStackTrace();
+	}
+	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	try {
+	    constructor = docFactory.newDocumentBuilder();
+	    archive = new File("LogMsg.xml");
+	    domSource = new DOMSource(document);
+	    streamResult = new StreamResult(archive);
+	    try {
+		transformer.transform(domSource, streamResult);
+	    } catch (TransformerException e) {
+		e.printStackTrace();
+	    }
 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-
-		document = constructor.newDocument();
+	} catch (ParserConfigurationException e) {
+	    e.printStackTrace();
 	}
 
-	public void insertInDocument(UserMessage msg) {
-		Element message = document.createElement("message");
-		document.appendChild(message);
+	document = constructor.newDocument();
+    }
 
-		if (msg instanceof Message) {
-			message.setAttribute("user", System.getProperty("user.name"));
+    public void insertInDocument(UserMessage msg) {
+	Element message = document.createElement("message");
+	document.appendChild(message);
 
-			String dateFormat = DateUtil.format(msg.getCode().getDate());
-			message.setAttribute("date", dateFormat);
-		}
+	if (msg instanceof Message) {
+	    message.setAttribute("user", System.getProperty("user.name"));
 
-		message.appendChild(document.createTextNode(msg.getContenido()));
-		try {
-			domSource = new DOMSource(document);
-			transformer.transform(domSource, streamResult);
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    String dateFormat = DateUtil.format(msg.getCode().getDate());
+	    message.setAttribute("date", dateFormat);
 	}
+
+	message.appendChild(document.createTextNode(msg.getContenido()));
+	try {
+	    domSource = new DOMSource(document);
+	    transformer.transform(domSource, streamResult);
+	} catch (TransformerException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
 }

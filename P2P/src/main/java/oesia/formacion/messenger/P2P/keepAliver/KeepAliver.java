@@ -5,16 +5,16 @@ import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration
 
 public class KeepAliver extends Thread {
 
-	@Override
-	public void run() {
-		while (true) {
-			try {
-				sleep((Configuration.getConfiguration().getKeepAliveTimeout()) * 1000);
-				KeepAliveConfiguration.newKeepAlive();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+    @Override
+    public void run() {
+	while (true) {
+	    try {
+		sleep((Configuration.getConfiguration().getKeepAliveTimeout()) * 1000);
+		KeepAliveConfiguration.newKeepAlive();
+	    } catch (InterruptedException e) {
+		e.printStackTrace();
+	    }
 	}
+    }
 
 }
