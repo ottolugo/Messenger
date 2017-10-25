@@ -1,6 +1,7 @@
 package oesia.formacion.messenger.GUI;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
@@ -13,16 +14,13 @@ public class ItemFormat extends ListCell<MessageGui> {
 		super.updateItem(item, empty);
 
 		if (empty) {
-			setText(null);
+			setGraphic(null);
 			setStyle("-fx-background-color:#ffff");
 		} else {
-			// StringBuilder sb = new StringBuilder(item.toString());
-			// int i = sb.indexOf("\n");
-			// while ((i = sb.indexOf(" ", i + 20)) != -1) {
-			// sb.replace(i, i + 1, "\n");
-			// }
-			// setText(sb.toString());
-			setText(item.toString());
+			Label label = new Label(item.toString());
+			label.setMaxWidth(300);
+			label.setWrapText(true);
+			setGraphic(label);
 			MessageManager mm = MessageManagerFactory.getMessageManager();
 			if (item.getSender().equals(mm.whoIAm())) {
 				setStyle("-fx-dark-text-color: rgb(50, 50, 50);;-fx-background-color:" + item.getStatus().getColor());
