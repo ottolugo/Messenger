@@ -41,6 +41,7 @@ public class App extends Application {
 		// scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle("ITChat");
+		stage.resizableProperty().setValue(Boolean.FALSE);
 		stage.getIcons().add(new Image(
 				"https://pbs.twimg.com/profile_images/3274293417/eb346dec716adff0642b0ea9ed78b8e0_400x400.png"));
 
@@ -65,7 +66,7 @@ public class App extends Application {
 		launch(args);
 		System.exit(0);
 	}
-	
+
 	public void refreshFormat() {
 		Platform.runLater(() -> {
 			cc.refreshFormat();
