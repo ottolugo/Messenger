@@ -7,11 +7,14 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
@@ -44,7 +47,6 @@ public class ChatController implements Initializable {
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
 				return new ItemFormat();
 			}
-
 		});
 
 		lvUser.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
@@ -52,7 +54,15 @@ public class ChatController implements Initializable {
 			public ListCell<String> call(ListView<String> param) {
 				return new UserFormat();
 			}
-
+		});
+		
+		taMessage.setOnKeyPressed(new EventHandler<KeyEvent>() {
+		    @Override
+		    public void handle(KeyEvent keyEvent) {
+		        if (keyEvent.getCode() == KeyCode.ENTER)  {
+		            sendMessage();
+		        }
+		    }
 		});
 	}
 
@@ -70,6 +80,7 @@ public class ChatController implements Initializable {
 			addMessage(message);
 			taMessage.setText("");
 			messageManager.sendMessage(message);
+			taMessage.requestFocus();
 		}
 	}
 

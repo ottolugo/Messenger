@@ -5,7 +5,7 @@ public class Refresher extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				sleep(1000);
+				sleep(400);
 				App.getApp().refreshFormat();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
