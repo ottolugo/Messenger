@@ -12,10 +12,9 @@ public class DataConfiguration {
 	private static Integer port;
 	private static String dir;
 
-	public DataConfiguration() {
-	}
+	public DataConfiguration() {}
 
-	public static String getWhoIam() {
+	public String getWhoIam() {
 		return whoIam;
 	}
 
@@ -23,7 +22,7 @@ public class DataConfiguration {
 		DataConfiguration.whoIam = whoIam;
 	}
 
-	public static Integer getKalTime() {
+	public Integer getKalTime() {
 		return kalTime;
 	}
 
@@ -31,7 +30,7 @@ public class DataConfiguration {
 		DataConfiguration.kalTime = kalTime;
 	}
 
-	public static Integer getAckTimeout() {
+	public Integer getAckTimeout() {
 		return ackTimeout;
 	}
 
@@ -39,7 +38,7 @@ public class DataConfiguration {
 		DataConfiguration.ackTimeout = ackTimeout;
 	}
 	
-	public static Integer getPort() {
+	public Integer getPort() {
 		return port;
 	}
 
@@ -47,7 +46,7 @@ public class DataConfiguration {
 		DataConfiguration.port = port;
 	}
 
-	public static String getDir() {
+	public String getDir() {
 		return dir;
 	}
 
@@ -55,7 +54,7 @@ public class DataConfiguration {
 		DataConfiguration.dir = dir;
 	}
 
-	public static void setDataConfiguration() throws IOException {
+	public void setDataConfiguration() throws IOException {
 		final Properties properties = new Properties();
 		final InputStream propertiesStream = ClassLoader.getSystemResourceAsStream("config/application.properties");
 		properties.load(propertiesStream);
@@ -73,19 +72,5 @@ public class DataConfiguration {
 		dir = String.valueOf(properties.get("dir"));
 		propertiesStream.close();
 	}
-
-//	public static void loadDataConfiguration() throws IOException {
-//		final Properties properties = new Properties();
-//		final InputStream propertiesStream = ClassLoader.getSystemResourceAsStream("config/application.properties");
-//		properties.load(propertiesStream);
-//		whoIam = String.valueOf(properties.getProperty("Whoami"));
-//		kalTime = Integer.parseInt(properties.getProperty("KeepAliveTimeout"));
-//		ackTimeout = Integer.parseInt(properties.getProperty("MessageTimeout"));
-//		port = Integer.parseInt(properties.getProperty("port"));
-//		
-//		String nameDir = System.getProperty("java.class.path");
-//		dir = String.valueOf(properties.setProperty(properties.getProperty("dir"), nameDir));
-//		propertiesStream.close();
-//	}
 	
 }
