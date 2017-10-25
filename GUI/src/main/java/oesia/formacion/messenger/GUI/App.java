@@ -65,4 +65,10 @@ public class App extends Application {
 		launch(args);
 		System.exit(0);
 	}
+	
+	public void refreshFormat() {
+		Platform.runLater(() -> {
+			cc.refreshFormat();
+		});
+	}
 }

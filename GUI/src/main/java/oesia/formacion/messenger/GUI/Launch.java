@@ -11,5 +11,7 @@ public class Launch {
 		srv.start();
 		srv.msgSubscribe(new GUIObserverMessageImpl());
 		srv.listSubscribe(new GUIObserverUserListImpl());
+		Refresher r = new Refresher();
+		r.start();
 	}
 }

@@ -4,7 +4,6 @@ import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.util.MessageCache;
 
 public class Canceler extends Thread {
-
 	@Override
 	public void run() {
 		while (true) {
@@ -16,5 +15,4 @@ public class Canceler extends Thread {
 			}
 		}
 	}
-
 }
