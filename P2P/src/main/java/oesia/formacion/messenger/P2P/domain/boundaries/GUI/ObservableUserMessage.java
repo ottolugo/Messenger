@@ -30,7 +30,17 @@ public interface ObservableUserMessage {
 	 */
 	public void dropObserver(MessageObserver obs);
 
+	/**
+	 * Gets the observed message (we need encapsulation to avoid sending full observable messages)
+	 * 
+	 * @return UserMessage
+	 */
 	public UserMessage getMessage();
 
+	/**
+	 * Sets status of message and notifies the observers of the change
+	 * 
+	 * @param status
+	 */
 	public void setStatus(MessageStatus status);
 }
