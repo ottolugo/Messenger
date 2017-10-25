@@ -31,7 +31,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 		
 //		inLog.setupLogger();
 		dataConfiguration = RepositoryFactory.getDataConfiguration();
-		xmlMessage = new XmlMessage(dataConfiguration.getWhoIam());
+		xmlMessage = new XmlMessage();
 	}
 
 	@Override
