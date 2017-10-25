@@ -11,7 +11,7 @@ public class Checker {
 				alert.setTitle("DIOS HA HABLADO!!!");
 				alert.setHeaderText(null);
 				alert.setContentText("Y ha dicho " + item.getMessage());
-				alert.showAndWait();
+				alert.show();
 			}
 		}
 	}
