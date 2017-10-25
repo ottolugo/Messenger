@@ -27,7 +27,7 @@ public class ItemFormat extends ListCell<MessageGui> {
 				label.setAlignment(Pos.BASELINE_RIGHT);
 
 			} else {
-				Checker.check(item, false);
+				Checker.check(item);
 				setWrapText(true);
 				setAlignment(Pos.BASELINE_LEFT);
 				setStyle(
