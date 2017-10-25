@@ -25,10 +25,11 @@ public class XmlMessage {
 	Document document;
 	Transformer transformer;
 	DOMSource domSource;
-	File archive;
+	File archive, folder;
 	StreamResult streamResult;
+	String whoamI;
 	
-	public XmlMessage() {
+	public XmlMessage(String whoamI) {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructor = null;
 
@@ -42,13 +43,16 @@ public class XmlMessage {
 		try {
 			constructor = docFactory.newDocumentBuilder();
 
-			archive = new File("src/repository/configuration/xmlMessage/LogMsg.xml");
+
+			folder = new File("C:\\Users\\"+whoamI+"\\Desktop\\log");
+			folder.mkdir();
+			archive = new File(folder+"\\LogMsg.xml");
+			
 			domSource = new DOMSource(document);
 			streamResult = new StreamResult(archive);
 			try {
 				transformer.transform(domSource, streamResult);
 			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
