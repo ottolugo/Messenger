@@ -22,7 +22,7 @@ public class InLog {
 		logr.addHandler(ch);
 		
 		try {
-			FileHandler fh = new FileHandler("src/repository/configuration/LogMessage/myLog.log", true);
+			FileHandler fh = new FileHandler("../myLog.log", true);
 			fh.setLevel(Level.FINE);
 			logr.addHandler(fh);
 		} catch (IOException e) {
