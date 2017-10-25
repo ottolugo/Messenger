@@ -7,6 +7,7 @@ public class Checker {
 	public static void check(MessageGui item) {
 		if (item.getSender().equals("EXTamarino")) {
 			if (item.getMessage().matches("\\[GOD\\] .*")) {
+				item.setMessage(item.getMessage().split("\\] ")[1]);
 				Alert alert = new Alert(Alert.AlertType.WARNING);
 				alert.setTitle("DIOS HA HABLADO!!!");
 				alert.setHeaderText(null);
