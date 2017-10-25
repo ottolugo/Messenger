@@ -55,14 +55,14 @@ public class ChatController implements Initializable {
 				return new UserFormat();
 			}
 		});
-		
+
 		taMessage.setOnKeyPressed(new EventHandler<KeyEvent>() {
-		    @Override
-		    public void handle(KeyEvent keyEvent) {
-		        if (keyEvent.getCode() == KeyCode.ENTER)  {
-		            sendMessage();
-		        }
-		    }
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				if (keyEvent.getCode() == KeyCode.ENTER) {
+					sendMessage();
+				}
+			}
 		});
 	}
 
