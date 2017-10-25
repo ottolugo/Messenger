@@ -25,7 +25,7 @@ public class XmlMessage {
 	Document document;
 	Transformer transformer;
 	DOMSource domSource;
-	File archive, folder;
+	File archive;
 	StreamResult streamResult;
 
 	public XmlMessage() {
@@ -41,7 +41,6 @@ public class XmlMessage {
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		try {
 			constructor = docFactory.newDocumentBuilder();
-
 			archive = new File("LogMsg.xml");
 			domSource = new DOMSource(document);
 			streamResult = new StreamResult(archive);
