@@ -23,8 +23,8 @@ public class MessageManager {
 		serviceMessage.sendMessage(oum);
 	}
 
-    public String whoIAm() {
-	return serviceMessage.whoami();
-    }
+	public String whoIAm() {
+		return serviceMessage.whoami();
+	}
 
 }
