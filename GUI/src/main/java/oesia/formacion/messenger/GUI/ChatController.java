@@ -19,29 +19,27 @@ import oesia.formacion.messenger.GUI.entities.MessageGui;
 
 public class ChatController implements Initializable {
 	@FXML
-	ListView<MessageGui> lvMensajes;
+	ListView<MessageGui> lvMessages;
 	@FXML
-	TextArea taMensaje;
+	TextArea taMessage;
 	@FXML
 	ListView<String> lvUser;
-	int cosas = 0;
 
-	private ObservableList<MessageGui> mensagges;
+	private ObservableList<MessageGui> messages;
 	private ObservableList<String> items;
 	MessageManager messageManager = MessageManagerFactory.getMessageManager();
 
 	public ChatController() {
-		mensagges = FXCollections.observableArrayList();
+		messages = FXCollections.observableArrayList();
 		items = FXCollections.observableArrayList();
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		lvMensajes.setItems(mensagges);
+		lvMessages.setItems(messages);
 		lvUser.setItems(items);
 
-		lvMensajes.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
+		lvMessages.setCellFactory(new Callback<ListView<MessageGui>, ListCell<MessageGui>>() {
 			@Override
 			public ListCell<MessageGui> call(ListView<MessageGui> param) {
 				return new ItemFormat();
@@ -56,31 +54,27 @@ public class ChatController implements Initializable {
 			}
 
 		});
-
 	}
 
 	@FXML
-	public void sendMensaje() {
-
-		if (!taMensaje.getText().trim().equals("")) {
-			int indice = lvUser.getSelectionModel().getSelectedIndex();
-			MessageGui mensaje;
-			if (indice >= 0) {
-				String nombre = lvUser.getSelectionModel().getSelectedItem();
-				mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm(), nombre);
+	public void sendMessage() {
+		if (!taMessage.getText().trim().equals("")) {
+			int index = lvUser.getSelectionModel().getSelectedIndex();
+			MessageGui message;
+			if (index >= 0) {
+				String name = lvUser.getSelectionModel().getSelectedItem();
+				message = new MessageGui(taMessage.getText(), messageManager.whoIAm(), name);
 			} else {
-
-				mensaje = new MessageGui(taMensaje.getText(), messageManager.whoIAm());
-
+				message = new MessageGui(taMessage.getText(), messageManager.whoIAm());
 			}
-			addMessage(mensaje);
-			taMensaje.setText("");
-			messageManager.sendMessage(mensaje);
+			addMessage(message);
+			taMessage.setText("");
+			messageManager.sendMessage(message);
 		}
 	}
 
 	@FXML
-	public void desselectUser() {
+	public void deselectUser() {
 		lvUser.getSelectionModel().clearSelection();
 	}
 
@@ -102,7 +96,11 @@ public class ChatController implements Initializable {
 	}
 
 	public void addMessage(MessageGui message) {
-		mensagges.add(message);
+		messages.add(message);
+	}
+
+	public void refreshFormat() {
+		lvMessages.refresh();
 	}
 
 }
