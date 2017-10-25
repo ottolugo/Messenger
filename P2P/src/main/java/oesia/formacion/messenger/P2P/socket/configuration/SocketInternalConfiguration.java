@@ -1,13 +1,17 @@
 package oesia.formacion.messenger.P2P.socket.configuration;
 
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 public class SocketInternalConfiguration {
 	/**
-	 * Direccion a la que se le hace el broadcast
+	 * Direcciones a la que se le hace el broadcast
 	 */
-	private static final String IPGROUP = "10.236.50.255";
+	private static final List<String> IPGROUP = new ArrayList<String>();
 	/**
 	 * Tamaño del datagrama
 	 */
@@ -33,11 +37,24 @@ public class SocketInternalConfiguration {
 	}
 
 	/**
-	 * Se ocupa de enviar la direccion de broadcast
+	 * Se ocupa de enviar las direcciones de broadcast de los interfaces
 	 * 
-	 * @return la direccion de broadcast
+	 * @return las direcciones de broadcast
 	 */
-	public static String getIPGROUP() {
+	public static List<String> getIPGROUP() {
+		if (IPGROUP.isEmpty()) {
+			try {
+				Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+				while (interfaces.hasMoreElements()) {
+					for (InterfaceAddress interfaceAdress : interfaces.nextElement().getInterfaceAddresses())
+						if (interfaceAdress.getAddress().isSiteLocalAddress()) {
+							IPGROUP.add(interfaceAdress.getBroadcast().getHostAddress());
+						}
+				}
+			} catch (SocketException e) {
+				e.printStackTrace();
+			}
+		}
 		return IPGROUP;
 	}
 

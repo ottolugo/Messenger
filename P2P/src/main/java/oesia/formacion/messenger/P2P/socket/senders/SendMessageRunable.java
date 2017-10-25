@@ -36,34 +36,37 @@ public class SendMessageRunable implements Runnable {
 
 		// Se enviara el mensaje para todos los puertos
 		for (Integer port : ports) {
-			try {
-				// Se pasa el objeto a bites
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-				objectOutputStream.writeObject(message);
-				bufferDatos = outputStream.toByteArray();
-				// Se saca la direccion a la que hacer el Broadcast
-				String sendAdress = SocketInternalConfiguration.getIPGROUP();
-				InetAddress inetAddress = null;
+			for (String IP : SocketInternalConfiguration.getIPGROUP()) {
 				try {
+					// Se pasa el objeto a bites
+					ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+					objectOutputStream.writeObject(message);
+					bufferDatos = outputStream.toByteArray();
+					// Se saca la direccion a la que hacer el Broadcast
+					String sendAdress = IP;
+					InetAddress inetAddress = null;
+					try {
 
-					inetAddress = InetAddress.getByName(sendAdress);
-					DatagramPacket datagramPacket = null;
-					datagramPacket = new DatagramPacket(bufferDatos, bufferDatos.length, inetAddress, port);
-					datagramSocket = new DatagramSocket();
-					datagramSocket.send(datagramPacket);
-					SocketMessageManager.sentMessage(message.getCode());
-					// LOG.log(Level.INFO, "Puerto: " + port + " - Mensage enviado:" + message.toString());
-					datagramSocket.close();
-				} catch (UnknownHostException e1) {
-					LOG.log(Level.WARNING, "Fallo en la direccion del Broadcast " + sendAdress);
+						inetAddress = InetAddress.getByName(sendAdress);
+						DatagramPacket datagramPacket = null;
+						datagramPacket = new DatagramPacket(bufferDatos, bufferDatos.length, inetAddress, port);
+						datagramSocket = new DatagramSocket();
+						datagramSocket.send(datagramPacket);
+						SocketMessageManager.sentMessage(message.getCode());
+						LOG.log(Level.INFO,
+								"Puerto: " + port + " IP envio: " + IP + " - Mensage enviado:" + message.toString());
+						datagramSocket.close();
+					} catch (UnknownHostException e1) {
+						LOG.log(Level.WARNING, "Fallo en la direccion del Broadcast " + sendAdress);
+					}
+				} catch (IOException e) {
+					LOG.log(Level.WARNING,
+							"Se interrumpio el envio del mensage por problemas de envio: " + message.toString() + "\n");
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				LOG.log(Level.WARNING,
-						"Se interrumpio el envio del mensage por problemas de envio: " + message.toString() + "\n");
-				e.printStackTrace();
 			}
+
 		}
 
 	}
-
 }
