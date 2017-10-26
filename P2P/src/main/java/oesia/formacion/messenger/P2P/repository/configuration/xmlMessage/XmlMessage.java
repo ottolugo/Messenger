@@ -46,10 +46,8 @@ public class XmlMessage {
 	}
 
 	public void insertInDocument(UserMessage msg) {
-		
 
 		Element messageMain = document.createElement("message");
-
 
 		if (msg instanceof Message) {
 			messageMain.setAttribute("user", msg.getCode().getUser());
