@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" stylesheets="@resource/miestilo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oesia.formacion.messenger.GUI.ChatController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" stylesheets="@resource/miestilo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oesia.formacion.messenger.GUI.view.ChatController">
    <children>
       <SplitPane layoutX="3.0" layoutY="3.0" prefHeight="403.0" prefWidth="503.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>

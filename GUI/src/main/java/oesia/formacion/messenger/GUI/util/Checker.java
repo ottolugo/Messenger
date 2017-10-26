@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.GUI;
+package oesia.formacion.messenger.GUI.util;
 
 import javafx.scene.control.Alert;
 import oesia.formacion.messenger.GUI.entities.MessageGui;

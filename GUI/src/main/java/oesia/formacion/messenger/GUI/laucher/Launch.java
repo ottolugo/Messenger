@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.GUI;
+package oesia.formacion.messenger.GUI.laucher;
 
 import oesia.formacion.messenger.GUI.boundaries.GUIObserverMessageImpl;
 import oesia.formacion.messenger.GUI.boundaries.GUIObserverUserListImpl;

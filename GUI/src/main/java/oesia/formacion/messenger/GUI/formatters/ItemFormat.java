@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.GUI;
+package oesia.formacion.messenger.GUI.formatters;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -6,6 +6,7 @@ import javafx.scene.control.ListCell;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
+import oesia.formacion.messenger.GUI.util.Checker;
 
 public class ItemFormat extends ListCell<MessageGui> {
 

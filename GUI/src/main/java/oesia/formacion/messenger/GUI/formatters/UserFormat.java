@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.GUI;
+package oesia.formacion.messenger.GUI.formatters;
 
 import javafx.scene.control.ListCell;
 

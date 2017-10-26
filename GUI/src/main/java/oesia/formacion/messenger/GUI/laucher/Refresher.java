@@ -1,4 +1,6 @@
-package oesia.formacion.messenger.GUI;
+package oesia.formacion.messenger.GUI.laucher;
+
+import oesia.formacion.messenger.GUI.App;
 
 public class Refresher extends Thread {
 	@Override

@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
+import oesia.formacion.messenger.GUI.laucher.Launch;
+import oesia.formacion.messenger.GUI.view.ChatController;
 
 /**
  * Hello world!
@@ -18,58 +20,58 @@ import oesia.formacion.messenger.GUI.entities.MessageGui;
  */
 public class App extends Application {
 
-	private ChatController cc;
-	private static App app;
+    private ChatController cc;
+    private static App app;
 
-	public static App getApp() {
-		return app;
+    public static App getApp() {
+	return app;
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+	app = this;
+	Parent root = null;
+	try {
+	    FXMLLoader loader = new FXMLLoader();
+	    loader.setLocation(getClass().getResource("view/FXMLChat.fxml"));
+	    root = loader.load();
+	    cc = loader.getController();
+	} catch (IOException e) {
+	    e.printStackTrace();
 	}
+	Scene scene = new Scene(root);
+	// scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
+	stage.setScene(scene);
+	stage.setTitle("ITChat");
+	stage.resizableProperty().setValue(Boolean.FALSE);
+	stage.getIcons().add(new Image(
+		"https://pbs.twimg.com/profile_images/3274293417/eb346dec716adff0642b0ea9ed78b8e0_400x400.png"));
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		app = this;
-		Parent root = null;
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("FXMLChat.fxml"));
-			root = loader.load();
-			cc = loader.getController();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
-		// scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
-		stage.setScene(scene);
-		stage.setTitle("ITChat");
-		stage.resizableProperty().setValue(Boolean.FALSE);
-		stage.getIcons().add(new Image(
-				"https://pbs.twimg.com/profile_images/3274293417/eb346dec716adff0642b0ea9ed78b8e0_400x400.png"));
+	stage.show();
 
-		stage.show();
+    }
 
-	}
+    public void setUserList(List<String> userList) {
+	Platform.runLater(() -> {
+	    cc.setUserList(userList);
+	});
+    }
 
-	public void setUserList(List<String> userList) {
-		Platform.runLater(() -> {
-			cc.setUserList(userList);
-		});
-	}
+    public void addMessage(MessageGui message) {
+	Platform.runLater(() -> {
+	    cc.addMessage(message);
+	});
+    }
 
-	public void addMessage(MessageGui message) {
-		Platform.runLater(() -> {
-			cc.addMessage(message);
-		});
-	}
+    public static void main(String[] args) {
+	Launch.start();
+	launch(args);
+	System.exit(0);
+    }
 
-	public static void main(String[] args) {
-		Launch.start();
-		launch(args);
-		System.exit(0);
-	}
-
-	public void refreshFormat() {
-		Platform.runLater(() -> {
-			cc.refreshFormat();
-		});
-	}
+    public void refreshFormat() {
+	Platform.runLater(() -> {
+	    cc.refreshFormat();
+	});
+    }
 }

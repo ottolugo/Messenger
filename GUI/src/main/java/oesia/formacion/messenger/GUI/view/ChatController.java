@@ -1,4 +1,4 @@
-package oesia.formacion.messenger.GUI;
+package oesia.formacion.messenger.GUI.view;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +19,8 @@ import javafx.util.Callback;
 import oesia.formacion.messenger.GUI.boundaries.MessageManager;
 import oesia.formacion.messenger.GUI.boundaries.MessageManagerFactory;
 import oesia.formacion.messenger.GUI.entities.MessageGui;
+import oesia.formacion.messenger.GUI.formatters.ItemFormat;
+import oesia.formacion.messenger.GUI.formatters.UserFormat;
 
 public class ChatController implements Initializable {
 	@FXML
