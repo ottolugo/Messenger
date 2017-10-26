@@ -1,1 +1,4 @@
 /target/
+/LogMsg.xml
+/application.log
+/myLog.log
