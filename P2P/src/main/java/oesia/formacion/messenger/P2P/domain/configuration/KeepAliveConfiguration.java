@@ -6,6 +6,7 @@ import java.util.List;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedUserList;
+import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 
 /**
@@ -28,7 +29,7 @@ public class KeepAliveConfiguration {
 	    NotifierReceivedUserList.getInstance().notify(cloneThis());
 	}
 	Code newCode = CodeGenerator.getMyCode();
-	SocketConfiguration.getService().sendMessage(new KeepAliveMessage(newCode));
+	UsecaseFactory.getSendMessageUsecase(new KeepAliveMessage(newCode)).run();;
 	users.clear();
     }
 

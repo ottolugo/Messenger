@@ -3,6 +3,7 @@ package oesia.formacion.messenger.P2P.domain.usecases;
 import oesia.formacion.messenger.P2P.domain.configuration.RepositoryConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 /**
@@ -11,7 +12,7 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage
  * @author ramunoz
  *
  */
-public class SendMessageUsecase implements Usecase<Void> {
+public class SendMessageUsecase implements Usecase {
 
 	private Message message;
 
@@ -25,12 +26,11 @@ public class SendMessageUsecase implements Usecase<Void> {
 	}
 
 	@Override
-	public Void run() {
+	public void run() {
 		SocketConfiguration.getService().sendMessage(message);
-		if (message instanceof UserMessage) {
+		if (message.getType().equals(MessageType.GUIDED) || message.getType().equals(MessageType.BROADCAST)) {
 			RepositoryConfiguration.getService().logMessage((UserMessage) message);
 		}
-		return null;
 	}
 
 }

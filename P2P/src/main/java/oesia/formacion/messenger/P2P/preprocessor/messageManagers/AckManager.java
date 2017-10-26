@@ -2,7 +2,7 @@ package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
-import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
+import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
 import oesia.formacion.messenger.P2P.domain.util.DateUtil;
 
 /**
@@ -20,7 +20,7 @@ public class AckManager extends MessageManager {
     @Override
     public void manageMessage(Message message) {
 	if (DateUtil.isDateValid(message) && isForMe(message)) {
-	    PreprocessorMessageManager.receiveACK((ACKMessage) message);
+		UsecaseFactory.getProcessMessageUsecase(message).run();
 	}
     }
 

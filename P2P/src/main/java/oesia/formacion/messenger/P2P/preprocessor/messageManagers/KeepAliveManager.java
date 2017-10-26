@@ -1,8 +1,7 @@
 package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
-import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
-import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
+import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
 
 /**
  * this manager is in charge of the KeepAlive Messages only, on its method it
@@ -17,7 +16,7 @@ public class KeepAliveManager extends MessageManager {
 
     @Override
     public void manageMessage(Message message) {
-	PreprocessorMessageManager.receiveKeepAlive((KeepAliveMessage) message);
+		UsecaseFactory.getProcessMessageUsecase(message).run();
 
     }
 

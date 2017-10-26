@@ -1,8 +1,7 @@
 package oesia.formacion.messenger.P2P.preprocessor.messageManagers;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
-import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
-import oesia.formacion.messenger.P2P.domain.managers.PreprocessorMessageManager;
+import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
 import oesia.formacion.messenger.P2P.domain.util.DateUtil;
 
 /**
@@ -19,7 +18,7 @@ public class BroadcastManager extends MessageManager {
     @Override
     public void manageMessage(Message message) {
 	if (DateUtil.isDateValid(message)) {
-	    PreprocessorMessageManager.receiveBroadcast((UserMessage) message);
+		UsecaseFactory.getProcessMessageUsecase(message).run();
 	}
 
     }

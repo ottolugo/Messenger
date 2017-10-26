@@ -2,7 +2,7 @@ package oesia.formacion.messenger.P2P.domain.boundaries.GUI;
 
 import oesia.formacion.messenger.P2P.domain.usecases.MessageServiceImpl;
 
-public class MessageFactory {
+public class MessageServiceFactory {
     private static MessageService service;
 
     /**

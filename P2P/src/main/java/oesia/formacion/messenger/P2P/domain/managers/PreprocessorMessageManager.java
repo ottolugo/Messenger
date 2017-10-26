@@ -5,12 +5,14 @@ import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.configuration.KeepAliveConfiguration;
 import oesia.formacion.messenger.P2P.domain.configuration.RepositoryConfiguration;
-import oesia.formacion.messenger.P2P.domain.configuration.SocketConfiguration;
+import oesia.formacion.messenger.P2P.domain.entities.Message;
+import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.entities.advicemessages.KeepAliveMessage;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStatus;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
+import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 import oesia.formacion.messenger.P2P.domain.util.MessageCache;
 import oesia.formacion.messenger.P2P.logger.LogGet;
@@ -23,16 +25,42 @@ import oesia.formacion.messenger.P2P.logger.LogGet;
  */
 public class PreprocessorMessageManager {
 	private static final Logger LOG = LogGet.getLogger(PreprocessorMessageManager.class);
+
+	public static void receiveMessage(Message msg) {
+		switch (msg.getType()) {
+		case BROADCAST:
+		case GUIDED:
+			receiveBroadcast((UserMessage) msg);
+			break;
+		case ACK:
+			receiveACK((ACKMessage) msg);
+			break;
+		case KEEPALIVE:
+			receiveKeepAlive((KeepAliveMessage) msg);
+			break;
+		default:
+			LOG.warning("Wrong input on ProcessMessageUsecase");
+			break;
+		}
+	}
+
 	/**
 	 * Sends the broadcast message from the preprocessor to the domain It sends the broadcasted message to the gui
 	 * 
 	 * @param msg
 	 */
-	public static void receiveBroadcast(UserMessage msg) {
-		LOG.log(Level.FINE, "Broadcast message received from preprocessor: " + msg);
+	private static void receiveBroadcast(UserMessage msg) {
+		String add;
+		if (msg.getType().equals(MessageType.GUIDED)) {
+			add = "(For your eyes only)";
+		} else {
+			add = "(Broadcasted)";
+		}
+		LOG.log(Level.FINE, "User message received " + add + " from preprocessor: " + msg);
 		NotifierReceivedMessage.getInstance().notify(msg);
 		RepositoryConfiguration.getService().logMessage(msg);
-		SocketConfiguration.getService().sendMessage(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode()));
+		UsecaseFactory.getSendMessageUsecase(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode())).run();
+		;
 	}
 
 	/**
@@ -40,7 +68,7 @@ public class PreprocessorMessageManager {
 	 * 
 	 * @param msg
 	 */
-	public static void receiveKeepAlive(KeepAliveMessage msg) {
+	private static void receiveKeepAlive(KeepAliveMessage msg) {
 		LOG.log(Level.FINE, "KeepAlive message received from preprocessor: " + msg);
 		KeepAliveConfiguration.receiveKeepAlive(msg);
 	}
@@ -51,7 +79,7 @@ public class PreprocessorMessageManager {
 	 * 
 	 * @param msg
 	 */
-	public static void receiveACK(ACKMessage msg) {
+	private static void receiveACK(ACKMessage msg) {
 		LOG.log(Level.FINE, "ACK message received from preprocessor: " + msg);
 		MessageCache.getCache().updateMessage(msg.getCodeResponse(), MessageStatus.ARRIVED);
 	}
