@@ -51,7 +51,7 @@ public class MessageCache {
 		for(Map.Entry<Code, ObservableUserMessage> entry : messages.entrySet()) {
 		    Code key = entry.getKey();
 		    ObservableUserMessage value = entry.getValue();
-		    if(!DateUtil.isDateValid(value.getMessage())){
+		    if(!DateUtil.isDateValid(value.getMessage().getCode().getDate())){
 		    	updateMessage(key, MessageStatus.CANCELED);
 		    	toErase.add(key);
 		    }

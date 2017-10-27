@@ -1,10 +1,8 @@
 package oesia.formacion.messenger.P2P.preprocessor.queue;
 
 import java.util.LinkedList;
-import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
-import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
 
 /**
  * Implementation of the First In First Out queue, when an external resource get a message out of it, FifoQueue gives
@@ -15,13 +13,19 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  *
  */
 public class FIFOQueue {
+	private static FIFOQueue single;
+	
+	public static FIFOQueue getFIFO(){
+		if(single == null){
+			single = new FIFOQueue();
+		}
+		return single;
+	}
+	
 	private LinkedList<Message> fifo;
-	@SuppressWarnings("unused")
-	private final Logger LOG;
 
-	public FIFOQueue() {
+	private FIFOQueue() {
 		fifo = new LinkedList<Message>();
-		LOG = Logger.getLogger(MessagePortListener.class.getName());
 	}
 
 	/**
@@ -30,7 +34,6 @@ public class FIFOQueue {
 	 * @param message
 	 */
 	public void addMessage(Message message) {
-		// LOG.log(Level.INFO, "Message recived: " + message);
 		fifo.addLast(message);
 	}
 
@@ -42,7 +45,6 @@ public class FIFOQueue {
 	public Message getMessage() {
 		Message message = fifo.get(0);
 		fifo.removeFirst();
-		// LOG.log(Level.INFO, "Message requested: " + message);
 		return message;
 	}
 
@@ -52,10 +54,6 @@ public class FIFOQueue {
 	 * @return
 	 */
 	public boolean gotMessages() {
-		if (fifo.size() > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return (fifo.size()>0);
 	}
 }

@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
-import oesia.formacion.messenger.P2P.domain.entities.Message;
 
 public class DateUtil {
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd HH:mm:ss.SSS");
+	private static int timeout = Configuration.getConfiguration().getMessageTimeout();
 
 	/**
 	 * Format a date to a string
@@ -35,12 +35,7 @@ public class DateUtil {
 	 * @param message
 	 * @return
 	 */
-	public static boolean isDateValid(Message message) {
-		LocalDateTime date = LocalDateTime.now();
-		if (message.getCode().getDate().until(date, ChronoUnit.SECONDS) < Configuration.getConfiguration().getMessageTimeout()) {
-			return true;
-		} else {
-			return false;
-		}
+	public static boolean isDateValid(LocalDateTime date) {
+		return (date.until(LocalDateTime.now(), ChronoUnit.SECONDS) < timeout);
 	}
 }
