@@ -42,11 +42,11 @@ public class DataConfiguration {
 
 		properties.setProperty("Whoami", System.getProperty("user.name"));
 		whoIam = String.valueOf(properties.get("Whoami"));
-		properties.setProperty("KeepAliveTimeout", "10");
+		properties.setProperty("KeepAliveTimeout", properties.getProperty("KeepAliveTimeout"));
 		kalTime = Integer.parseInt((String) properties.get("KeepAliveTimeout"));
-		properties.setProperty("MessageTimeout", "5");
+		properties.setProperty("MessageTimeout", properties.getProperty("MessageTimeout"));
 		ackTimeout = Integer.parseInt((String) properties.get("MessageTimeout"));
-		properties.setProperty("port", "1496");
+		properties.setProperty("port", properties.getProperty("port"));
 		port = Integer.parseInt((String) properties.get("port"));
 
 		properties.setProperty("dir", System.getProperty("user.home"));
