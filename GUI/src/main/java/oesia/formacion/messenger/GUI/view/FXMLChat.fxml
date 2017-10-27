@@ -12,7 +12,7 @@
    <children>
       <SplitPane layoutX="3.0" layoutY="3.0" prefHeight="403.0" prefWidth="503.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <SplitPane dividerPositions="0.6666666666666666" layoutX="204.0" layoutY="77.0" prefHeight="160.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.6666666666666666" layoutX="204.0" layoutY="77.0" prefHeight="160.0" prefWidth="200.0" stylesheets="@../resource/miestilo.css">
               <items>
                   <SplitPane>
                      <items>
