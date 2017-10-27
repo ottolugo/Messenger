@@ -27,19 +27,16 @@ public class NotifierReceivedMessage implements DomainNotifier<UserMessage, GUIO
 		for (GUIObserver<UserMessage> guiObserver : observers) {
 			guiObserver.update(notification);
 		}
-
 	}
 
 	@Override
 	public void addObserver(GUIObserver<UserMessage> observer) {
 		observers.add(observer);
-
 	}
 
 	@Override
 	public void dropObserver(GUIObserver<UserMessage> observer) {
 		observers.remove(observer);
-
 	}
 
 }

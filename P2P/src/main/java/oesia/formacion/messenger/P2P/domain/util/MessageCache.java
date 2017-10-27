@@ -11,6 +11,7 @@ import oesia.formacion.messenger.P2P.domain.entities.contentmessages.MessageStat
 public class MessageCache {
 	private static MessageCache single;
 	
+	//Pattern singleton
 	public static MessageCache getCache(){
 		if(single == null){
 			single = new MessageCache();
@@ -33,7 +34,7 @@ public class MessageCache {
 		if (msg != null) {
 			if(!msg.getMessage().getStatus().equals(status)){
 				msg.setStatus(status);
-				//Borra el mensaje del listener si ha llegado o está cacelado
+				//Borra el mensaje del listener si ha llegado o está cancelado
 				if(status.equals(MessageStatus.ARRIVED)){
 					messages.remove(code);
 				}

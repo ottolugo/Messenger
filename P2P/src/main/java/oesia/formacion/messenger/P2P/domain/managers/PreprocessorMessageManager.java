@@ -60,7 +60,6 @@ public class PreprocessorMessageManager {
 		NotifierReceivedMessage.getInstance().notify(msg);
 		RepositoryConfiguration.getService().logMessage(msg);
 		UsecaseFactory.getSendMessageUsecase(new ACKMessage(CodeGenerator.getMyCode(), msg.getCode())).run();
-		;
 	}
 
 	/**

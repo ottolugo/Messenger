@@ -27,19 +27,16 @@ public class NotifierReceivedUserList implements DomainNotifier<List<String>, GU
 		for (GUIObserver<List<String>> guiObserver : observers) {
 			guiObserver.update(notification);
 		}
-
 	}
 
 	@Override
 	public void addObserver(GUIObserver<List<String>> observer) {
 		observers.add(observer);
-
 	}
 
 	@Override
 	public void dropObserver(GUIObserver<List<String>> observer) {
 		observers.remove(observer);
-
 	}
 
 }

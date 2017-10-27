@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Code implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7556911829874666039L;
 	private final String user;
 	private final LocalDateTime date;

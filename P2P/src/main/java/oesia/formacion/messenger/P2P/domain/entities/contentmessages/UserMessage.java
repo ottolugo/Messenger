@@ -7,7 +7,6 @@ import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 
 public class UserMessage extends Message implements Serializable {
-
 	private static final long serialVersionUID = -6623249859711995672L;
 	private final String contenido;
 	private MessageStatus status;

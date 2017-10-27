@@ -11,16 +11,16 @@ import oesia.formacion.messenger.P2P.socket.reciever.MessagePortListener;
  */
 public class MessageManagerConfiguration {
 
-    private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
-    private static MessageCheck messageManager = null;
+	private static final Logger LOG = Logger.getLogger(MessagePortListener.class.getName());
+	private static MessageCheck messageManager = null;
 
-    public static MessageCheck startMessageManager() {
-	if (messageManager == null) {
-	    messageManager = new MessageCheck();
-	    messageManager.start();
-	    LOG.log(Level.INFO, "Thread created and running");
+	public static MessageCheck startMessageManager() {
+		if (messageManager == null) {
+			messageManager = new MessageCheck();
+			messageManager.start();
+			LOG.log(Level.INFO, "Thread created and running");
+		}
+		return messageManager;
 	}
-	return messageManager;
-    }
 
 }

@@ -6,7 +6,6 @@ import oesia.formacion.messenger.P2P.domain.entities.Code;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 
 public class GuidedMessage extends UserMessage implements Serializable {
-
 	private final String userDestination;
 	private static final long serialVersionUID = -3251749199683153295L;
 
@@ -47,7 +46,7 @@ public class GuidedMessage extends UserMessage implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " userDestinity=" + userDestination + ".";
+		return super.toString() + " userDestination=" + userDestination + ".";
 	}
 
 	public String getUserDestination() {
