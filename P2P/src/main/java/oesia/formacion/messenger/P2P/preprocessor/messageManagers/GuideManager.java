@@ -26,7 +26,7 @@ public class GuideManager extends MessageManager {
 
     private boolean isForMe(Message message) {
 	GuidedMessage guided = (GuidedMessage) message;
-	if (guided.getUserDestinity().equals(this.getUser())) {
+	if (guided.getUserDestination().equals(this.getUser())) {
 	    return true;
 	} else {
 	    return false;

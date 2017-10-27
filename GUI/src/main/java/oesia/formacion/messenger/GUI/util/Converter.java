@@ -25,7 +25,7 @@ public class Converter {
 		switch (message.getType()) {
 		case GUIDED:
 			GuidedMessage gm = (GuidedMessage) message;
-			returnValue = new MessageGui(gm.getContenido(), gm.getCode().getUser(), gm.getUserDestinity(),
+			returnValue = new MessageGui(gm.getContenido(), gm.getCode().getUser(), gm.getUserDestination(),
 					convertIntoMessageStatus(gm.getStatus()), gm.getCode().getDate());
 			break;
 		case BROADCAST:
