@@ -1,6 +1,6 @@
 package oesia.formacion.messenger.P2P.preprocessor.util;
 
-import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
+import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.entities.MessageType;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.GuidedMessage;
@@ -8,7 +8,7 @@ import oesia.formacion.messenger.P2P.domain.entities.advicemessages.ACKMessage;
 import oesia.formacion.messenger.P2P.domain.util.DateUtil;
 
 public class PreprocessorChecker {
-	private static String whoami = Configuration.getConfiguration().getWhoami();
+	private static String whoami = LocalConfiguration.getWhoami();
 	
 	/**
 	 * Checks if the message should pass the preprocessor

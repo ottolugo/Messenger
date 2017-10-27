@@ -1,6 +1,5 @@
 package oesia.formacion.messenger.P2P.domain.boundaries;
 
-import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
 public interface RepositoryService {
@@ -16,5 +15,5 @@ public interface RepositoryService {
      * 
      * @return LocalConfiguration
      */
-    public LocalConfiguration getConfiguration();
+    public void loadConfiguration();
 }

@@ -2,13 +2,13 @@ package oesia.formacion.messenger.P2P.domain.util;
 
 import java.time.LocalDateTime;
 
-import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
 import oesia.formacion.messenger.P2P.domain.entities.Code;
+import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 
 public class CodeGenerator {
 
 	public static Code getMyCode(){
-		return new Code(Configuration.getConfiguration().getWhoami(), LocalDateTime.now());
+		return new Code(LocalConfiguration.getWhoami(), LocalDateTime.now());
 	}
 	
 }

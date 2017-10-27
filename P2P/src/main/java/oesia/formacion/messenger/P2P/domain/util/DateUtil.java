@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-import oesia.formacion.messenger.P2P.domain.configuration.Configuration;
+import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 
 public class DateUtil {
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd HH:mm:ss.SSS");
-	private static int timeout = Configuration.getConfiguration().getMessageTimeout();
+	private static int timeout = LocalConfiguration.getMessageTimeout();
 
 	/**
 	 * Format a date to a string

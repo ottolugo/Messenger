@@ -5,10 +5,9 @@ import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 public class LoadConfiguration {
 
 	public static void start(){
-		LocalConfiguration config = RepositoryConfiguration.getService().getConfiguration();
-		Configuration.setConfiguration(config);
+		RepositoryConfiguration.getService().loadConfiguration();
 		PreprocessorConfiguration.getPreprocessorService().startService();
-		SocketConfiguration.getService().startService(config.getPort());
+		SocketConfiguration.getService().startService(LocalConfiguration.getPort());
 		KeepAliverConfiguration.startKeepAliver();
 		CancelerConfiguration.startCanceler();
 	}

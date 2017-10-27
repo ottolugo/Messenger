@@ -22,9 +22,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	@Override
-	public LocalConfiguration getConfiguration() {
-		LocalConfiguration reciveLocalConfig = new LocalConfiguration(dataConfiguration.getWhoIam(),
+	public void loadConfiguration() {
+		LocalConfiguration.loadConfiguration(dataConfiguration.getWhoIam(),
 				dataConfiguration.getKalTime(), dataConfiguration.getAckTimeout(), dataConfiguration.getPort());
-		return reciveLocalConfig;
 	}
 }
