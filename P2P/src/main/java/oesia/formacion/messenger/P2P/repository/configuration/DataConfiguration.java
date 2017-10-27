@@ -12,50 +12,30 @@ public class DataConfiguration {
 	private static Integer port;
 	private static String dir;
 
-	public DataConfiguration() {
+	private DataConfiguration() {
 	}
 
-	public String getWhoIam() {
+	public static String getWhoIam() {
 		return whoIam;
 	}
 
-	public static void setWhoIam(String whoIam) {
-		DataConfiguration.whoIam = whoIam;
-	}
-
-	public Integer getKalTime() {
+	public static Integer getKalTime() {
 		return kalTime;
 	}
 
-	public static void setKalTime(Integer kalTime) {
-		DataConfiguration.kalTime = kalTime;
-	}
-
-	public Integer getAckTimeout() {
+	public static Integer getAckTimeout() {
 		return ackTimeout;
 	}
 
-	public static void setAckTimeout(Integer ackTimeout) {
-		DataConfiguration.ackTimeout = ackTimeout;
-	}
-
-	public Integer getPort() {
+	public static Integer getPort() {
 		return port;
 	}
 
-	public static void setPort(Integer port) {
-		DataConfiguration.port = port;
-	}
-
-	public String getDir() {
+	public static String getDir() {
 		return dir;
 	}
 
-	public static void setDir(String dir) {
-		DataConfiguration.dir = dir;
-	}
-
-	public void setDataConfiguration() throws IOException {
+	public static void setDataConfiguration() throws IOException {
 		final Properties properties = new Properties();
 		final InputStream propertiesStream = ClassLoader.getSystemResourceAsStream("config/application.properties");
 		properties.load(propertiesStream);
