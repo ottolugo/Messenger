@@ -6,7 +6,7 @@ import java.util.List;
 import oesia.formacion.messenger.P2P.domain.boundaries.GUI.GUIObserver;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
 
-public class NotifierReceivedMessage implements DomainObservable<UserMessage, GUIObserver<UserMessage>> {
+public class NotifierReceivedMessage implements DomainNotifier<UserMessage, GUIObserver<UserMessage>> {
 
 	private static NotifierReceivedMessage instance = null;
 	private List<GUIObserver<UserMessage>> observers = null;

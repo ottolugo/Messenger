@@ -8,26 +8,26 @@ package oesia.formacion.messenger.P2P.domain.notifiers;
  * @param <T> Tipo de objeto a entregar
  * @param <O> interfaz observer que acepta
  */
-public interface DomainObservable<T, O> {
+public interface DomainNotifier<T, O> {
 
 	/**
-	 * Notifica a todos los observadores
+	 * Notifies all observers
 	 * 
-	 * @param notification objeto que se notifica
+	 * @param notification (object to notify)
 	 */
 	public void notify(T notification);
 
 	/**
-	 * Observador a agregar
+	 * Adds an observer to the list
 	 * 
-	 * @param observer observador a agregar
+	 * @param observer
 	 */
 	public void addObserver(O observer);
 
 	/**
-	 * observador a eliminar
+	 * eliminates an observer from the list
 	 * 
-	 * @param observer observador a eliminar
+	 * @param observer
 	 */
 	public void dropObserver(O observer);
 
