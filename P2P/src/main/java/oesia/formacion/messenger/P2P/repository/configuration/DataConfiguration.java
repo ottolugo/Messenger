@@ -23,24 +23,27 @@ public class DataConfiguration {
 		}
 		return dataSingle;
 	}
-	
+
 	private DataConfiguration() {
 
-		Properties prop = new Properties();
-		File file = new File("application.properties");
+		File fileExist = new File("application.properties");
+		if(!fileExist.exists())
+		{
+			Properties prop = new Properties();
 
-		try {
-			prop.setProperty("Whoami", System.getProperty("user.name"));
-			prop.setProperty("Dir", System.getProperty("user.home"));
-			prop.setProperty("KeepAliveTimeout", "10");
-			prop.setProperty("MessageTimeout", "5");
-			prop.setProperty("Port", "1497");
-			FileOutputStream fileOut = new FileOutputStream(file);
-			prop.store(fileOut, "Data Configuration");
-			fileOut.close();
+			try {
+				prop.setProperty("Whoami", System.getProperty("user.name"));
+				prop.setProperty("Dir", System.getProperty("user.home"));
+				prop.setProperty("KeepAliveTimeout", "10");
+				prop.setProperty("MessageTimeout", "5");
+				prop.setProperty("Port", "1497");
+				FileOutputStream fileOut = new FileOutputStream(fileExist);
+				prop.store(fileOut, "Data Configuration");
+				fileOut.close();
 
-		} catch (IOException e) {
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
