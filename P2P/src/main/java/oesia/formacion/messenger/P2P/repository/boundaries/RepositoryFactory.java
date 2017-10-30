@@ -29,7 +29,7 @@ public class RepositoryFactory {
 
 	public static DataConfiguration getDataConfiguration() {
 		if (dataConfigurationService == null) {
-			dataConfigurationService = new DataConfiguration();
+			dataConfigurationService = DataConfiguration.getDataConfiguration();
 		}
 		return dataConfigurationService;
 	}

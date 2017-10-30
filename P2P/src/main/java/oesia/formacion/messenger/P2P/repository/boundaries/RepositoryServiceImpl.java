@@ -31,6 +31,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			e.printStackTrace();
 		}
 
-		LocalConfiguration.loadConfiguration(data.getWhoIam(), data.getKalTime(), data.getAckTimeout(), data.getPort());
+		LocalConfiguration.loadConfiguration(DataConfiguration.getWhoIam(), DataConfiguration.getKalTime(),
+				DataConfiguration.getAckTimeout(), DataConfiguration.getPort());
 	}
 }

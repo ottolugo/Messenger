@@ -13,8 +13,18 @@ public class DataConfiguration {
 	private static Integer ackTimeout;
 	private static Integer port;
 	private static String dir;
+	
+	private static DataConfiguration dataSingle;
 
-	public DataConfiguration() {
+	public static DataConfiguration getDataConfiguration() {
+		if(dataSingle == null)
+		{
+			dataSingle = new DataConfiguration();
+		}
+		return dataSingle;
+	}
+	
+	private DataConfiguration() {
 
 		Properties prop = new Properties();
 		File file = new File("application.properties");
@@ -34,23 +44,23 @@ public class DataConfiguration {
 		}
 	}
 
-	public String getWhoIam() {
+	public static String getWhoIam() {
 		return whoIam;
 	}
 
-	public Integer getKalTime() {
+	public static Integer getKalTime() {
 		return kalTime;
 	}
 
-	public Integer getAckTimeout() {
+	public static Integer getAckTimeout() {
 		return ackTimeout;
 	}
 
-	public Integer getPort() {
+	public static Integer getPort() {
 		return port;
 	}
 
-	public String getDir() {
+	public static String getDir() {
 		return dir;
 	}
 
