@@ -15,7 +15,7 @@ import oesia.formacion.messenger.P2P.domain.notifiers.NotifierReceivedMessage;
 import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
 import oesia.formacion.messenger.P2P.domain.util.CodeGenerator;
 import oesia.formacion.messenger.P2P.domain.util.MessageCache;
-import oesia.formacion.messenger.P2P.logger.LogGet;
+import oesia.formacion.messenger.P2P.logger.LogGetter;
 
 /**
  * This class is used by the FIFO to send messages to the domain
@@ -24,7 +24,7 @@ import oesia.formacion.messenger.P2P.logger.LogGet;
  *
  */
 public class PreprocessorMessageManager {
-	private static final Logger LOG = LogGet.getLogger(PreprocessorMessageManager.class);
+	private static final Logger LOG = LogGetter.getLogger(PreprocessorMessageManager.class);
 
 	public static void receiveMessage(Message msg) {
 		switch (msg.getType()) {

@@ -20,13 +20,13 @@ import java.util.logging.XMLFormatter;
  * @author ramunoz
  *
  */
-public class LogGet {
+public class LogGetter {
 
 	private static Map<Class<?>, Logger> logMap = null;
 	private static FileHandler saveHandler = null;
 	private static ConsoleHandler handler = null;
 
-	private LogGet() {
+	private LogGetter() {
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class LogGet {
 			try {
 				// Se necesita leer el fichero de resource como stream de datos
 				// para poder pasarlo
-				InputStream inputFile = LogGet.class.getResourceAsStream("log.properties");
+				InputStream inputFile = LogGetter.class.getResourceAsStream("log.properties");
 				// Se crea el fichero temporal
 				File tempfile = File.createTempFile(String.valueOf(inputFile.toString()), ".tmp");
 				tempfile.deleteOnExit();

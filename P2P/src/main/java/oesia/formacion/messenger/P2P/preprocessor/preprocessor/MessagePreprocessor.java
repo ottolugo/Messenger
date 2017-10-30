@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
-import oesia.formacion.messenger.P2P.logger.LogGet;
+import oesia.formacion.messenger.P2P.logger.LogGetter;
 import oesia.formacion.messenger.P2P.preprocessor.queue.FIFOQueue;
 import oesia.formacion.messenger.P2P.preprocessor.util.PreprocessorChecker;
 
@@ -17,7 +17,7 @@ import oesia.formacion.messenger.P2P.preprocessor.util.PreprocessorChecker;
  *
  */
 public class MessagePreprocessor extends Thread {
-	private static final Logger LOG = LogGet.getLogger(MessagePreprocessor.class);
+	private static final Logger LOG = LogGetter.getLogger(MessagePreprocessor.class);
 
 	/*
 	 * Constructor which main function is to instance all the Message Managers

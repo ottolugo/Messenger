@@ -13,12 +13,12 @@ import java.util.logging.Logger;
 
 import oesia.formacion.messenger.P2P.domain.entities.Message;
 import oesia.formacion.messenger.P2P.domain.usecases.UsecaseFactory;
-import oesia.formacion.messenger.P2P.logger.LogGet;
+import oesia.formacion.messenger.P2P.logger.LogGetter;
 import oesia.formacion.messenger.P2P.socket.configuration.SocketInternalConfiguration;
 
 public class SendMessageRunable implements Runnable {
 
-	private static final Logger LOG = LogGet.getLogger(SendMessageRunable.class);
+	private static final Logger LOG = LogGetter.getLogger(SendMessageRunable.class);
 	private Message message = null;
 
 	public SendMessageRunable(Message message) {
