@@ -8,11 +8,11 @@ import java.util.Properties;
 
 public class DataConfiguration {
 
-	private static String whoIam;
-	private static Integer kalTime;
-	private static Integer ackTimeout;
-	private static Integer port;
-	private static String dir;
+	private String whoIam;
+	private Integer kalTime;
+	private Integer ackTimeout;
+	private Integer port;
+	private String dir;
 	
 	private static DataConfiguration dataSingle;
 
@@ -44,23 +44,23 @@ public class DataConfiguration {
 		}
 	}
 
-	public static String getWhoIam() {
+	public String getWhoIam() {
 		return whoIam;
 	}
 
-	public static Integer getKalTime() {
+	public Integer getKalTime() {
 		return kalTime;
 	}
 
-	public static Integer getAckTimeout() {
+	public Integer getAckTimeout() {
 		return ackTimeout;
 	}
 
-	public static Integer getPort() {
+	public Integer getPort() {
 		return port;
 	}
 
-	public static String getDir() {
+	public String getDir() {
 		return dir;
 	}
 
