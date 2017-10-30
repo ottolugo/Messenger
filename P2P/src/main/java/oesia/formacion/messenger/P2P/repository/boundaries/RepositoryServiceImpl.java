@@ -1,7 +1,5 @@
 package oesia.formacion.messenger.P2P.repository.boundaries;
 
-import java.io.IOException;
-
 import oesia.formacion.messenger.P2P.domain.boundaries.RepositoryService;
 import oesia.formacion.messenger.P2P.domain.entities.LocalConfiguration;
 import oesia.formacion.messenger.P2P.domain.entities.contentmessages.UserMessage;
@@ -25,7 +23,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public void loadConfiguration() {
-		DataConfiguration data = DataConfiguration.getDataConfiguration();
 		LocalConfiguration.loadConfiguration(data.getWhoIam(), data.getKalTime(), data.getAckTimeout(), data.getPort());
 	}
 }
