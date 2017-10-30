@@ -45,6 +45,12 @@ public class DataConfiguration {
 				e.printStackTrace();
 			}
 		}
+		
+		try {
+			setDataConfiguration();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getWhoIam() {
@@ -67,7 +73,7 @@ public class DataConfiguration {
 		return dir;
 	}
 
-	public void setDataConfiguration() throws IOException {
+	private void setDataConfiguration() throws IOException {
 		final Properties properties = new Properties();
 		properties.load(new FileReader("application.properties"));
 

@@ -25,12 +25,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public void loadConfiguration() {
-		try {
-			data.setDataConfiguration();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		DataConfiguration data = DataConfiguration.getDataConfiguration();
 		LocalConfiguration.loadConfiguration(data.getWhoIam(), data.getKalTime(), data.getAckTimeout(), data.getPort());
 	}
