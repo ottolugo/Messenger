@@ -66,12 +66,12 @@ public class UserMessage extends Message implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString(", contenido=" + contenido);
+		return super.toString(", content=" + contenido);
 	}
 	
 	@Override
 	protected String toString(String within) {
-		return super.toString(", contenido=" + contenido + within);
+		return super.toString(", content=" + contenido + within);
 	}
 
 }

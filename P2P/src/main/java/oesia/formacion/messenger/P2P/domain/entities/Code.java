@@ -24,7 +24,7 @@ public class Code implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Code [user=" + user + ", date=" + date + "]";
+		return "[user=" + user + ", date=" + date + "]";
 	}
 
 	@Override
