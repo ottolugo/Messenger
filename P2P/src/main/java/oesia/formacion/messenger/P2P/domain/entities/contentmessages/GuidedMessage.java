@@ -46,7 +46,7 @@ public class GuidedMessage extends UserMessage implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " userDestination=" + userDestination + ".";
+		return super.toString(", userDestination=" + userDestination);
 	}
 
 	public String getUserDestination() {

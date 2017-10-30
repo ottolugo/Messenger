@@ -24,6 +24,10 @@ public abstract class Message implements Serializable {
 	public String toString() {
 		return "Message [type = " + getType() + " code=" + code + "]";
 	}
+	
+	protected String toString(String within) {
+		return "Message [type = " + getType() + " code=" + code + within + "]";
+	}
 
 	@Override
 	public int hashCode() {

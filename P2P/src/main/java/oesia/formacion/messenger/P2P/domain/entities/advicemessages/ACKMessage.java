@@ -32,7 +32,7 @@ public class ACKMessage extends Message implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " codeResponse=" + codeResponse + ".";
+		return super.toString(", codeResponse=" + codeResponse);
 	}
 
 	@Override
