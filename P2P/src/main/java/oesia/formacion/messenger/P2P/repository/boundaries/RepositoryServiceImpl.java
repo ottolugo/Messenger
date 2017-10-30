@@ -11,9 +11,11 @@ import oesia.formacion.messenger.P2P.repository.configuration.xmlMessage.XmlMess
 public class RepositoryServiceImpl implements RepositoryService {
 
 	private final XmlMessage xmlMessage;
+	private final DataConfiguration data;
 
 	public RepositoryServiceImpl() {
 		xmlMessage = RepositoryFactory.getXmlMessage();
+		data = RepositoryFactory.getDataConfiguration();
 	}
 
 	@Override
@@ -24,11 +26,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 	@Override
 	public void loadConfiguration() {
 		try {
-			DataConfiguration.setDataConfiguration();
+			data.setDataConfiguration();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		LocalConfiguration.loadConfiguration(DataConfiguration.getWhoIam(), DataConfiguration.getKalTime(),
-				DataConfiguration.getAckTimeout(), DataConfiguration.getPort());
+
+		LocalConfiguration.loadConfiguration(data.getWhoIam(), data.getKalTime(), data.getAckTimeout(), data.getPort());
 	}
 }

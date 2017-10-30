@@ -1,7 +1,9 @@
 package oesia.formacion.messenger.P2P.repository.configuration;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class DataConfiguration {
@@ -12,44 +14,55 @@ public class DataConfiguration {
 	private static Integer port;
 	private static String dir;
 
-	private DataConfiguration() {
+	public DataConfiguration() {
+
+		Properties prop = new Properties();
+		File file = new File("application.properties");
+
+		try {
+			prop.setProperty("Whoami", System.getProperty("user.name"));
+			prop.setProperty("Dir", System.getProperty("user.home"));
+			prop.setProperty("KeepAliveTimeout", "10");
+			prop.setProperty("MessageTimeout", "5");
+			prop.setProperty("Port", "1497");
+			FileOutputStream fileOut = new FileOutputStream(file);
+			prop.store(fileOut, "Data Configuration");
+			fileOut.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public static String getWhoIam() {
+	public String getWhoIam() {
 		return whoIam;
 	}
 
-	public static Integer getKalTime() {
+	public Integer getKalTime() {
 		return kalTime;
 	}
 
-	public static Integer getAckTimeout() {
+	public Integer getAckTimeout() {
 		return ackTimeout;
 	}
 
-	public static Integer getPort() {
+	public Integer getPort() {
 		return port;
 	}
 
-	public static String getDir() {
+	public String getDir() {
 		return dir;
 	}
 
-	public static void setDataConfiguration() throws IOException {
+	public void setDataConfiguration() throws IOException {
 		final Properties properties = new Properties();
-		final InputStream propertiesStream = ClassLoader.getSystemResourceAsStream("config/application.properties");
-		properties.load(propertiesStream);
+		properties.load(new FileReader("application.properties"));
 
-		properties.setProperty("Whoami", System.getProperty("user.name"));
-		whoIam = String.valueOf(properties.get("Whoami"));
-		
-		kalTime = Integer.parseInt((String) properties.get("KeepAliveTimeout"));
 		ackTimeout = Integer.parseInt((String) properties.get("MessageTimeout"));
-		port = Integer.parseInt((String) properties.get("port"));
-
-		properties.setProperty("dir", System.getProperty("user.home"));
-		dir = String.valueOf(properties.get("dir"));
-		propertiesStream.close();
+		kalTime = Integer.parseInt((String) properties.get("KeepAliveTimeout"));
+		whoIam = String.valueOf(properties.get("Whoami"));
+		port = Integer.parseInt((String) properties.get("Port"));
+		dir = String.valueOf(properties.get("Dir"));
 	}
 
 }
