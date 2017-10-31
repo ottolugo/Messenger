@@ -1,14 +1,15 @@
 package oesia.formacion.messenger.P2P.socket.senders;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SendMessageFIFO implements Runnable {
 
 	private static SendMessageFIFO instance;
-	private Stack<Runnable> todoList;
+	private Queue<Runnable> todoList;
 
 	private SendMessageFIFO() {
-		todoList = new Stack<Runnable>();
+		todoList = new LinkedList<Runnable>();
 	}
 
 	public static SendMessageFIFO getInstance() {
@@ -24,14 +25,14 @@ public class SendMessageFIFO implements Runnable {
 	 * @param sender
 	 */
 	public void addWork(Runnable sender) {
-		todoList.push(sender);
+		todoList.add(sender);
 	}
 
 	@Override
 	public void run() {
 		while (true) {
 			if (!todoList.isEmpty()) {
-				todoList.pop().run();
+				todoList.remove().run();
 			}
 			try {
 				// Para evitar que se colapse
