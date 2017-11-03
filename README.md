@@ -1,6 +1,7 @@
 # Messenger
 
-There are two folders, each one is a different maven proyect
+There are two folders, each one is a different maven proyect.
+
 GUI:
   This is the user interface. We used javafx for the design. With java we made a model and conversors.
   Also user observer pattern to develop this part of the app.
